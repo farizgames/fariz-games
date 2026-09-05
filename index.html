@@ -1,0 +1,3942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fariz Games</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg1: #070914;
+      --bg2: #202966;
+      --card: rgba(18, 24, 55, 0.96);
+      --card2: #0e1533;
+      --primary: #62e7ff;
+      --secondary: #745cff;
+      --accent: #ff6685;
+      --text: #ffffff;
+      --muted: #aab2d0;
+      --border: #34406f;
+      --success: #75f4b1;
+      --warning: #ffd166;
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at top,
+          var(--bg2),
+          var(--bg1) 65%
+        );
+
+      transition: 0.3s ease;
+
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        );
+
+      background-size: 35px 35px;
+
+      pointer-events: none;
+    }
+
+    .orb {
+      position: fixed;
+
+      border-radius: 50%;
+
+      filter: blur(90px);
+
+      opacity: .22;
+
+      z-index: -1;
+
+      pointer-events: none;
+    }
+
+    .orb.one {
+      width: 320px;
+      height: 320px;
+
+      background: var(--primary);
+
+      top: -120px;
+      left: -120px;
+    }
+
+    .orb.two {
+      width: 350px;
+      height: 350px;
+
+      background: var(--secondary);
+
+      right: -130px;
+      bottom: -130px;
+    }
+
+    .app {
+      width: 100%;
+      min-height: 100vh;
+
+      padding: 18px;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 480px;
+
+      margin: 0 auto;
+
+      animation: appear .3s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================================
+       LOGO
+    ====================================== */
+
+    .logo-wrap {
+      text-align: center;
+
+      margin: 14px 0 24px;
+    }
+
+    .logo-icon {
+      width: 76px;
+      height: 76px;
+
+      margin: auto;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 24px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      font-size: 27px;
+      font-weight: 1000;
+
+      box-shadow:
+        0 0 35px rgba(98,231,255,.25);
+    }
+
+    .logo-title {
+      margin-top: 12px;
+
+      color: var(--primary);
+
+      font-size: 38px;
+      font-weight: 1000;
+
+      text-shadow:
+        0 0 25px rgba(98,231,255,.25);
+    }
+
+    .logo-subtitle {
+      color: var(--muted);
+
+      margin-top: 5px;
+
+      font-size: 14px;
+    }
+
+    /* =====================================
+       TOP BAR
+    ====================================== */
+
+    .topbar {
+      width: calc(100% - 24px);
+      max-width: 900px;
+
+      margin: 12px auto 10px;
+
+      padding: 11px 13px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 10px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+    }
+
+    .mini-logo {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--primary);
+
+      font-weight: 900;
+    }
+
+    .mini-logo-icon {
+      width: 36px;
+      height: 36px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      color: white;
+
+      font-size: 12px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 11px;
+
+      border: 1px solid var(--border);
+
+      color: var(--text);
+
+      background: var(--card2);
+    }
+
+    /* =====================================
+       CARD
+    ====================================== */
+
+    .card {
+      padding: 24px;
+
+      border-radius: 24px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 25px 60px rgba(0,0,0,.4);
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 900;
+
+      margin-bottom: 7px;
+    }
+
+    .card-subtitle {
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.6;
+
+      margin-bottom: 18px;
+    }
+
+    /* =====================================
+       INPUTS
+    ====================================== */
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    select {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      outline: none;
+
+      color: var(--text);
+
+      background: var(--card2);
+
+      border: 1px solid var(--border);
+
+      border-radius: 13px;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(98,231,255,.09);
+    }
+
+    input::placeholder {
+      color: var(--muted);
+
+      opacity: .65;
+    }
+
+    /* =====================================
+       BUTTONS
+    ====================================== */
+
+    .btn {
+      width: 100%;
+
+      padding: 14px 16px;
+
+      border: none;
+
+      border-radius: 13px;
+
+      color: white;
+
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      transition: .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: scale(.98);
+    }
+
+    .btn:disabled {
+      opacity: .5;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+    .btn.secondary {
+      margin-top: 10px;
+
+      background: var(--card2);
+
+      border: 1px solid var(--border);
+    }
+
+    .btn.danger {
+      background:
+        linear-gradient(
+          135deg,
+          #ff4f6f,
+          #aa2d5b
+        );
+    }
+
+    /* =====================================
+       PROFILE
+    ====================================== */
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+
+      margin: 0 auto 15px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      color: white;
+
+      font-size: 30px;
+      font-weight: 1000;
+    }
+
+    .profile-message {
+      min-height: 22px;
+
+      margin-top: 12px;
+
+      color: #ff7891;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    /* =====================================
+       DASHBOARD
+    ====================================== */
+
+    .dashboard-card {
+      text-align: center;
+    }
+
+    .welcome-name {
+      font-size: 28px;
+      font-weight: 1000;
+    }
+
+    .profile-details {
+      margin: 10px 0 22px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+
+      font-size: 14px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+
+      gap: 11px;
+
+      margin-top: 18px;
+    }
+
+    .feature-box {
+      padding: 15px;
+
+      text-align: left;
+
+      background: var(--card2);
+
+      border: 1px solid var(--border);
+
+      border-radius: 15px;
+    }
+
+    .feature-box strong {
+      display: block;
+
+      color: var(--primary);
+
+      margin-bottom: 5px;
+    }
+
+    .feature-box span {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    /* =====================================
+       LOBBY
+    ====================================== */
+
+    .divider {
+      position: relative;
+
+      margin: 18px 0;
+
+      color: var(--muted);
+
+      text-align: center;
+
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      position: absolute;
+
+      top: 50%;
+
+      width: 38%;
+      height: 1px;
+
+      background: var(--border);
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .message {
+      min-height: 22px;
+
+      margin-top: 13px;
+
+      color: #ff7891;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    /* =====================================
+       WAITING
+    ====================================== */
+
+    .waiting-card {
+      text-align: center;
+    }
+
+    .room-code {
+      margin: 20px 0;
+
+      color: var(--primary);
+
+      font-size: 38px;
+      font-weight: 1000;
+
+      letter-spacing: 7px;
+    }
+
+    .loader {
+      width: 42px;
+      height: 42px;
+
+      margin: 22px auto;
+
+      border:
+        4px solid rgba(255,255,255,.1);
+
+      border-top-color: var(--primary);
+
+      border-radius: 50%;
+
+      animation:
+        spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =====================================
+       GAME
+    ====================================== */
+
+    .players {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 10px;
+
+      margin-bottom: 17px;
+    }
+
+    .player {
+      padding: 12px 8px;
+
+      text-align: center;
+
+      border-radius: 14px;
+
+      background: var(--card2);
+
+      border: 1px solid var(--border);
+    }
+
+    .player-name {
+      display: block;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .player-symbol {
+      display: block;
+
+      margin-top: 5px;
+
+      font-size: 30px;
+      font-weight: 1000;
+    }
+
+    .symbol-x {
+      color: var(--primary);
+    }
+
+    .symbol-o {
+      color: var(--accent);
+    }
+
+    .turn-text {
+      min-height: 24px;
+
+      text-align: center;
+
+      color: var(--warning);
+
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .you-are {
+      margin-top: 5px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .board {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 9px;
+
+      margin: 20px 0;
+    }
+
+    .cell {
+      aspect-ratio: 1 / 1;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 16px;
+
+      border: 2px solid var(--border);
+
+      background: var(--card2);
+
+      color: var(--text);
+
+      font-size: 50px;
+      font-weight: 1000;
+
+      transition: .15s ease;
+    }
+
+    .cell:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .cell.x {
+      color: var(--primary);
+    }
+
+    .cell.o {
+      color: var(--accent);
+    }
+
+    .cell.win {
+      border-color: var(--success);
+
+      background:
+        rgba(117,244,177,.12);
+
+      box-shadow:
+        0 0 25px rgba(117,244,177,.15);
+    }
+
+    .game-result {
+      min-height: 34px;
+
+      text-align: center;
+
+      color: var(--success);
+
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .room-bottom {
+      margin-top: 17px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    /* =====================================
+       SETTINGS
+    ====================================== */
+
+    .settings-panel {
+      position: fixed;
+
+      top: 0;
+      right: -370px;
+
+      width: min(360px, 92vw);
+      height: 100vh;
+
+      z-index: 100;
+
+      padding: 20px;
+
+      overflow-y: auto;
+
+      background: var(--card);
+
+      border-left: 1px solid var(--border);
+
+      box-shadow:
+        -20px 0 60px rgba(0,0,0,.4);
+
+      transition: right .3s ease;
+    }
+
+    .settings-panel.open {
+      right: 0;
+    }
+
+    .settings-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 20px;
+    }
+
+    .settings-head h2 {
+      font-size: 23px;
+    }
+
+    .theme-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 10px;
+
+      margin-top: 14px;
+    }
+
+    .theme-card {
+      padding: 10px;
+
+      text-align: left;
+
+      color: var(--text);
+
+      background: var(--card2);
+
+      border: 2px solid transparent;
+
+      border-radius: 14px;
+    }
+
+    .theme-card.active {
+      border-color: var(--primary);
+    }
+
+    .theme-preview {
+      height: 42px;
+
+      margin-bottom: 8px;
+
+      border-radius: 9px;
+    }
+
+    .theme-name {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .settings-divider {
+      height: 1px;
+
+      background: var(--border);
+
+      margin: 22px 0;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 10px;
+
+      margin: 14px 0;
+    }
+
+    .toggle {
+      width: 50px;
+      height: 28px;
+
+      padding: 3px;
+
+      border: none;
+
+      border-radius: 20px;
+
+      background: #555b71;
+    }
+
+    .toggle span {
+      display: block;
+
+      width: 22px;
+      height: 22px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      transition: .2s;
+    }
+
+    .toggle.on {
+      background: var(--primary);
+    }
+
+    .toggle.on span {
+      transform: translateX(22px);
+    }
+
+    /* =====================================
+       MUSIC
+    ====================================== */
+
+    .music-box {
+      position: fixed;
+
+      left: 12px;
+      bottom: 12px;
+
+      width: 210px;
+
+      z-index: 50;
+
+      padding: 9px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 13px;
+    }
+
+    .music-title {
+      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .music-box iframe {
+      width: 100%;
+      height: 118px;
+
+      border: none;
+
+      border-radius: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .app {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .logo-title {
+        font-size: 33px;
+      }
+
+      .room-code {
+        font-size: 29px;
+        letter-spacing: 5px;
+      }
+
+      .cell {
+        font-size: 42px;
+      }
+
+      .music-box {
+        width: 155px;
+      }
+
+      .music-box iframe {
+        height: 88px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background-grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+
+  <!-- TOP BAR -->
+
+  <header
+    id="topbar"
+    class="topbar hidden"
+  >
+    <div class="mini-logo">
+      <div class="mini-logo-icon">
+        FG
+      </div>
+
+      <span>
+        Fariz Games
+      </span>
+    </div>
+
+    <div class="top-actions">
+      <button
+        id="settingsBtn"
+        class="icon-btn"
+        title="Themes"
+      >
+        🎨
+      </button>
+
+      <button
+        id="soundBtn"
+        class="icon-btn"
+        title="Sound"
+      >
+        🔊
+      </button>
+    </div>
+  </header>
+
+
+  <main class="app">
+
+
+    <!-- ===============================
+         PROFILE SCREEN
+    ================================ -->
+
+    <section
+      id="profileScreen"
+      class="screen"
+    >
+
+      <div class="logo-wrap">
+
+        <div class="logo-icon">
+          FG
+        </div>
+
+        <h1 class="logo-title">
+          Fariz Games
+        </h1>
+
+        <p class="logo-subtitle">
+          Play. Compete. Win.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2 class="card-title">
+          Create Your Profile
+        </h2>
+
+        <p class="card-subtitle">
+          Enter your details to continue.
+        </p>
+
+
+        <div class="field">
+          <label>
+            Name
+          </label>
+
+          <input
+            id="profileName"
+            type="text"
+            maxlength="20"
+            placeholder="Enter your name"
+            autocomplete="off"
+          />
+        </div>
+
+
+        <div class="field">
+          <label>
+            Age
+          </label>
+
+          <input
+            id="profileAge"
+            type="number"
+            min="5"
+            max="100"
+            placeholder="Enter your age"
+          />
+        </div>
+
+
+        <div class="field">
+          <label>
+            Location
+          </label>
+
+          <input
+            id="profileLocation"
+            type="text"
+            maxlength="30"
+            placeholder="Enter your location"
+            autocomplete="off"
+          />
+        </div>
+
+
+        <button
+          id="saveProfileBtn"
+          class="btn"
+        >
+          Continue
+        </button>
+
+
+        <p
+          id="profileMessage"
+          class="profile-message"
+        ></p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===============================
+         DASHBOARD
+    ================================ -->
+
+    <section
+      id="dashboardScreen"
+      class="screen hidden"
+    >
+
+      <div class="logo-wrap">
+
+        <div class="logo-icon">
+          FG
+        </div>
+
+        <h1 class="logo-title">
+          Fariz Games
+        </h1>
+
+      </div>
+
+
+      <div class="card dashboard-card">
+
+        <div
+          id="dashboardAvatar"
+          class="profile-avatar"
+        >
+          F
+        </div>
+
+
+        <div
+          id="dashboardName"
+          class="welcome-name"
+        >
+          Player
+        </div>
+
+
+        <div
+          id="dashboardDetails"
+          class="profile-details"
+        >
+          Age: --<br>
+          Location: --
+        </div>
+
+
+        <button
+          id="playGameBtn"
+          class="btn"
+        >
+          ▶ Play Game
+        </button>
+
+
+        <button
+          id="themeBtn"
+          class="btn secondary"
+        >
+          🎨 Choose Theme
+        </button>
+
+
+        <button
+          id="editProfileBtn"
+          class="btn secondary"
+        >
+          Edit Profile
+        </button>
+
+
+        <div class="dashboard-grid">
+
+          <div class="feature-box">
+
+            <strong>
+              Online Multiplayer
+            </strong>
+
+            <span>
+              Play against a friend on another device.
+            </span>
+
+          </div>
+
+
+          <div class="feature-box">
+
+            <strong>
+              10 Themes
+            </strong>
+
+            <span>
+              Choose your favorite Fariz Games style.
+            </span>
+
+          </div>
+
+
+          <div class="feature-box">
+
+            <strong>
+              Sound & Music
+            </strong>
+
+            <span>
+              Sound effects and background music controls included.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===============================
+         LOBBY
+    ================================ -->
+
+    <section
+      id="lobbyScreen"
+      class="screen hidden"
+    >
+
+      <div class="logo-wrap">
+
+        <div class="logo-icon">
+          FG
+        </div>
+
+        <h1 class="logo-title">
+          Fariz Games
+        </h1>
+
+        <p class="logo-subtitle">
+          Online Tic Tac Toe
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2 class="card-title">
+          Online Match
+        </h2>
+
+        <p class="card-subtitle">
+          Create a new room or join your friend's room.
+        </p>
+
+
+        <button
+          id="createRoomBtn"
+          class="btn"
+        >
+          Create Room
+        </button>
+
+
+        <div class="divider">
+          OR
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Room Code
+          </label>
+
+          <input
+            id="roomInput"
+            type="text"
+            maxlength="6"
+            placeholder="Enter room code"
+            autocomplete="off"
+          />
+
+        </div>
+
+
+        <button
+          id="joinRoomBtn"
+          class="btn"
+        >
+          Join Room
+        </button>
+
+
+        <button
+          id="backDashboardBtn"
+          class="btn secondary"
+        >
+          Back
+        </button>
+
+
+        <p
+          id="lobbyMessage"
+          class="message"
+        ></p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===============================
+         WAITING
+    ================================ -->
+
+    <section
+      id="waitingScreen"
+      class="screen hidden"
+    >
+
+      <div class="logo-wrap">
+
+        <div class="logo-icon">
+          FG
+        </div>
+
+        <h1 class="logo-title">
+          Fariz Games
+        </h1>
+
+      </div>
+
+
+      <div class="card waiting-card">
+
+        <h2 class="card-title">
+          Room Created
+        </h2>
+
+        <p class="card-subtitle">
+          Send this code to your friend.
+        </p>
+
+
+        <div
+          id="roomCodeDisplay"
+          class="room-code"
+        >
+          ------
+        </div>
+
+
+        <button
+          id="copyRoomBtn"
+          class="btn"
+        >
+          Copy Room Code
+        </button>
+
+
+        <button
+          id="leaveWaitingBtn"
+          class="btn secondary"
+        >
+          Leave Room
+        </button>
+
+
+        <div class="loader"></div>
+
+        <p class="card-subtitle">
+          Waiting for opponent...
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===============================
+         GAME
+    ================================ -->
+
+    <section
+      id="gameScreen"
+      class="screen hidden"
+    >
+
+      <div class="logo-wrap">
+
+        <div class="logo-icon">
+          FG
+        </div>
+
+        <h1 class="logo-title">
+          Fariz Games
+        </h1>
+
+        <p class="logo-subtitle">
+          Online Tic Tac Toe
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="players">
+
+          <div class="player">
+
+            <span
+              id="playerXName"
+              class="player-name"
+            >
+              Player X
+            </span>
+
+            <strong
+              class="player-symbol symbol-x"
+            >
+              X
+            </strong>
+
+          </div>
+
+
+          <div class="player">
+
+            <span
+              id="playerOName"
+              class="player-name"
+            >
+              Player O
+            </span>
+
+            <strong
+              class="player-symbol symbol-o"
+            >
+              O
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="turnText"
+          class="turn-text"
+        >
+          Waiting...
+        </div>
+
+
+        <div
+          id="yourSymbol"
+          class="you-are"
+        ></div>
+
+
+        <div class="board">
+
+          <button
+            class="cell"
+            data-index="0"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="1"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="2"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="3"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="4"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="5"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="6"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="7"
+          ></button>
+
+          <button
+            class="cell"
+            data-index="8"
+          ></button>
+
+        </div>
+
+
+        <div
+          id="gameResult"
+          class="game-result"
+        ></div>
+
+
+        <button
+          id="rematchBtn"
+          class="btn hidden"
+        >
+          Rematch
+        </button>
+
+
+        <button
+          id="leaveGameBtn"
+          class="btn secondary"
+        >
+          Leave Game
+        </button>
+
+
+        <p class="room-bottom">
+          Room:
+          <span id="gameRoomCode">
+            ------
+          </span>
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ===============================
+       SETTINGS
+  ================================ -->
+
+  <aside
+    id="settingsPanel"
+    class="settings-panel"
+  >
+
+    <div class="settings-head">
+
+      <h2>
+        Settings
+      </h2>
+
+      <button
+        id="closeSettingsBtn"
+        class="icon-btn"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <h3>
+      Game Theme
+    </h3>
+
+
+    <p
+      style="
+        color:var(--muted);
+        font-size:13px;
+        margin-top:7px;
+      "
+    >
+      Choose your favorite theme.
+    </p>
+
+
+    <div
+      id="themeGrid"
+      class="theme-grid"
+    ></div>
+
+
+    <div class="settings-divider"></div>
+
+
+    <div class="setting-row">
+
+      <span>
+        Sound Effects
+      </span>
+
+      <button
+        id="soundToggle"
+        class="toggle on"
+      >
+        <span></span>
+      </button>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <span>
+        Music Player
+      </span>
+
+      <button
+        id="musicToggle"
+        class="toggle"
+      >
+        <span></span>
+      </button>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- ===============================
+       YOUTUBE MUSIC
+  ================================ -->
+
+  <div
+    id="musicBox"
+    class="music-box hidden"
+  >
+
+    <div class="music-title">
+      Fariz Games Music
+    </div>
+
+    <iframe
+      src="https://www.youtube.com/embed/2K9wxzFLye0?rel=0"
+      title="Fariz Games Music"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+  </div>
+
+
+
+  <script type="module">
+
+    /* =====================================
+       FIREBASE
+    ====================================== */
+
+    import {
+      initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+    import {
+      getDatabase,
+      ref,
+      set,
+      get,
+      update,
+      remove,
+      onValue,
+      runTransaction
+    }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyBKPJeJILSahLtcP2qzYIjNLgEq9-cAsKE",
+
+      authDomain:
+        "fariz-games.firebaseapp.com",
+
+      databaseURL:
+        "https://fariz-games-default-rtdb.firebaseio.com",
+
+      projectId:
+        "fariz-games",
+
+      storageBucket:
+        "fariz-games.firebasestorage.app",
+
+      messagingSenderId:
+        "40340677094",
+
+      appId:
+        "1:40340677094:web:57efac0a6de70c23ef3627",
+
+      measurementId:
+        "G-GCJRXRE8HG"
+
+    };
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+
+    const db =
+      getDatabase(app);
+
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const profileScreen =
+      document.getElementById("profileScreen");
+
+    const dashboardScreen =
+      document.getElementById("dashboardScreen");
+
+    const lobbyScreen =
+      document.getElementById("lobbyScreen");
+
+    const waitingScreen =
+      document.getElementById("waitingScreen");
+
+    const gameScreen =
+      document.getElementById("gameScreen");
+
+    const topbar =
+      document.getElementById("topbar");
+
+
+    const profileName =
+      document.getElementById("profileName");
+
+    const profileAge =
+      document.getElementById("profileAge");
+
+    const profileLocation =
+      document.getElementById("profileLocation");
+
+    const saveProfileBtn =
+      document.getElementById("saveProfileBtn");
+
+    const profileMessage =
+      document.getElementById("profileMessage");
+
+
+    const dashboardAvatar =
+      document.getElementById("dashboardAvatar");
+
+    const dashboardName =
+      document.getElementById("dashboardName");
+
+    const dashboardDetails =
+      document.getElementById("dashboardDetails");
+
+    const playGameBtn =
+      document.getElementById("playGameBtn");
+
+    const editProfileBtn =
+      document.getElementById("editProfileBtn");
+
+    const themeBtn =
+      document.getElementById("themeBtn");
+
+
+    const createRoomBtn =
+      document.getElementById("createRoomBtn");
+
+    const joinRoomBtn =
+      document.getElementById("joinRoomBtn");
+
+    const roomInput =
+      document.getElementById("roomInput");
+
+    const lobbyMessage =
+      document.getElementById("lobbyMessage");
+
+    const backDashboardBtn =
+      document.getElementById("backDashboardBtn");
+
+
+    const roomCodeDisplay =
+      document.getElementById("roomCodeDisplay");
+
+    const copyRoomBtn =
+      document.getElementById("copyRoomBtn");
+
+    const leaveWaitingBtn =
+      document.getElementById("leaveWaitingBtn");
+
+
+    const playerXName =
+      document.getElementById("playerXName");
+
+    const playerOName =
+      document.getElementById("playerOName");
+
+    const turnText =
+      document.getElementById("turnText");
+
+    const yourSymbol =
+      document.getElementById("yourSymbol");
+
+    const gameResult =
+      document.getElementById("gameResult");
+
+    const rematchBtn =
+      document.getElementById("rematchBtn");
+
+    const leaveGameBtn =
+      document.getElementById("leaveGameBtn");
+
+    const gameRoomCode =
+      document.getElementById("gameRoomCode");
+
+    const cells =
+      document.querySelectorAll(".cell");
+
+
+    const settingsBtn =
+      document.getElementById("settingsBtn");
+
+    const settingsPanel =
+      document.getElementById("settingsPanel");
+
+    const closeSettingsBtn =
+      document.getElementById("closeSettingsBtn");
+
+    const themeGrid =
+      document.getElementById("themeGrid");
+
+    const soundBtn =
+      document.getElementById("soundBtn");
+
+    const soundToggle =
+      document.getElementById("soundToggle");
+
+    const musicToggle =
+      document.getElementById("musicToggle");
+
+    const musicBox =
+      document.getElementById("musicBox");
+
+
+
+    /* =====================================
+       STATE
+    ====================================== */
+
+    let playerProfile =
+      null;
+
+
+    let currentRoom =
+      "";
+
+
+    let mySymbol =
+      "";
+
+
+    let roomListener =
+      null;
+
+
+    let processingMove =
+      false;
+
+
+    let soundEnabled =
+      localStorage.getItem(
+        "fgSound"
+      ) !== "off";
+
+
+    let musicEnabled =
+      localStorage.getItem(
+        "fgMusic"
+      ) === "on";
+
+
+
+    /* =====================================
+       SCREEN SYSTEM
+    ====================================== */
+
+    function showScreen(screen) {
+
+      [
+        profileScreen,
+        dashboardScreen,
+        lobbyScreen,
+        waitingScreen,
+        gameScreen
+      ].forEach(item => {
+        item.classList.add("hidden");
+      });
+
+
+      screen.classList.remove("hidden");
+
+
+      if (
+        screen === profileScreen
+      ) {
+
+        topbar.classList.add("hidden");
+
+      } else {
+
+        topbar.classList.remove("hidden");
+      }
+    }
+
+
+
+    /* =====================================
+       PROFILE
+    ====================================== */
+
+    function loadProfile() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            "farizProfile"
+          );
+
+
+        if (!saved) {
+
+          return null;
+        }
+
+
+        return JSON.parse(saved);
+
+      } catch {
+
+        return null;
+      }
+    }
+
+
+
+    function saveProfile() {
+
+      const name =
+        profileName.value.trim();
+
+      const age =
+        Number(profileAge.value);
+
+      const location =
+        profileLocation.value.trim();
+
+
+      profileMessage.textContent =
+        "";
+
+
+      if (!name) {
+
+        profileMessage.textContent =
+          "Please enter your name.";
+
+        playSound("error");
+
+        return;
+      }
+
+
+      if (
+        !age ||
+        age < 5 ||
+        age > 100
+      ) {
+
+        profileMessage.textContent =
+          "Please enter a valid age.";
+
+        playSound("error");
+
+        return;
+      }
+
+
+      if (!location) {
+
+        profileMessage.textContent =
+          "Please enter your location.";
+
+        playSound("error");
+
+        return;
+      }
+
+
+      playerProfile = {
+        name,
+        age,
+        location
+      };
+
+
+      localStorage.setItem(
+        "farizProfile",
+        JSON.stringify(playerProfile)
+      );
+
+
+      updateDashboard();
+
+
+      playSound("success");
+
+
+      showScreen(
+        dashboardScreen
+      );
+    }
+
+
+
+    saveProfileBtn.onclick =
+      saveProfile;
+
+
+
+    function updateDashboard() {
+
+      if (!playerProfile) {
+        return;
+      }
+
+
+      dashboardName.textContent =
+        playerProfile.name;
+
+
+      dashboardAvatar.textContent =
+        playerProfile.name
+          .charAt(0)
+          .toUpperCase();
+
+
+      dashboardDetails.innerHTML =
+        `
+          Age: ${playerProfile.age}
+          <br>
+          Location: ${playerProfile.location}
+        `;
+    }
+
+
+
+    editProfileBtn.onclick =
+      () => {
+
+        playSound("click");
+
+
+        profileName.value =
+          playerProfile?.name || "";
+
+        profileAge.value =
+          playerProfile?.age || "";
+
+        profileLocation.value =
+          playerProfile?.location || "";
+
+
+        showScreen(
+          profileScreen
+        );
+      };
+
+
+
+    /* =====================================
+       DASHBOARD
+    ====================================== */
+
+    playGameBtn.onclick =
+      () => {
+
+        playSound("click");
+
+        showScreen(
+          lobbyScreen
+        );
+      };
+
+
+    backDashboardBtn.onclick =
+      () => {
+
+        playSound("click");
+
+        showScreen(
+          dashboardScreen
+        );
+      };
+
+
+
+    /* =====================================
+       ROOM HELPERS
+    ====================================== */
+
+    function generateRoomCode() {
+
+      const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+      let code =
+        "";
+
+
+      for (
+        let i = 0;
+        i < 6;
+        i++
+      ) {
+
+        code +=
+          chars[
+            Math.floor(
+              Math.random() *
+              chars.length
+            )
+          ];
+      }
+
+
+      return code;
+    }
+
+
+
+    function blankBoard() {
+
+      return {
+        0: "",
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        8: ""
+      };
+    }
+
+
+
+    function boardToArray(
+      object = {}
+    ) {
+
+      return Array.from(
+        {
+          length: 9
+        },
+        (_, i) =>
+          object[i] || ""
+      );
+    }
+
+
+
+    function arrayToBoard(array) {
+
+      const object =
+        {};
+
+
+      array.forEach(
+        (value, index) => {
+
+          object[index] =
+            value || "";
+        }
+      );
+
+
+      return object;
+    }
+
+
+
+    /* =====================================
+       ROOM INPUT
+    ====================================== */
+
+    roomInput.oninput =
+      () => {
+
+        roomInput.value =
+          roomInput.value
+            .toUpperCase()
+            .replace(
+              /[^A-Z0-9]/g,
+              ""
+            );
+      };
+
+
+
+    /* =====================================
+       CREATE ROOM
+    ====================================== */
+
+    createRoomBtn.onclick =
+      async () => {
+
+        if (!playerProfile) {
+          return;
+        }
+
+
+        try {
+
+          lobbyMessage.textContent =
+            "";
+
+
+          createRoomBtn.disabled =
+            true;
+
+
+          let code =
+            "";
+
+
+          let exists =
+            true;
+
+
+          while (exists) {
+
+            code =
+              generateRoomCode();
+
+
+            const snapshot =
+              await get(
+                ref(
+                  db,
+                  `rooms/${code}`
+                )
+              );
+
+
+            exists =
+              snapshot.exists();
+          }
+
+
+          currentRoom =
+            code;
+
+
+          mySymbol =
+            "X";
+
+
+          await set(
+            ref(
+              db,
+              `rooms/${code}`
+            ),
+            {
+
+              playerX: {
+                name:
+                  playerProfile.name,
+
+                age:
+                  playerProfile.age,
+
+                location:
+                  playerProfile.location
+              },
+
+              playerO:
+                null,
+
+              board:
+                blankBoard(),
+
+              turn:
+                "X",
+
+              winner:
+                "",
+
+              winningCells:
+                [],
+
+              status:
+                "waiting",
+
+              rematchX:
+                false,
+
+              rematchO:
+                false,
+
+              createdAt:
+                Date.now()
+            }
+          );
+
+
+          roomCodeDisplay.textContent =
+            code;
+
+
+          showScreen(
+            waitingScreen
+          );
+
+
+          listenToRoom();
+
+
+          playSound("success");
+
+
+        } catch (error) {
+
+          console.error(error);
+
+
+          lobbyMessage.textContent =
+            "Could not create room.";
+
+
+          playSound("error");
+
+        } finally {
+
+          createRoomBtn.disabled =
+            false;
+        }
+      };
+
+
+
+    /* =====================================
+       JOIN ROOM
+    ====================================== */
+
+    joinRoomBtn.onclick =
+      async () => {
+
+        const code =
+          roomInput.value
+            .trim()
+            .toUpperCase();
+
+
+        if (
+          code.length !== 6
+        ) {
+
+          lobbyMessage.textContent =
+            "Enter a valid 6-character room code.";
+
+          playSound("error");
+
+          return;
+        }
+
+
+        try {
+
+          lobbyMessage.textContent =
+            "";
+
+
+          joinRoomBtn.disabled =
+            true;
+
+
+          const roomRef =
+            ref(
+              db,
+              `rooms/${code}`
+            );
+
+
+          const snapshot =
+            await get(roomRef);
+
+
+          if (!snapshot.exists()) {
+
+            lobbyMessage.textContent =
+              "Room not found.";
+
+            return;
+          }
+
+
+          const room =
+            snapshot.val();
+
+
+          if (room.playerO) {
+
+            lobbyMessage.textContent =
+              "This room is already full.";
+
+            return;
+          }
+
+
+          if (
+            room.status !==
+            "waiting"
+          ) {
+
+            lobbyMessage.textContent =
+              "This game has already started.";
+
+            return;
+          }
+
+
+          currentRoom =
+            code;
+
+
+          mySymbol =
+            "O";
+
+
+          await update(
+            roomRef,
+            {
+
+              playerO: {
+                name:
+                  playerProfile.name,
+
+                age:
+                  playerProfile.age,
+
+                location:
+                  playerProfile.location
+              },
+
+              status:
+                "playing"
+            }
+          );
+
+
+          listenToRoom();
+
+
+          playSound("success");
+
+
+        } catch (error) {
+
+          console.error(error);
+
+
+          lobbyMessage.textContent =
+            "Could not join room.";
+
+
+          playSound("error");
+
+        } finally {
+
+          joinRoomBtn.disabled =
+            false;
+        }
+      };
+
+
+
+    /* =====================================
+       WIN CHECK
+    ====================================== */
+
+    function checkGame(board) {
+
+      const patterns = [
+
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+
+        [0,4,8],
+        [2,4,6]
+
+      ];
+
+
+      for (
+        const pattern
+        of patterns
+      ) {
+
+        const [a,b,c] =
+          pattern;
+
+
+        if (
+          board[a] &&
+          board[a] === board[b] &&
+          board[a] === board[c]
+        ) {
+
+          return {
+            winner:
+              board[a],
+
+            cells:
+              pattern
+          };
+        }
+      }
+
+
+      if (
+        board.every(
+          item => item !== ""
+        )
+      ) {
+
+        return {
+          winner:
+            "DRAW",
+
+          cells:
+            []
+        };
+      }
+
+
+      return {
+        winner:
+          "",
+
+        cells:
+          []
+      };
+    }
+
+
+
+    /* =====================================
+       ROOM LISTENER
+    ====================================== */
+
+    function listenToRoom() {
+
+      if (roomListener) {
+
+        roomListener();
+
+        roomListener =
+          null;
+      }
+
+
+      const roomRef =
+        ref(
+          db,
+          `rooms/${currentRoom}`
+        );
+
+
+      roomListener =
+        onValue(
+          roomRef,
+          snapshot => {
+
+            if (!snapshot.exists()) {
+
+              resetRoom();
+
+
+              showScreen(
+                lobbyScreen
+              );
+
+
+              lobbyMessage.textContent =
+                "The room was closed.";
+
+
+              return;
+            }
+
+
+            const room =
+              snapshot.val();
+
+
+            if (
+              room.status ===
+              "waiting"
+            ) {
+
+              roomCodeDisplay.textContent =
+                currentRoom;
+
+
+              showScreen(
+                waitingScreen
+              );
+
+
+              return;
+            }
+
+
+            showScreen(
+              gameScreen
+            );
+
+
+            renderGame(room);
+          }
+        );
+    }
+
+
+
+    /* =====================================
+       RENDER GAME
+    ====================================== */
+
+    function renderGame(room) {
+
+      const board =
+        boardToArray(
+          room.board
+        );
+
+
+      playerXName.textContent =
+        room.playerX?.name ||
+        "Player X";
+
+
+      playerOName.textContent =
+        room.playerO?.name ||
+        "Player O";
+
+
+      yourSymbol.textContent =
+        `You are ${mySymbol}`;
+
+
+      gameRoomCode.textContent =
+        currentRoom;
+
+
+      const winningCells =
+        room.winningCells ||
+        [];
+
+
+      cells.forEach(
+        (cell, index) => {
+
+          const value =
+            board[index];
+
+
+          cell.textContent =
+            value;
+
+
+          cell.classList.remove(
+            "x",
+            "o",
+            "win"
+          );
+
+
+          if (
+            value === "X"
+          ) {
+
+            cell.classList.add(
+              "x"
+            );
+          }
+
+
+          if (
+            value === "O"
+          ) {
+
+            cell.classList.add(
+              "o"
+            );
+          }
+
+
+          if (
+            winningCells.includes(
+              index
+            )
+          ) {
+
+            cell.classList.add(
+              "win"
+            );
+          }
+
+
+          cell.disabled =
+
+            room.status !==
+              "playing"
+
+            ||
+
+            room.turn !==
+              mySymbol
+
+            ||
+
+            Boolean(value);
+        }
+      );
+
+
+      if (
+        room.status ===
+        "finished"
+      ) {
+
+        turnText.textContent =
+          "Game Over";
+
+
+        rematchBtn.classList.remove(
+          "hidden"
+        );
+
+
+        if (
+          room.winner ===
+          "DRAW"
+        ) {
+
+          gameResult.textContent =
+            "Draw!";
+
+        } else if (
+          room.winner ===
+          mySymbol
+        ) {
+
+          gameResult.textContent =
+            "You Win! 🏆";
+
+        } else {
+
+          gameResult.textContent =
+            "Opponent Wins!";
+        }
+
+
+        return;
+      }
+
+
+      rematchBtn.classList.add(
+        "hidden"
+      );
+
+
+      gameResult.textContent =
+        "";
+
+
+      if (
+        room.turn ===
+        mySymbol
+      ) {
+
+        turnText.textContent =
+          "Your Turn";
+
+      } else {
+
+        turnText.textContent =
+          "Opponent's Turn";
+      }
+    }
+
+
+
+    /* =====================================
+       MOVE
+    ====================================== */
+
+    cells.forEach(
+      cell => {
+
+        cell.onclick =
+          async () => {
+
+            if (
+              !currentRoom ||
+              !mySymbol ||
+              processingMove
+            ) {
+
+              return;
+            }
+
+
+            processingMove =
+              true;
+
+
+            const index =
+              Number(
+                cell.dataset.index
+              );
+
+
+            try {
+
+              const roomRef =
+                ref(
+                  db,
+                  `rooms/${currentRoom}`
+                );
+
+
+              const transaction =
+                await runTransaction(
+                  roomRef,
+                  room => {
+
+                    if (!room) {
+                      return room;
+                    }
+
+
+                    if (
+                      room.status !==
+                      "playing"
+                    ) {
+
+                      return room;
+                    }
+
+
+                    if (
+                      room.turn !==
+                      mySymbol
+                    ) {
+
+                      return room;
+                    }
+
+
+                    const board =
+                      boardToArray(
+                        room.board
+                      );
+
+
+                    if (
+                      board[index]
+                    ) {
+
+                      return room;
+                    }
+
+
+                    board[index] =
+                      mySymbol;
+
+
+                    const result =
+                      checkGame(board);
+
+
+                    room.board =
+                      arrayToBoard(
+                        board
+                      );
+
+
+                    if (
+                      result.winner
+                    ) {
+
+                      room.winner =
+                        result.winner;
+
+
+                      room.winningCells =
+                        result.cells;
+
+
+                      room.status =
+                        "finished";
+
+                    } else {
+
+                      room.turn =
+                        mySymbol === "X"
+                          ? "O"
+                          : "X";
+                    }
+
+
+                    return room;
+                  }
+                );
+
+
+              if (
+                transaction.committed
+              ) {
+
+                playSound("move");
+
+
+                const updated =
+                  transaction
+                    .snapshot
+                    .val();
+
+
+                if (
+                  updated?.status ===
+                  "finished"
+                ) {
+
+                  if (
+                    updated.winner ===
+                    mySymbol
+                  ) {
+
+                    playSound("win");
+
+                  } else if (
+                    updated.winner !==
+                    "DRAW"
+                  ) {
+
+                    playSound("lose");
+                  }
+                }
+              }
+
+
+            } catch (error) {
+
+              console.error(error);
+
+              playSound("error");
+
+            } finally {
+
+              processingMove =
+                false;
+            }
+          };
+      }
+    );
+
+
+
+    /* =====================================
+       REMATCH
+    ====================================== */
+
+    rematchBtn.onclick =
+      async () => {
+
+        if (!currentRoom) {
+          return;
+        }
+
+
+        playSound("click");
+
+
+        const roomRef =
+          ref(
+            db,
+            `rooms/${currentRoom}`
+          );
+
+
+        if (
+          mySymbol === "X"
+        ) {
+
+          await update(
+            roomRef,
+            {
+              rematchX:
+                true
+            }
+          );
+
+        } else {
+
+          await update(
+            roomRef,
+            {
+              rematchO:
+                true
+            }
+          );
+        }
+
+
+        const snapshot =
+          await get(roomRef);
+
+
+        if (!snapshot.exists()) {
+          return;
+        }
+
+
+        const room =
+          snapshot.val();
+
+
+        if (
+          room.rematchX &&
+          room.rematchO
+        ) {
+
+          await update(
+            roomRef,
+            {
+
+              board:
+                blankBoard(),
+
+              turn:
+                "X",
+
+              winner:
+                "",
+
+              winningCells:
+                [],
+
+              status:
+                "playing",
+
+              rematchX:
+                false,
+
+              rematchO:
+                false
+            }
+          );
+
+        } else {
+
+          gameResult.textContent =
+            "Waiting for opponent...";
+        }
+      };
+
+
+
+    /* =====================================
+       COPY CODE
+    ====================================== */
+
+    copyRoomBtn.onclick =
+      async () => {
+
+        try {
+
+          await navigator
+            .clipboard
+            .writeText(
+              currentRoom
+            );
+
+
+          copyRoomBtn.textContent =
+            "Copied ✓";
+
+
+          playSound("success");
+
+
+          setTimeout(
+            () => {
+
+              copyRoomBtn.textContent =
+                "Copy Room Code";
+
+            },
+            1300
+          );
+
+
+        } catch {
+
+          alert(
+            `Room Code: ${currentRoom}`
+          );
+        }
+      };
+
+
+
+    /* =====================================
+       LEAVE
+    ====================================== */
+
+    leaveWaitingBtn.onclick =
+      async () => {
+
+        if (
+          currentRoom &&
+          mySymbol === "X"
+        ) {
+
+          try {
+
+            await remove(
+              ref(
+                db,
+                `rooms/${currentRoom}`
+              )
+            );
+
+          } catch (error) {
+
+            console.error(error);
+          }
+        }
+
+
+        resetRoom();
+
+
+        showScreen(
+          lobbyScreen
+        );
+      };
+
+
+
+    leaveGameBtn.onclick =
+      () => {
+
+        resetRoom();
+
+
+        showScreen(
+          lobbyScreen
+        );
+      };
+
+
+
+    function resetRoom() {
+
+      if (roomListener) {
+
+        roomListener();
+
+        roomListener =
+          null;
+      }
+
+
+      currentRoom =
+        "";
+
+
+      mySymbol =
+        "";
+
+
+      processingMove =
+        false;
+    }
+
+
+
+    /* =====================================
+       THEMES
+    ====================================== */
+
+    const themes = {
+
+      neon: {
+        name: "Neon Blue",
+        bg1: "#070914",
+        bg2: "#202966",
+        card: "rgba(18,24,55,.96)",
+        card2: "#0e1533",
+        primary: "#62e7ff",
+        secondary: "#745cff",
+        accent: "#ff6685",
+        text: "#ffffff",
+        muted: "#aab2d0",
+        border: "#34406f"
+      },
+
+      cyber: {
+        name: "Cyber Green",
+        bg1: "#03100b",
+        bg2: "#093426",
+        card: "rgba(5,30,22,.96)",
+        card2: "#071f18",
+        primary: "#39ff88",
+        secondary: "#00b96b",
+        accent: "#ff4d8d",
+        text: "#effff6",
+        muted: "#8cbbaa",
+        border: "#1e5a45"
+      },
+
+      sunset: {
+        name: "Sunset",
+        bg1: "#1c0815",
+        bg2: "#60213b",
+        card: "rgba(56,15,37,.96)",
+        card2: "#2d1023",
+        primary: "#ff9d5c",
+        secondary: "#ff466b",
+        accent: "#ffd166",
+        text: "#fff8f2",
+        muted: "#d2a8b4",
+        border: "#71344b"
+      },
+
+      royal: {
+        name: "Royal Purple",
+        bg1: "#10071e",
+        bg2: "#382066",
+        card: "rgba(34,18,62,.96)",
+        card2: "#1b1033",
+        primary: "#b789ff",
+        secondary: "#7148e8",
+        accent: "#ff70bd",
+        text: "#ffffff",
+        muted: "#bcaad8",
+        border: "#523b75"
+      },
+
+      fire: {
+        name: "Fire",
+        bg1: "#150503",
+        bg2: "#5b1608",
+        card: "rgba(52,13,8,.96)",
+        card2: "#270b07",
+        primary: "#ff9d00",
+        secondary: "#ff3d00",
+        accent: "#ffe16b",
+        text: "#fff7ed",
+        muted: "#d4a28d",
+        border: "#723526"
+      },
+
+      ocean: {
+        name: "Ocean",
+        bg1: "#02101c",
+        bg2: "#073d64",
+        card: "rgba(5,35,55,.96)",
+        card2: "#08273a",
+        primary: "#34d9ff",
+        secondary: "#0088ff",
+        accent: "#3cffc2",
+        text: "#f1fcff",
+        muted: "#93bccd",
+        border: "#1d5470"
+      },
+
+      gold: {
+        name: "Black Gold",
+        bg1: "#090909",
+        bg2: "#29220c",
+        card: "rgba(24,22,15,.97)",
+        card2: "#15140f",
+        primary: "#ffd84d",
+        secondary: "#b98a00",
+        accent: "#fff1a6",
+        text: "#fffdf4",
+        muted: "#b9b090",
+        border: "#554a23"
+      },
+
+      candy: {
+        name: "Candy",
+        bg1: "#16091a",
+        bg2: "#52215e",
+        card: "rgba(47,20,55,.96)",
+        card2: "#26112c",
+        primary: "#ff72dc",
+        secondary: "#915cff",
+        accent: "#61f3ff",
+        text: "#ffffff",
+        muted: "#c9a9d1",
+        border: "#683d73"
+      },
+
+      ice: {
+        name: "Ice",
+        bg1: "#061117",
+        bg2: "#214657",
+        card: "rgba(14,39,50,.96)",
+        card2: "#0c252f",
+        primary: "#b3f4ff",
+        secondary: "#54bfe0",
+        accent: "#ffffff",
+        text: "#f6fdff",
+        muted: "#abcbd4",
+        border: "#416472"
+      },
+
+      retro: {
+        name: "Retro",
+        bg1: "#160d27",
+        bg2: "#57316d",
+        card: "rgba(46,28,65,.96)",
+        card2: "#281a38",
+        primary: "#ffea66",
+        secondary: "#ff6ba9",
+        accent: "#6effd5",
+        text: "#fffbea",
+        muted: "#cab4cf",
+        border: "#685177"
+      }
+    };
+
+
+
+    function renderThemes() {
+
+      themeGrid.innerHTML =
+        "";
+
+
+      Object.entries(
+        themes
+      ).forEach(
+        ([key, theme]) => {
+
+          const button =
+            document.createElement(
+              "button"
+            );
+
+
+          button.className =
+            "theme-card";
+
+
+          button.dataset.theme =
+            key;
+
+
+          button.innerHTML = `
+            <div
+              class="theme-preview"
+              style="
+                background:
+                  linear-gradient(
+                    135deg,
+                    ${theme.primary},
+                    ${theme.secondary}
+                  );
+              "
+            ></div>
+
+            <div class="theme-name">
+              ${theme.name}
+            </div>
+          `;
+
+
+          button.onclick =
+            () => {
+
+              setTheme(key);
+
+              playSound("click");
+            };
+
+
+          themeGrid.appendChild(
+            button
+          );
+        }
+      );
+    }
+
+
+
+    function setTheme(name) {
+
+      const theme =
+        themes[name] ||
+        themes.neon;
+
+
+      const root =
+        document.documentElement;
+
+
+      root.style.setProperty(
+        "--bg1",
+        theme.bg1
+      );
+
+      root.style.setProperty(
+        "--bg2",
+        theme.bg2
+      );
+
+      root.style.setProperty(
+        "--card",
+        theme.card
+      );
+
+      root.style.setProperty(
+        "--card2",
+        theme.card2
+      );
+
+      root.style.setProperty(
+        "--primary",
+        theme.primary
+      );
+
+      root.style.setProperty(
+        "--secondary",
+        theme.secondary
+      );
+
+      root.style.setProperty(
+        "--accent",
+        theme.accent
+      );
+
+      root.style.setProperty(
+        "--text",
+        theme.text
+      );
+
+      root.style.setProperty(
+        "--muted",
+        theme.muted
+      );
+
+      root.style.setProperty(
+        "--border",
+        theme.border
+      );
+
+
+      localStorage.setItem(
+        "fgTheme",
+        name
+      );
+
+
+      document
+        .querySelectorAll(
+          ".theme-card"
+        )
+        .forEach(
+          element => {
+
+            element.classList.toggle(
+              "active",
+              element.dataset.theme ===
+                name
+            );
+          }
+        );
+    }
+
+
+
+    /* =====================================
+       SETTINGS
+    ====================================== */
+
+    function openSettings() {
+
+      settingsPanel.classList.add(
+        "open"
+      );
+
+
+      playSound("click");
+    }
+
+
+    function closeSettings() {
+
+      settingsPanel.classList.remove(
+        "open"
+      );
+    }
+
+
+    settingsBtn.onclick =
+      openSettings;
+
+
+    themeBtn.onclick =
+      openSettings;
+
+
+    closeSettingsBtn.onclick =
+      closeSettings;
+
+
+
+    /* =====================================
+       SOUND EFFECTS
+    ====================================== */
+
+    let audioContext =
+      null;
+
+
+    function getAudioContext() {
+
+      if (!audioContext) {
+
+        audioContext =
+          new (
+            window.AudioContext ||
+            window.webkitAudioContext
+          )();
+      }
+
+
+      return audioContext;
+    }
+
+
+
+    function tone(
+      frequency,
+      duration,
+      volume = .06,
+      type = "sine"
+    ) {
+
+      if (!soundEnabled) {
+        return;
+      }
+
+
+      try {
+
+        const ctx =
+          getAudioContext();
+
+
+        const oscillator =
+          ctx.createOscillator();
+
+
+        const gain =
+          ctx.createGain();
+
+
+        oscillator.type =
+          type;
+
+
+        oscillator.frequency.value =
+          frequency;
+
+
+        gain.gain.value =
+          volume;
+
+
+        oscillator.connect(
+          gain
+        );
+
+
+        gain.connect(
+          ctx.destination
+        );
+
+
+        oscillator.start();
+
+
+        gain.gain.exponentialRampToValueAtTime(
+          .001,
+          ctx.currentTime +
+          duration
+        );
+
+
+        oscillator.stop(
+          ctx.currentTime +
+          duration
+        );
+
+      } catch {}
+    }
+
+
+
+    function playSound(type) {
+
+      if (!soundEnabled) {
+        return;
+      }
+
+
+      switch (type) {
+
+        case "click":
+
+          tone(
+            420,
+            .07,
+            .04,
+            "square"
+          );
+
+          break;
+
+
+        case "move":
+
+          tone(
+            600,
+            .08,
+            .06
+          );
+
+          setTimeout(
+            () =>
+              tone(
+                780,
+                .08,
+                .04
+              ),
+            55
+          );
+
+          break;
+
+
+        case "success":
+
+          tone(
+            520,
+            .12,
+            .06
+          );
+
+          setTimeout(
+            () =>
+              tone(
+                700,
+                .15,
+                .06
+              ),
+            90
+          );
+
+          break;
+
+
+        case "win":
+
+          tone(
+            520,
+            .14,
+            .08
+          );
+
+          setTimeout(
+            () =>
+              tone(
+                660,
+                .14,
+                .08
+              ),
+            120
+          );
+
+          setTimeout(
+            () =>
+              tone(
+                850,
+                .3,
+                .08
+              ),
+            240
+          );
+
+          break;
+
+
+        case "lose":
+
+          tone(
+            350,
+            .16,
+            .06
+          );
+
+          setTimeout(
+            () =>
+              tone(
+                240,
+                .28,
+                .06
+              ),
+            120
+          );
+
+          break;
+
+
+        case "error":
+
+          tone(
+            180,
+            .18,
+            .05,
+            "sawtooth"
+          );
+
+          break;
+      }
+    }
+
+
+
+    function updateSoundUI() {
+
+      soundToggle.classList.toggle(
+        "on",
+        soundEnabled
+      );
+
+
+      soundBtn.textContent =
+        soundEnabled
+          ? "🔊"
+          : "🔇";
+    }
+
+
+
+    function toggleSound() {
+
+      soundEnabled =
+        !soundEnabled;
+
+
+      localStorage.setItem(
+        "fgSound",
+        soundEnabled
+          ? "on"
+          : "off"
+      );
+
+
+      updateSoundUI();
+
+
+      if (soundEnabled) {
+
+        playSound("click");
+      }
+    }
+
+
+    soundToggle.onclick =
+      toggleSound;
+
+
+    soundBtn.onclick =
+      toggleSound;
+
+
+
+    /* =====================================
+       MUSIC
+    ====================================== */
+
+    function updateMusicUI() {
+
+      musicToggle.classList.toggle(
+        "on",
+        musicEnabled
+      );
+
+
+      musicBox.classList.toggle(
+        "hidden",
+        !musicEnabled
+      );
+    }
+
+
+
+    musicToggle.onclick =
+      () => {
+
+        musicEnabled =
+          !musicEnabled;
+
+
+        localStorage.setItem(
+          "fgMusic",
+          musicEnabled
+            ? "on"
+            : "off"
+        );
+
+
+        updateMusicUI();
+
+
+        playSound("click");
+      };
+
+
+
+    /* =====================================
+       START APP
+    ====================================== */
+
+    renderThemes();
+
+
+    setTheme(
+      localStorage.getItem(
+        "fgTheme"
+      ) || "neon"
+    );
+
+
+    updateSoundUI();
+
+    updateMusicUI();
+
+
+    playerProfile =
+      loadProfile();
+
+
+    if (playerProfile) {
+
+      updateDashboard();
+
+
+      showScreen(
+        dashboardScreen
+      );
+
+    } else {
+
+      showScreen(
+        profileScreen
+      );
+    }
+
+  </script>
+
+</body>
+</html>
