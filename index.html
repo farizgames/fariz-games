@@ -2,3362 +2,635 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fariz Games</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --bg1:#050713;
-  --bg2:#1c2460;
-  --card:#111735;
-  --card2:#0b1029;
-  --primary:#62e7ff;
-  --secondary:#745cff;
-  --accent:#ff6685;
-  --text:#fff;
-  --muted:#aab2d0;
-  --border:#34406f;
-  --success:#70f2ae;
-  --warning:#ffd166;
-  --danger:#ff5577;
+ --bg:#050713;--bg2:#17245c;--card:#101630;--card2:#090e23;
+ --p:#61e8ff;--s:#765cff;--a:#ff6585;--text:#fff;
+ --muted:#aab4d5;--border:#35416e;--green:#68f2ad
 }
-
 body{
-  min-height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top,var(--bg2),var(--bg1) 67%);
-  transition:.3s;
+ min-height:100vh;font-family:Arial,sans-serif;color:var(--text);
+ background:radial-gradient(circle at top,var(--bg2),var(--bg) 70%);
+ transition:.3s
 }
-
-button,input{
-  font:inherit;
-}
-
+button,input{font:inherit}
 button{cursor:pointer}
-
 .hidden{display:none!important}
 
-.bg-grid{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:35px 35px;
+.gridbg{
+ position:fixed;inset:0;z-index:-1;
+ background-image:linear-gradient(#ffffff08 1px,transparent 1px),
+ linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+ background-size:35px 35px
 }
-
-.topbar{
-  width:calc(100% - 24px);
-  max-width:900px;
-  margin:12px auto;
-  padding:10px 12px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:relative;
-  z-index:30;
+.top{
+ max-width:900px;margin:12px auto;padding:10px 12px;width:calc(100% - 24px);
+ display:flex;align-items:center;justify-content:space-between;
+ background:var(--card);border:1px solid var(--border);border-radius:18px
 }
-
-.mini-brand{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-weight:900;
-  color:var(--primary);
+.brand{display:flex;align-items:center;gap:9px;color:var(--p);font-weight:900}
+.fg{
+ width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+ background:linear-gradient(135deg,var(--p),var(--s));color:white;font-weight:900
 }
-
-.mini-logo{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;
-  font-size:12px;
+.actions{display:flex;gap:7px}
+.icon{
+ min-width:42px;height:42px;border-radius:12px;border:1px solid var(--border);
+ background:var(--card2);color:white
 }
-
-.top-actions{
-  display:flex;
-  gap:7px;
+main{padding:14px}
+.screen{max-width:490px;margin:auto}
+.logo{text-align:center;margin:15px 0 22px}
+.bigfg{
+ width:78px;height:78px;margin:auto;border-radius:24px;display:grid;
+ place-items:center;font-size:26px;font-weight:1000;
+ background:linear-gradient(135deg,var(--p),var(--s))
 }
-
-.icon-btn{
-  min-width:42px;
-  height:42px;
-  padding:0 10px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:var(--card2);
-  color:var(--text);
-}
-
-.app{
-  width:100%;
-  padding:14px;
-}
-
-.screen{
-  width:100%;
-  max-width:490px;
-  margin:auto;
-  animation:appear .3s ease;
-}
-
-@keyframes appear{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-
-.logo-wrap{
-  text-align:center;
-  margin:14px 0 23px;
-}
-
-.logo{
-  width:76px;
-  height:76px;
-  margin:auto;
-  display:grid;
-  place-items:center;
-  border-radius:24px;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  font-size:26px;
-  font-weight:1000;
-  color:#fff;
-  box-shadow:0 0 35px rgba(70,220,255,.23);
-}
-
-.logo-title{
-  margin-top:11px;
-  font-size:37px;
-  color:var(--primary);
-  font-weight:1000;
-}
-
-.subtitle{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:14px;
-}
-
+.logo h1{font-size:36px;color:var(--p);margin-top:10px}
+.logo p,.desc{color:var(--muted);font-size:14px}
 .card{
-  padding:23px;
-  border-radius:24px;
-  background:var(--card);
-  border:1px solid var(--border);
-  box-shadow:0 25px 70px rgba(0,0,0,.42);
+ padding:22px;background:var(--card);border:1px solid var(--border);
+ border-radius:24px;box-shadow:0 25px 70px #0007
 }
-
-.card h2{
-  margin-bottom:7px;
+.card h2{margin-bottom:8px}
+.desc{line-height:1.6;margin-bottom:17px}
+.avatar{
+ width:88px;height:88px;border-radius:50%;margin:0 auto 15px;
+ display:grid;place-items:center;font-size:45px;background:var(--card2);
+ border:3px solid var(--p)
 }
-
-.description{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-  margin-bottom:18px;
+.avatargrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.avatarbtn{
+ aspect-ratio:1;border-radius:13px;background:var(--card2);
+ border:2px solid var(--border);font-size:27px
 }
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-  margin-bottom:7px;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:700;
-}
-
+.avatarbtn.sel{border-color:var(--p)}
+.field{margin:13px 0}
+.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
 input{
-  width:100%;
-  padding:14px;
-  color:var(--text);
-  background:var(--card2);
-  border:1px solid var(--border);
-  border-radius:13px;
-  outline:none;
+ width:100%;padding:14px;border-radius:13px;border:1px solid var(--border);
+ background:var(--card2);color:white;outline:none
 }
-
-input:focus{
-  border-color:var(--primary);
-}
-
+input:focus{border-color:var(--p)}
 .btn{
-  width:100%;
-  border:none;
-  padding:14px;
-  border-radius:13px;
-  color:#fff;
-  font-weight:900;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  transition:.18s;
+ width:100%;padding:14px;border:0;border-radius:13px;color:white;
+ font-weight:900;background:linear-gradient(135deg,var(--p),var(--s))
 }
+.btn2{margin-top:9px;background:var(--card2);border:1px solid var(--border)}
+.danger{background:linear-gradient(135deg,#ff5577,#a92352)}
+.msg{text-align:center;color:#ff7890;min-height:20px;margin-top:10px;font-size:13px}
 
-.btn:hover{
-  transform:translateY(-2px);
+.dashboard{text-align:center}
+.name{font-size:28px;font-weight:1000}
+.info{color:var(--muted);margin:7px 0 15px}
+.community{
+ padding:18px;margin:16px 0;border:1px solid var(--border);border-radius:18px;
+ background:linear-gradient(135deg,#61e8ff18,#765cff20)
 }
+.count{font-size:36px;font-weight:1000;color:var(--p)}
+.community small{color:var(--muted)}
 
-.btn.secondary{
-  margin-top:9px;
-  background:var(--card2);
-  border:1px solid var(--border);
+.code{
+ text-align:center;font-size:37px;letter-spacing:7px;color:var(--p);
+ font-weight:1000;margin:18px 0
 }
-
-.btn.danger{
-  background:linear-gradient(135deg,#ff5577,#ad2858);
-}
-
-.btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-  transform:none;
-}
-
-.message{
-  min-height:20px;
-  margin-top:12px;
-  color:#ff7890;
-  text-align:center;
-  font-size:13px;
-}
-
-/* AVATARS */
-
-.avatar-large{
-  width:88px;
-  height:88px;
-  margin:0 auto 14px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  font-size:45px;
-  background:var(--card2);
-  border:3px solid var(--primary);
-}
-
-.avatar-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
-  margin:12px 0 18px;
-}
-
-.avatar-choice{
-  aspect-ratio:1;
-  border-radius:13px;
-  font-size:27px;
-  background:var(--card2);
-  border:2px solid var(--border);
-}
-
-.avatar-choice.selected{
-  border-color:var(--primary);
-  background:rgba(98,231,255,.12);
-}
-
-/* DASHBOARD */
-
-.dashboard{
-  text-align:center;
-}
-
-.player-main-name{
-  font-size:28px;
-  font-weight:1000;
-}
-
-.player-info{
-  color:var(--muted);
-  margin:7px 0 16px;
-  line-height:1.7;
-}
-
-.stats{
-  margin:16px 0;
-  padding:18px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(
-    135deg,
-    rgba(98,231,255,.1),
-    rgba(116,92,255,.11)
-  );
-}
-
-.stats::before{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:180%;
-  top:-40%;
-  left:-120px;
-  transform:rotate(20deg);
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.16),
-    transparent
-  );
-  animation:shine 2.8s linear infinite;
-}
-
-@keyframes shine{
-  to{left:120%}
-}
-
-.stats-number{
-  position:relative;
-  font-size:36px;
-  font-weight:1000;
-  color:var(--primary);
-  animation:pulse 1.6s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.05)}
-}
-
-.stats-label{
-  position:relative;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* LOBBY */
-
-.divider{
-  margin:18px 0;
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
-}
-
-/* WAITING */
-
-.waiting{text-align:center}
-
-.room-code{
-  margin:20px 0;
-  font-size:38px;
-  letter-spacing:7px;
-  color:var(--primary);
-  font-weight:1000;
-}
-
+.center{text-align:center}
 .loader{
-  width:40px;
-  height:40px;
-  margin:22px auto;
-  border-radius:50%;
-  border:4px solid rgba(255,255,255,.1);
-  border-top-color:var(--primary);
-  animation:spin .8s linear infinite;
+ width:42px;height:42px;margin:20px auto;border-radius:50%;
+ border:4px solid #ffffff20;border-top-color:var(--p);
+ animation:spin .8s linear infinite
 }
+@keyframes spin{to{transform:rotate(360deg)}}
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
+.players{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.player{
+ padding:10px;text-align:center;border-radius:14px;background:var(--card2);
+ border:1px solid var(--border)
 }
-
-/* GAME */
-
-.players{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.player-box{
-  text-align:center;
-  padding:11px;
-  border-radius:14px;
-  background:var(--card2);
-  border:1px solid var(--border);
-}
-
-.game-avatar{
-  display:block;
-  font-size:28px;
-}
-
-.game-name{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.symbol{
-  display:block;
-  margin-top:4px;
-  font-size:28px;
-  font-weight:1000;
-}
-
-.symbol.x{color:var(--primary)}
-.symbol.o{color:var(--accent)}
-
-.turn{
-  min-height:24px;
-  color:var(--warning);
-  font-weight:900;
-  text-align:center;
-}
-
-.you-are{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:12px;
-  text-align:center;
-}
-
-.board{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin:20px 0;
-}
-
+.pav{font-size:29px}
+.pname{display:block;font-size:12px;color:var(--muted)}
+.sym{font-size:27px;font-weight:1000}
+.x{color:var(--p)}.o{color:var(--a)}
+.turn{text-align:center;color:#ffd166;font-weight:900;min-height:24px}
+.you{text-align:center;color:var(--muted);font-size:12px}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
 .cell{
-  aspect-ratio:1;
-  border-radius:16px;
-  border:2px solid var(--border);
-  background:var(--card2);
-  font-size:50px;
-  font-weight:1000;
+ aspect-ratio:1;border-radius:16px;border:2px solid var(--border);
+ background:var(--card2);font-size:50px;font-weight:1000
 }
-
-.cell.x{color:var(--primary)}
-.cell.o{color:var(--accent)}
-
-.cell.win{
-  border-color:var(--success);
-  background:rgba(112,242,174,.12);
-  box-shadow:0 0 25px rgba(112,242,174,.16);
-}
-
-.result{
-  min-height:34px;
-  color:var(--success);
-  font-size:22px;
-  font-weight:900;
-  text-align:center;
-}
-
-.rematch-status{
-  min-height:20px;
-  text-align:center;
-  font-size:13px;
-  color:var(--warning);
-  margin:7px 0;
-}
-
-.room-bottom{
-  margin-top:15px;
-  color:var(--muted);
-  text-align:center;
-  font-size:12px;
-}
-
-/* SETTINGS */
+.cell.win{border-color:var(--green);background:#68f2ad18}
+.result{text-align:center;color:var(--green);font-size:22px;font-weight:900;min-height:30px}
+.status{text-align:center;color:#ffd166;font-size:13px;min-height:20px;margin:6px}
+.room{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
 
 .settings{
-  position:fixed;
-  top:0;
-  right:-390px;
-  z-index:150;
-  width:min(380px,93vw);
-  height:100vh;
-  padding:20px;
-  overflow:auto;
-  background:var(--card);
-  border-left:1px solid var(--border);
-  transition:.3s;
+ position:fixed;right:-390px;top:0;width:min(380px,94vw);height:100vh;
+ z-index:100;padding:20px;overflow:auto;background:var(--card);
+ border-left:1px solid var(--border);transition:.3s
 }
-
 .settings.open{right:0}
-
-.settings-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
+.sethead{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.themegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.theme{
+ padding:8px;border-radius:12px;border:2px solid transparent;
+ background:var(--card2);color:white
 }
-
-.theme-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:14px;
+.theme.active{border-color:var(--p)}
+.preview{height:36px;border-radius:8px;margin-bottom:6px}
+.tname{font-size:11px;font-weight:bold}
+.setrow{
+ display:flex;justify-content:space-between;align-items:center;
+ margin-top:20px;padding-top:17px;border-top:1px solid var(--border)
 }
-
-.theme-card{
-  padding:9px;
-  color:var(--text);
-  background:var(--card2);
-  border:2px solid transparent;
-  border-radius:13px;
-}
-
-.theme-card.active{
-  border-color:var(--primary);
-}
-
-.theme-preview{
-  height:40px;
-  border-radius:8px;
-  margin-bottom:7px;
-}
-
-.theme-name{
-  font-size:11px;
-  font-weight:800;
-}
-
-.setting-row{
-  margin-top:20px;
-  padding-top:18px;
-  border-top:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.toggle{
-  width:52px;
-  height:29px;
-  padding:3px;
-  border:0;
-  border-radius:18px;
-  background:#555b70;
-}
-
-.toggle span{
-  display:block;
-  width:23px;
-  height:23px;
-  background:#fff;
-  border-radius:50%;
-  transition:.2s;
-}
-
-.toggle.on{
-  background:var(--primary);
-}
-
-.toggle.on span{
-  transform:translateX(23px);
-}
-
-/* MODAL */
+.toggle{width:52px;height:29px;padding:3px;border:0;border-radius:20px;background:#555}
+.toggle span{display:block;width:23px;height:23px;background:white;border-radius:50%;transition:.2s}
+.toggle.on{background:var(--p)}
+.toggle.on span{transform:translateX(23px)}
 
 .overlay{
-  position:fixed;
-  inset:0;
-  z-index:200;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:18px;
-  background:rgba(0,0,0,.72);
+ position:fixed;inset:0;z-index:150;background:#000b;display:flex;
+ align-items:center;justify-content:center;padding:18px
 }
-
 .modal{
-  width:100%;
-  max-width:390px;
-  padding:24px;
-  border-radius:22px;
-  text-align:center;
-  background:var(--card);
-  border:1px solid var(--border);
+ max-width:390px;width:100%;padding:23px;text-align:center;border-radius:22px;
+ background:var(--card);border:1px solid var(--border)
 }
-
-.modal-icon{
-  font-size:48px;
-  margin-bottom:10px;
-}
-
-.modal p{
-  color:var(--muted);
-  margin:8px 0 18px;
-}
-
-/* CHAT */
+.modal p{color:var(--muted);margin:10px 0 17px}
 
 .chat{
-  position:fixed;
-  right:14px;
-  bottom:14px;
-  z-index:130;
-  width:min(360px,calc(100vw - 28px));
-  height:460px;
-  max-height:72vh;
-  display:flex;
-  flex-direction:column;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 25px 70px rgba(0,0,0,.5);
+ position:fixed;right:14px;bottom:14px;width:min(360px,calc(100vw - 28px));
+ height:450px;max-height:72vh;z-index:90;background:var(--card);
+ border:1px solid var(--border);border-radius:20px;display:flex;
+ flex-direction:column;overflow:hidden
 }
-
-.chat-head{
-  padding:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid var(--border);
-}
-
-.chat-title{
-  color:var(--primary);
-  font-weight:900;
-}
-
-.chat-messages{
-  flex:1;
-  overflow:auto;
-  padding:10px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.chat-message{
-  max-width:82%;
-  padding:9px 11px;
-  border-radius:13px;
-  background:var(--card2);
-  border:1px solid var(--border);
-}
-
-.chat-message.mine{
-  margin-left:auto;
-  border-color:var(--primary);
-}
-
-.chat-name{
-  color:var(--primary);
-  font-size:10px;
-  font-weight:bold;
-  margin-bottom:3px;
-}
-
-.chat-text{
-  font-size:13px;
-  word-break:break-word;
-}
-
-.chat-input-area{
-  display:grid;
-  grid-template-columns:1fr 52px;
-  gap:7px;
-  padding:9px;
-  border-top:1px solid var(--border);
-}
-
-.chat-send{
-  border:0;
-  border-radius:12px;
-  color:#fff;
-  font-weight:900;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-}
-
-.badge{
-  position:absolute;
-  width:18px;
-  height:18px;
-  display:grid;
-  place-items:center;
-  margin-top:-8px;
-  margin-left:27px;
-  background:#ff5577;
-  color:#fff;
-  border-radius:50%;
-  font-size:10px;
-}
+.chathead{padding:11px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.messages{flex:1;padding:10px;overflow:auto;display:flex;flex-direction:column;gap:7px}
+.message{max-width:82%;padding:9px;border-radius:12px;background:var(--card2);border:1px solid var(--border)}
+.message.mine{margin-left:auto;border-color:var(--p)}
+.mn{font-size:10px;color:var(--p);font-weight:bold}
+.mt{font-size:13px;word-break:break-word}
+.chatinput{display:grid;grid-template-columns:1fr 50px;gap:6px;padding:8px;border-top:1px solid var(--border)}
+.send{border:0;border-radius:11px;background:var(--p);font-weight:bold}
+.badge{position:absolute;background:#ff5577;border-radius:50%;font-size:10px;padding:3px 5px}
 
 @media(max-width:520px){
-  .app{padding:10px}
-  .card{padding:19px}
-  .logo-title{font-size:32px}
-  .room-code{font-size:29px;letter-spacing:5px}
-  .cell{font-size:42px}
-  .avatar-grid{grid-template-columns:repeat(4,1fr)}
-  .mini-brand span{display:none}
+ .avatargrid{grid-template-columns:repeat(4,1fr)}
+ .brand span{display:none}
+ .logo h1{font-size:32px}
 }
 </style>
 </head>
 
 <body>
+<div class="gridbg"></div>
 
-<div class="bg-grid"></div>
-
-<!-- DIRECT MP3 MUSIC -->
-<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
-
-
-<header id="topbar" class="topbar hidden">
-
-  <div class="mini-brand">
-    <div class="mini-logo">FG</div>
-    <span>Fariz Games</span>
-  </div>
-
-  <div class="top-actions">
-
-    <button id="chatTopBtn" class="icon-btn hidden">
-      💬
-      <span id="chatBadge" class="badge hidden">1</span>
-    </button>
-
-    <button id="musicTopBtn" class="icon-btn">
-      🎵
-    </button>
-
-    <button id="settingsBtn" class="icon-btn">
-      🎨
-    </button>
-
-    <button id="soundTopBtn" class="icon-btn">
-      🔊
-    </button>
-
-  </div>
-
+<header id="top" class="top hidden">
+ <div class="brand"><div class="fg">FG</div><span>Fariz Games</span></div>
+ <div class="actions">
+  <button id="chatTop" class="icon hidden">💬<span id="badge" class="badge hidden">1</span></button>
+  <button id="musicTop" class="icon">🎵</button>
+  <button id="themeTop" class="icon">🎨</button>
+  <button id="soundTop" class="icon">🔊</button>
+ </div>
 </header>
 
+<main>
 
-<main class="app">
-
-<!-- PROFILE -->
-
-<section id="profileScreen" class="screen">
-
-  <div class="logo-wrap">
-
-    <div class="logo">FG</div>
-
-    <h1 class="logo-title">
-      Fariz Games
-    </h1>
-
-    <p class="subtitle">
-      Play. Compete. Win.
-    </p>
-
-  </div>
-
-
-  <div class="card">
-
-    <div id="profileAvatar" class="avatar-large">
-      🥷
-    </div>
-
-    <h2>Create Your Profile</h2>
-
-    <p class="description">
-      Choose your character and enter your details.
-    </p>
-
-
-    <div id="profileAvatarGrid" class="avatar-grid"></div>
-
-
-    <div class="field">
-      <label>Name</label>
-      <input
-        id="profileName"
-        maxlength="20"
-        placeholder="Enter your name"
-      >
-    </div>
-
-
-    <div class="field">
-      <label>Age</label>
-      <input
-        id="profileAge"
-        type="number"
-        min="5"
-        max="100"
-        placeholder="Enter your age"
-      >
-    </div>
-
-
-    <div class="field">
-      <label>Location</label>
-      <input
-        id="profileLocation"
-        maxlength="30"
-        placeholder="Enter your location"
-      >
-    </div>
-
-
-    <button id="continueBtn" class="btn">
-      Continue
-    </button>
-
-    <p id="profileMessage" class="message"></p>
-
-  </div>
-
+<section id="profile" class="screen">
+ <div class="logo"><div class="bigfg">FG</div><h1>Fariz Games</h1><p>Play. Compete. Win.</p></div>
+ <div class="card">
+  <div id="profileAvatar" class="avatar">🥷</div>
+  <h2>Create Your Profile</h2>
+  <p class="desc">Choose your character and enter your details.</p>
+  <div id="profileAvatars" class="avatargrid"></div>
+  <div class="field"><label>Name</label><input id="nameInput" maxlength="20" placeholder="Enter your name"></div>
+  <div class="field"><label>Age</label><input id="ageInput" type="number" min="5" max="100" placeholder="Enter your age"></div>
+  <div class="field"><label>Location</label><input id="locationInput" maxlength="30" placeholder="Enter your location"></div>
+  <button id="continueBtn" class="btn">Continue</button>
+  <div id="profileMsg" class="msg"></div>
+ </div>
 </section>
 
-
-<!-- DASHBOARD -->
-
-<section id="dashboardScreen" class="screen hidden">
-
-  <div class="logo-wrap">
-    <div class="logo">FG</div>
-    <h1 class="logo-title">Fariz Games</h1>
-    <p class="subtitle">Your Gaming Zone</p>
+<section id="dashboard" class="screen hidden">
+ <div class="logo"><div class="bigfg">FG</div><h1>Fariz Games</h1><p>Your Gaming Zone</p></div>
+ <div class="card dashboard">
+  <div id="dashAvatar" class="avatar">🥷</div>
+  <div id="dashName" class="name">Player</div>
+  <div id="dashInfo" class="info"></div>
+  <div class="community">
+   <div id="counter" class="count">0+</div>
+   <small>Fariz Games Community Goal</small>
   </div>
-
-
-  <div class="card dashboard">
-
-    <div id="dashboardAvatar" class="avatar-large">
-      🥷
-    </div>
-
-    <div id="dashboardName" class="player-main-name">
-      Player
-    </div>
-
-    <div id="dashboardInfo" class="player-info"></div>
-
-
-    <div class="stats">
-
-      <div id="usersCounter" class="stats-number">
-        0+
-      </div>
-
-      <div class="stats-label">
-        Fariz Games Community
-      </div>
-
-    </div>
-
-
-    <button id="playBtn" class="btn">
-      ▶ Play Game
-    </button>
-
-    <button id="changeAvatarBtn" class="btn secondary">
-      👤 Change Character
-    </button>
-
-    <button id="dashboardThemeBtn" class="btn secondary">
-      🎨 Choose Theme
-    </button>
-
-    <button id="editProfileBtn" class="btn secondary">
-      Edit Profile
-    </button>
-
-  </div>
-
+  <button id="playBtn" class="btn">▶ Play Game</button>
+  <button id="characterBtn" class="btn btn2">👤 Change Character</button>
+  <button id="themeBtn" class="btn btn2">🎨 Choose Theme</button>
+  <button id="editBtn" class="btn btn2">Edit Profile</button>
+ </div>
 </section>
 
-
-<!-- LOBBY -->
-
-<section id="lobbyScreen" class="screen hidden">
-
-  <div class="logo-wrap">
-    <div class="logo">FG</div>
-    <h1 class="logo-title">Fariz Games</h1>
-    <p class="subtitle">Online Tic Tac Toe</p>
-  </div>
-
-
-  <div class="card">
-
-    <h2>Online Match</h2>
-
-    <p class="description">
-      Create a room or join your friend's room.
-    </p>
-
-
-    <button id="createRoomBtn" class="btn">
-      Create Room
-    </button>
-
-
-    <div class="divider">
-      OR
-    </div>
-
-
-    <div class="field">
-
-      <label>Room Code</label>
-
-      <input
-        id="roomInput"
-        maxlength="6"
-        placeholder="Enter room code"
-      >
-
-    </div>
-
-
-    <button id="joinRoomBtn" class="btn">
-      Join Room
-    </button>
-
-    <button id="backHomeBtn" class="btn secondary">
-      Back Home
-    </button>
-
-    <p id="lobbyMessage" class="message"></p>
-
-  </div>
-
+<section id="lobby" class="screen hidden">
+ <div class="logo"><div class="bigfg">FG</div><h1>Fariz Games</h1><p>Online Tic Tac Toe</p></div>
+ <div class="card">
+  <h2>Online Match</h2>
+  <p class="desc">Create a room or join your friend's room.</p>
+  <button id="createBtn" class="btn">Create Room</button>
+  <p class="center desc" style="margin:17px">OR</p>
+  <div class="field"><label>Room Code</label><input id="roomInput" maxlength="6" placeholder="Enter room code"></div>
+  <button id="joinBtn" class="btn">Join Room</button>
+  <button id="homeBtn" class="btn btn2">Back Home</button>
+  <div id="lobbyMsg" class="msg"></div>
+ </div>
 </section>
 
-
-<!-- WAITING -->
-
-<section id="waitingScreen" class="screen hidden">
-
-  <div class="logo-wrap">
-    <div class="logo">FG</div>
-    <h1 class="logo-title">Fariz Games</h1>
-  </div>
-
-
-  <div class="card waiting">
-
-    <h2>Room Created</h2>
-
-    <p class="description">
-      Send this room code to your friend.
-    </p>
-
-    <div id="roomCodeDisplay" class="room-code">
-      ------
-    </div>
-
-    <button id="copyRoomBtn" class="btn">
-      Copy Room Code
-    </button>
-
-    <button id="leaveWaitingBtn" class="btn secondary">
-      Leave Room
-    </button>
-
-    <div class="loader"></div>
-
-    <p class="description">
-      Waiting for opponent...
-    </p>
-
-  </div>
-
+<section id="waiting" class="screen hidden">
+ <div class="logo"><div class="bigfg">FG</div><h1>Fariz Games</h1></div>
+ <div class="card center">
+  <h2>Room Created</h2>
+  <p class="desc">Send this room code to your friend.</p>
+  <div id="codeDisplay" class="code">------</div>
+  <button id="copyBtn" class="btn">Copy Room Code</button>
+  <button id="leaveWait" class="btn btn2">Leave Room</button>
+  <div class="loader"></div>
+  <p class="desc">Waiting for opponent...</p>
+ </div>
 </section>
 
-
-<!-- GAME -->
-
-<section id="gameScreen" class="screen hidden">
-
-  <div class="logo-wrap">
-    <div class="logo">FG</div>
-    <h1 class="logo-title">Fariz Games</h1>
+<section id="game" class="screen hidden">
+ <div class="logo"><div class="bigfg">FG</div><h1>Fariz Games</h1></div>
+ <div class="card">
+  <div class="players">
+   <div class="player"><div id="xAvatar" class="pav">🥷</div><span id="xName" class="pname">Player X</span><div class="sym x">X</div></div>
+   <div class="player"><div id="oAvatar" class="pav">🤖</div><span id="oName" class="pname">Player O</span><div class="sym o">O</div></div>
   </div>
-
-
-  <div class="card">
-
-    <div class="players">
-
-      <div class="player-box">
-        <span id="playerXAvatar" class="game-avatar">🥷</span>
-        <span id="playerXName" class="game-name">Player X</span>
-        <span class="symbol x">X</span>
-      </div>
-
-      <div class="player-box">
-        <span id="playerOAvatar" class="game-avatar">🤖</span>
-        <span id="playerOName" class="game-name">Player O</span>
-        <span class="symbol o">O</span>
-      </div>
-
-    </div>
-
-
-    <div id="turnText" class="turn">
-      Waiting...
-    </div>
-
-    <div id="yourSymbol" class="you-are"></div>
-
-
-    <div class="board">
-
-      <button class="cell" data-index="0"></button>
-      <button class="cell" data-index="1"></button>
-      <button class="cell" data-index="2"></button>
-
-      <button class="cell" data-index="3"></button>
-      <button class="cell" data-index="4"></button>
-      <button class="cell" data-index="5"></button>
-
-      <button class="cell" data-index="6"></button>
-      <button class="cell" data-index="7"></button>
-      <button class="cell" data-index="8"></button>
-
-    </div>
-
-
-    <div id="gameResult" class="result"></div>
-
-    <div id="rematchStatus" class="rematch-status"></div>
-
-
-    <button id="requestRematchBtn" class="btn hidden">
-      Request Rematch
-    </button>
-
-    <button id="chatGameBtn" class="btn secondary">
-      💬 Open Chat
-    </button>
-
-    <button id="leaveGameBtn" class="btn secondary">
-      Leave Game
-    </button>
-
-
-    <p class="room-bottom">
-      Room:
-      <span id="gameRoomCode">------</span>
-    </p>
-
+  <div id="turn" class="turn">Waiting...</div>
+  <div id="you" class="you"></div>
+  <div class="board">
+   <button class="cell" data-i="0"></button><button class="cell" data-i="1"></button><button class="cell" data-i="2"></button>
+   <button class="cell" data-i="3"></button><button class="cell" data-i="4"></button><button class="cell" data-i="5"></button>
+   <button class="cell" data-i="6"></button><button class="cell" data-i="7"></button><button class="cell" data-i="8"></button>
   </div>
-
+  <div id="result" class="result"></div>
+  <div id="rematchStatus" class="status"></div>
+  <button id="rematchBtn" class="btn hidden">Request Rematch</button>
+  <button id="chatBtn" class="btn btn2">💬 Open Chat</button>
+  <button id="leaveGame" class="btn btn2">Leave Game</button>
+  <div class="room">Room: <span id="gameCode">------</span></div>
+ </div>
 </section>
 
 </main>
 
-
-<!-- REMATCH REQUEST -->
+<div id="avatarModal" class="overlay hidden">
+ <div class="modal">
+  <h2>Choose Character</h2>
+  <p>Select your character.</p>
+  <div id="modalAvatars" class="avatargrid"></div>
+  <button id="closeAvatar" class="btn btn2">Close</button>
+ </div>
+</div>
 
 <div id="rematchModal" class="overlay hidden">
-
-  <div class="modal">
-
-    <div class="modal-icon">🔁</div>
-
-    <h2>Rematch Request</h2>
-
-    <p>
-      Your opponent wants to play another match.
-    </p>
-
-    <button id="acceptRematchBtn" class="btn">
-      Accept Rematch
-    </button>
-
-    <button id="declineRematchBtn" class="btn danger" style="margin-top:9px">
-      Decline Rematch
-    </button>
-
-  </div>
-
+ <div class="modal">
+  <h2>🔁 Rematch Request</h2>
+  <p>Your opponent wants to play another match.</p>
+  <button id="acceptBtn" class="btn">Accept Rematch</button>
+  <button id="declineBtn" class="btn danger" style="margin-top:9px">Decline Rematch</button>
+ </div>
 </div>
-
-
-<!-- AVATAR MODAL -->
-
-<div id="avatarModal" class="overlay hidden">
-
-  <div class="modal">
-
-    <div class="modal-icon">👤</div>
-
-    <h2>Choose Character</h2>
-
-    <p>
-      Select your Fariz Games character.
-    </p>
-
-    <div id="avatarModalGrid" class="avatar-grid"></div>
-
-    <button id="closeAvatarModalBtn" class="btn secondary">
-      Close
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- CHAT -->
 
 <div id="chatPanel" class="chat hidden">
-
-  <div class="chat-head">
-
-    <div class="chat-title">
-      💬 Room Chat
-    </div>
-
-    <button id="closeChatBtn" class="icon-btn">
-      ✕
-    </button>
-
-  </div>
-
-  <div id="chatMessages" class="chat-messages"></div>
-
-
-  <div class="chat-input-area">
-
-    <input
-      id="chatInput"
-      maxlength="150"
-      placeholder="Type a message..."
-    >
-
-    <button id="sendChatBtn" class="chat-send">
-      ➤
-    </button>
-
-  </div>
-
+ <div class="chathead"><b>💬 Room Chat</b><button id="closeChat" class="icon">✕</button></div>
+ <div id="messages" class="messages"></div>
+ <div class="chatinput"><input id="chatInput" maxlength="150" placeholder="Type a message..."><button id="sendBtn" class="send">➤</button></div>
 </div>
 
-
-<!-- SETTINGS -->
-
-<aside id="settingsPanel" class="settings">
-
-  <div class="settings-head">
-    <h2>Settings</h2>
-
-    <button id="closeSettingsBtn" class="icon-btn">
-      ✕
-    </button>
-  </div>
-
-
-  <h3>20 Themes</h3>
-
-  <div id="themeGrid" class="theme-grid"></div>
-
-
-  <div class="setting-row">
-
-    <span>Sound Effects</span>
-
-    <button id="soundToggle" class="toggle">
-      <span></span>
-    </button>
-
-  </div>
-
-
-  <div class="setting-row">
-
-    <span>Background Music</span>
-
-    <button id="musicToggle" class="toggle">
-      <span></span>
-    </button>
-
-  </div>
-
+<aside id="settings" class="settings">
+ <div class="sethead"><h2>Settings</h2><button id="closeSettings" class="icon">✕</button></div>
+ <h3>20 Themes</h3>
+ <div id="themes" class="themegrid"></div>
+ <div class="setrow"><span>Sound Effects</span><button id="soundToggle" class="toggle"><span></span></button></div>
+ <div class="setrow"><span>Background Music</span><button id="musicToggle" class="toggle"><span></span></button></div>
 </aside>
 
-
-
 <script type="module">
-
-/* FIREBASE */
-
-import {
-  initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  remove,
-  onValue,
-  runTransaction,
-  push
-}
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {getDatabase,ref,set,get,remove,onValue,runTransaction,push}
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-
-const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyBKPJeJILSahLtcP2qzYIjNLgEq9-cAsKE",
-
-  authDomain:
-    "fariz-games.firebaseapp.com",
-
-  databaseURL:
-    "https://fariz-games-default-rtdb.firebaseio.com",
-
-  projectId:
-    "fariz-games",
-
-  storageBucket:
-    "fariz-games.firebasestorage.app",
-
-  messagingSenderId:
-    "40340677094",
-
-  appId:
-    "1:40340677094:web:57efac0a6de70c23ef3627"
-
+const firebaseConfig={
+ apiKey:"AIzaSyBKPJeJILSahLtcP2qzYIjNLgEq9-cAsKE",
+ authDomain:"fariz-games.firebaseapp.com",
+ databaseURL:"https://fariz-games-default-rtdb.firebaseio.com",
+ projectId:"fariz-games",
+ storageBucket:"fariz-games.firebasestorage.app",
+ messagingSenderId:"40340677094",
+ appId:"1:40340677094:web:57efac0a6de70c23ef3627"
 };
 
+const app=initializeApp(firebaseConfig),db=getDatabase(app);
+const $=id=>document.getElementById(id);
+const screens=[$("profile"),$("dashboard"),$("lobby"),$("waiting"),$("game")];
+const cells=[...document.querySelectorAll(".cell")];
 
-const app =
-  initializeApp(firebaseConfig);
+let user=null,chosen="🥷",room="",symbol="",roomOff=null,chatOff=null;
+let unread=0,chatOpen=false,lastCount=0,busy=false;
+let soundOn=localStorage.getItem("fgSound")!=="off";
+let musicOn=localStorage.getItem("fgMusic")!=="off";
 
-const db =
-  getDatabase(app);
+function show(s){screens.forEach(x=>x.classList.add("hidden"));s.classList.remove("hidden");$("top").classList.toggle("hidden",s===$("profile"))}
 
+/* BUILT-IN GAME MUSIC */
+let musicCtx=null,musicTimer=null,musicStep=0;
+const melody=[261.63,329.63,392,523.25,392,329.63,293.66,392,261.63,329.63,440,523.25,440,392,329.63,293.66];
+const bass=[130.81,130.81,196,196,110,110,146.83,146.83];
 
-/* ELEMENTS */
+function musicNote(f,d=.18,v=.018,type="square"){
+ if(!musicCtx||!musicOn)return;
+ const o=musicCtx.createOscillator(),g=musicCtx.createGain();
+ o.type=type;o.frequency.value=f;
+ g.gain.setValueAtTime(v,musicCtx.currentTime);
+ g.gain.exponentialRampToValueAtTime(.001,musicCtx.currentTime+d);
+ o.connect(g);g.connect(musicCtx.destination);o.start();o.stop(musicCtx.currentTime+d)
+}
+function musicBeat(){
+ if(!musicOn||!musicCtx)return;
+ let n=melody[musicStep%melody.length];musicNote(n,.2,.014,"square");
+ if(musicStep%2===0)musicNote(bass[Math.floor(musicStep/2)%bass.length],.3,.014,"triangle");
+ if(musicStep%4===3)musicNote(n*2,.07,.005,"sine");
+ musicStep++
+}
+function startMusic(){
+ if(!musicOn)return;
+ try{
+  if(!musicCtx)musicCtx=new (window.AudioContext||window.webkitAudioContext)();
+  if(musicCtx.state==="suspended")musicCtx.resume();
+  if(musicTimer)return;
+  musicBeat();musicTimer=setInterval(musicBeat,270)
+ }catch(e){}
+}
+function stopMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null}}
+function musicUI(){
+ $("musicToggle").classList.toggle("on",musicOn);
+ $("musicTop").textContent=musicOn?"🎵":"🚫"
+}
+function toggleMusic(){
+ musicOn=!musicOn;localStorage.setItem("fgMusic",musicOn?"on":"off");
+ musicUI();musicOn?startMusic():stopMusic()
+}
+$("musicToggle").onclick=toggleMusic;$("musicTop").onclick=toggleMusic;
+document.addEventListener("pointerdown",()=>{if(musicOn)startMusic()},{once:true});
 
-const $ =
-  id =>
-    document.getElementById(id);
-
-
-const profileScreen = $("profileScreen");
-const dashboardScreen = $("dashboardScreen");
-const lobbyScreen = $("lobbyScreen");
-const waitingScreen = $("waitingScreen");
-const gameScreen = $("gameScreen");
-const topbar = $("topbar");
-
-const profileAvatar = $("profileAvatar");
-const profileAvatarGrid = $("profileAvatarGrid");
-const profileName = $("profileName");
-const profileAge = $("profileAge");
-const profileLocation = $("profileLocation");
-const profileMessage = $("profileMessage");
-
-const dashboardAvatar = $("dashboardAvatar");
-const dashboardName = $("dashboardName");
-const dashboardInfo = $("dashboardInfo");
-const usersCounter = $("usersCounter");
-
-const roomInput = $("roomInput");
-const roomCodeDisplay = $("roomCodeDisplay");
-const lobbyMessage = $("lobbyMessage");
-
-const playerXAvatar = $("playerXAvatar");
-const playerOAvatar = $("playerOAvatar");
-const playerXName = $("playerXName");
-const playerOName = $("playerOName");
-
-const turnText = $("turnText");
-const yourSymbol = $("yourSymbol");
-const gameResult = $("gameResult");
-const rematchStatus = $("rematchStatus");
-const requestRematchBtn = $("requestRematchBtn");
-const gameRoomCode = $("gameRoomCode");
-
-const rematchModal = $("rematchModal");
-const avatarModal = $("avatarModal");
-
-const chatPanel = $("chatPanel");
-const chatMessages = $("chatMessages");
-const chatInput = $("chatInput");
-const chatTopBtn = $("chatTopBtn");
-const chatBadge = $("chatBadge");
-
-const settingsPanel = $("settingsPanel");
-const themeGrid = $("themeGrid");
-
-const bgMusic = $("bgMusic");
-
-const cells =
-  document.querySelectorAll(".cell");
-
-
-/* STATE */
-
-let profile = null;
-let selectedAvatar = "🥷";
-
-let currentRoom = "";
-let mySymbol = "";
-
-let roomUnsubscribe = null;
-let chatUnsubscribe = null;
-
-let processingMove = false;
-
-let chatOpen = false;
-let unread = 0;
-let previousMessageCount = 0;
-
-let soundEnabled =
-  localStorage.getItem("fgSound") !== "off";
-
-let musicEnabled =
-  localStorage.getItem("fgMusic") !== "off";
-
+/* SOUND EFFECTS */
+let fxCtx=null;
+function tone(f,d=.08,v=.035){
+ if(!soundOn)return;
+ try{
+  if(!fxCtx)fxCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const o=fxCtx.createOscillator(),g=fxCtx.createGain();
+  o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(fxCtx.destination);o.start();
+  g.gain.exponentialRampToValueAtTime(.001,fxCtx.currentTime+d);o.stop(fxCtx.currentTime+d)
+ }catch(e){}
+}
+function fx(t){
+ if(t==="click")tone(430);if(t==="move")tone(620);
+ if(t==="message")tone(900,.1);if(t==="error")tone(180,.18);
+ if(t==="success"){tone(540,.1);setTimeout(()=>tone(730,.13),80)}
+ if(t==="win"){tone(520,.12);setTimeout(()=>tone(700,.14),100);setTimeout(()=>tone(900,.22),210)}
+}
+function soundUI(){$("soundToggle").classList.toggle("on",soundOn);$("soundTop").textContent=soundOn?"🔊":"🔇"}
+function toggleSound(){soundOn=!soundOn;localStorage.setItem("fgSound",soundOn?"on":"off");soundUI();if(soundOn)fx("click")}
+$("soundToggle").onclick=toggleSound;$("soundTop").onclick=toggleSound;
 
 /* AVATARS */
-
-const avatars = [
-  "🥷","🤖","🧙‍♂️","🧙‍♀️",
-  "🧑‍🚀","👨‍🚀","👩‍🚀","👑",
-  "🦸‍♂️","🦸‍♀️","🧛‍♂️","🧛‍♀️",
-  "👽","👻","🐯","🦊",
-  "🐲","🐱","🦁","🤠"
-];
-
-
-/* SCREENS */
-
-function showScreen(screen){
-
-  [
-    profileScreen,
-    dashboardScreen,
-    lobbyScreen,
-    waitingScreen,
-    gameScreen
-  ].forEach(
-    screen =>
-      screen.classList.add("hidden")
-  );
-
-  screen.classList.remove("hidden");
-
-
-  if(screen === profileScreen){
-
-    topbar.classList.add("hidden");
-
-  }else{
-
-    topbar.classList.remove("hidden");
-  }
+const avatars=["🥷","🤖","🧙‍♂️","🧙‍♀️","🧑‍🚀","👨‍🚀","👩‍🚀","👑","🦸‍♂️","🦸‍♀️","🧛‍♂️","🧛‍♀️","👽","👻","🐯","🦊","🐲","🐱","🦁","🤠"];
+function drawAvatars(el,save=false){
+ el.innerHTML="";
+ avatars.forEach(a=>{
+  const b=document.createElement("button");b.className="avatarbtn"+(a===chosen?" sel":"");b.textContent=a;
+  b.onclick=()=>{
+   chosen=a;$("profileAvatar").textContent=a;
+   if(save&&user){user.avatar=a;localStorage.setItem("farizProfile",JSON.stringify(user));updateDash()}
+   drawAvatars($("profileAvatars"));drawAvatars($("modalAvatars"),true);fx("click")
+  };el.appendChild(b)
+ })
 }
-
-
-/* MUSIC */
-
-bgMusic.volume = .35;
-
-
-async function startMusic(){
-
-  if(!musicEnabled){
-    return;
-  }
-
-  try{
-
-    await bgMusic.play();
-
-  }catch(error){
-
-    /*
-    Browser may block audio before
-    first user interaction.
-    */
-  }
+function updateDash(){
+ $("dashAvatar").textContent=user.avatar||"🥷";$("dashName").textContent=user.name;
+ $("dashInfo").textContent=`Age: ${user.age} • ${user.location}`
 }
+$("continueBtn").onclick=()=>{
+ const name=$("nameInput").value.trim(),age=+$("ageInput").value,location=$("locationInput").value.trim();
+ $("profileMsg").textContent="";
+ if(!name)return $("profileMsg").textContent="Please enter your name.";
+ if(age<5||age>100)return $("profileMsg").textContent="Please enter a valid age.";
+ if(!location)return $("profileMsg").textContent="Please enter your location.";
+ user={name,age,location,avatar:chosen};localStorage.setItem("farizProfile",JSON.stringify(user));
+ updateDash();show($("dashboard"));counter();fx("success");startMusic()
+};
+$("editBtn").onclick=()=>{
+ $("nameInput").value=user.name;$("ageInput").value=user.age;$("locationInput").value=user.location;
+ chosen=user.avatar||"🥷";$("profileAvatar").textContent=chosen;drawAvatars($("profileAvatars"));show($("profile"))
+};
+$("characterBtn").onclick=()=>{$("avatarModal").classList.remove("hidden");drawAvatars($("modalAvatars"),true)};
+$("closeAvatar").onclick=()=>$("avatarModal").classList.add("hidden");
 
-
-function stopMusic(){
-
-  bgMusic.pause();
+function counter(){
+ let start=performance.now();function go(n){let p=Math.min((n-start)/1600,1);$("counter").textContent=Math.floor(10000*(1-Math.pow(1-p,3))).toLocaleString()+"+";if(p<1)requestAnimationFrame(go)}
+ requestAnimationFrame(go)
 }
-
-
-function updateMusicUI(){
-
-  $("musicToggle")
-    .classList
-    .toggle(
-      "on",
-      musicEnabled
-    );
-
-  $("musicTopBtn").textContent =
-    musicEnabled
-      ? "🎵"
-      : "🚫";
-}
-
-
-function toggleMusic(){
-
-  musicEnabled =
-    !musicEnabled;
-
-  localStorage.setItem(
-    "fgMusic",
-    musicEnabled
-      ? "on"
-      : "off"
-  );
-
-  updateMusicUI();
-
-  if(musicEnabled){
-
-    startMusic();
-
-  }else{
-
-    stopMusic();
-  }
-
-  playSound("click");
-}
-
-
-$("musicToggle").onclick =
-  toggleMusic;
-
-$("musicTopBtn").onclick =
-  toggleMusic;
-
-
-/*
-Music is enabled by default.
-Browser restrictions may block
-audio until first interaction.
-*/
-
-document.addEventListener(
-  "pointerdown",
-  () => {
-
-    if(musicEnabled){
-
-      startMusic();
-    }
-
-  },
-  {once:true}
-);
-
-
-/* SOUND */
-
-let audioContext = null;
-
-
-function tone(
-  frequency,
-  duration,
-  volume=.05
-){
-
-  if(!soundEnabled){
-    return;
-  }
-
-  try{
-
-    if(!audioContext){
-
-      audioContext =
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
-    }
-
-    const oscillator =
-      audioContext.createOscillator();
-
-    const gain =
-      audioContext.createGain();
-
-    oscillator.frequency.value =
-      frequency;
-
-    gain.gain.value =
-      volume;
-
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
-
-    oscillator.start();
-
-    gain.gain.exponentialRampToValueAtTime(
-      .001,
-      audioContext.currentTime +
-      duration
-    );
-
-    oscillator.stop(
-      audioContext.currentTime +
-      duration
-    );
-
-  }catch{}
-}
-
-
-function playSound(type){
-
-  if(type === "click"){
-    tone(430,.07,.035);
-  }
-
-  if(type === "move"){
-    tone(620,.08,.05);
-  }
-
-  if(type === "success"){
-    tone(540,.1,.05);
-    setTimeout(
-      () => tone(730,.14,.05),
-      80
-    );
-  }
-
-  if(type === "error"){
-    tone(180,.18,.05);
-  }
-
-  if(type === "message"){
-    tone(900,.1,.04);
-  }
-
-  if(type === "win"){
-    tone(520,.12,.06);
-    setTimeout(
-      () => tone(700,.14,.06),
-      100
-    );
-    setTimeout(
-      () => tone(900,.25,.07),
-      210
-    );
-  }
-}
-
-
-function updateSoundUI(){
-
-  $("soundToggle")
-    .classList
-    .toggle(
-      "on",
-      soundEnabled
-    );
-
-  $("soundTopBtn").textContent =
-    soundEnabled
-      ? "🔊"
-      : "🔇";
-}
-
-
-function toggleSound(){
-
-  soundEnabled =
-    !soundEnabled;
-
-  localStorage.setItem(
-    "fgSound",
-    soundEnabled
-      ? "on"
-      : "off"
-  );
-
-  updateSoundUI();
-
-  if(soundEnabled){
-    playSound("click");
-  }
-}
-
-
-$("soundToggle").onclick =
-  toggleSound;
-
-$("soundTopBtn").onclick =
-  toggleSound;
-
-
-/* PROFILE */
-
-function renderAvatars(
-  container,
-  saveImmediately=false
-){
-
-  container.innerHTML = "";
-
-
-  avatars.forEach(
-    avatar => {
-
-      const button =
-        document.createElement("button");
-
-      button.className =
-        "avatar-choice";
-
-      button.textContent =
-        avatar;
-
-      if(
-        avatar ===
-        selectedAvatar
-      ){
-
-        button.classList.add(
-          "selected"
-        );
-      }
-
-
-      button.onclick =
-        () => {
-
-          selectedAvatar =
-            avatar;
-
-          profileAvatar.textContent =
-            avatar;
-
-          renderAvatars(
-            profileAvatarGrid
-          );
-
-          renderAvatars(
-            $("avatarModalGrid"),
-            true
-          );
-
-
-          if(
-            saveImmediately &&
-            profile
-          ){
-
-            profile.avatar =
-              avatar;
-
-            saveProfileLocal();
-
-            updateDashboard();
-          }
-
-          playSound("click");
-        };
-
-
-      container.appendChild(
-        button
-      );
-    }
-  );
-}
-
-
-function loadProfile(){
-
-  try{
-
-    const saved =
-      localStorage.getItem(
-        "farizProfile"
-      );
-
-    return saved
-      ? JSON.parse(saved)
-      : null;
-
-  }catch{
-
-    return null;
-  }
-}
-
-
-function saveProfileLocal(){
-
-  localStorage.setItem(
-    "farizProfile",
-    JSON.stringify(profile)
-  );
-}
-
-
-$("continueBtn").onclick =
-  () => {
-
-    const name =
-      profileName.value.trim();
-
-    const age =
-      Number(profileAge.value);
-
-    const location =
-      profileLocation.value.trim();
-
-
-    profileMessage.textContent =
-      "";
-
-
-    if(!name){
-
-      profileMessage.textContent =
-        "Please enter your name.";
-
-      playSound("error");
-
-      return;
-    }
-
-
-    if(
-      age < 5 ||
-      age > 100
-    ){
-
-      profileMessage.textContent =
-        "Please enter a valid age.";
-
-      playSound("error");
-
-      return;
-    }
-
-
-    if(!location){
-
-      profileMessage.textContent =
-        "Please enter your location.";
-
-      playSound("error");
-
-      return;
-    }
-
-
-    profile = {
-      name,
-      age,
-      location,
-      avatar:selectedAvatar
-    };
-
-
-    saveProfileLocal();
-
-    updateDashboard();
-
-    showScreen(
-      dashboardScreen
-    );
-
-    animateUsers();
-
-    playSound("success");
-
-    startMusic();
-  };
-
-
-function updateDashboard(){
-
-  if(!profile){
-    return;
-  }
-
-  dashboardAvatar.textContent =
-    profile.avatar || "🥷";
-
-  dashboardName.textContent =
-    profile.name;
-
-  dashboardInfo.textContent =
-    `Age: ${profile.age} • ${profile.location}`;
-}
-
-
-$("editProfileBtn").onclick =
-  () => {
-
-    profileName.value =
-      profile.name;
-
-    profileAge.value =
-      profile.age;
-
-    profileLocation.value =
-      profile.location;
-
-    selectedAvatar =
-      profile.avatar || "🥷";
-
-    profileAvatar.textContent =
-      selectedAvatar;
-
-    renderAvatars(
-      profileAvatarGrid
-    );
-
-    showScreen(
-      profileScreen
-    );
-  };
-
-
-$("changeAvatarBtn").onclick =
-  () => {
-
-    renderAvatars(
-      $("avatarModalGrid"),
-      true
-    );
-
-    avatarModal.classList.remove(
-      "hidden"
-    );
-  };
-
-
-$("closeAvatarModalBtn").onclick =
-  () => {
-
-    avatarModal.classList.add(
-      "hidden"
-    );
-  };
-
-
-/* COUNTER */
-
-function animateUsers(){
-
-  const target = 10000;
-  const duration = 1700;
-  const start = performance.now();
-
-  function update(now){
-
-    const progress =
-      Math.min(
-        (now-start)/duration,
-        1
-      );
-
-    const eased =
-      1 -
-      Math.pow(
-        1-progress,
-        3
-      );
-
-    usersCounter.textContent =
-      Math.floor(
-        target * eased
-      ).toLocaleString() +
-      "+";
-
-    if(progress < 1){
-
-      requestAnimationFrame(
-        update
-      );
-
-    }else{
-
-      usersCounter.textContent =
-        "10,000+";
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
-
-/* NAVIGATION */
-
-$("playBtn").onclick =
-  () => {
-
-    showScreen(
-      lobbyScreen
-    );
-
-    playSound("click");
-  };
-
-
-$("backHomeBtn").onclick =
-  () => {
-
-    showScreen(
-      dashboardScreen
-    );
-
-    animateUsers();
-
-    playSound("click");
-  };
-
-
-/* ROOM */
-
-function roomCode(){
-
-  const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  let code = "";
-
-  for(let i=0;i<6;i++){
-
-    code +=
-      chars[
-        Math.floor(
-          Math.random() *
-          chars.length
-        )
-      ];
-  }
-
-  return code;
-}
-
-
-function emptyBoard(){
-
-  return {
-    0:"",
-    1:"",
-    2:"",
-    3:"",
-    4:"",
-    5:"",
-    6:"",
-    7:"",
-    8:""
-  };
-}
-
-
-function toArray(board={}){
-
-  return Array.from(
-    {length:9},
-    (_,i) =>
-      board[i] || ""
-  );
-}
-
-
-function toObject(array){
-
-  const result = {};
-
-  array.forEach(
-    (value,index) =>
-      result[index] =
-        value || ""
-  );
-
-  return result;
-}
-
-
-roomInput.oninput =
-  () => {
-
-    roomInput.value =
-      roomInput.value
-        .toUpperCase()
-        .replace(
-          /[^A-Z0-9]/g,
-          ""
-        );
-  };
-
-
-$("createRoomBtn").onclick =
-  async () => {
-
-    try{
-
-      lobbyMessage.textContent =
-        "";
-
-      let code = "";
-      let exists = true;
-
-      while(exists){
-
-        code = roomCode();
-
-        const snapshot =
-          await get(
-            ref(
-              db,
-              `rooms/${code}`
-            )
-          );
-
-        exists =
-          snapshot.exists();
-      }
-
-
-      currentRoom =
-        code;
-
-      mySymbol =
-        "X";
-
-
-      await set(
-        ref(
-          db,
-          `rooms/${code}`
-        ),
-        {
-
-          playerX:{
-            name:profile.name,
-            avatar:profile.avatar
-          },
-
-          playerO:null,
-
-          board:emptyBoard(),
-
-          turn:"X",
-
-          winner:"",
-
-          winningCells:[],
-
-          status:"waiting",
-
-          rematchRequest:null,
-
-          createdAt:Date.now()
-        }
-      );
-
-
-      roomCodeDisplay.textContent =
-        code;
-
-      showScreen(
-        waitingScreen
-      );
-
-      listenRoom();
-      listenChat();
-
-      playSound("success");
-
-
-    }catch(error){
-
-      console.error(error);
-
-      lobbyMessage.textContent =
-        "Could not create room.";
-    }
-  };
-
-
-$("joinRoomBtn").onclick =
-  async () => {
-
-    const code =
-      roomInput.value
-        .trim()
-        .toUpperCase();
-
-
-    if(code.length !== 6){
-
-      lobbyMessage.textContent =
-        "Enter a valid room code.";
-
-      return;
-    }
-
-
-    const roomRef =
-      ref(
-        db,
-        `rooms/${code}`
-      );
-
-
-    try{
-
-      const transaction =
-        await runTransaction(
-          roomRef,
-          room => {
-
-            if(!room){
-              return;
-            }
-
-            if(
-              room.status !==
-              "waiting"
-            ){
-              return;
-            }
-
-            if(room.playerO){
-              return;
-            }
-
-
-            room.playerO = {
-              name:profile.name,
-              avatar:profile.avatar
-            };
-
-            room.status =
-              "playing";
-
-            return room;
-          }
-        );
-
-
-      if(!transaction.committed){
-
-        lobbyMessage.textContent =
-          "Room not found or already full.";
-
-        return;
-      }
-
-
-      currentRoom =
-        code;
-
-      mySymbol =
-        "O";
-
-      listenRoom();
-      listenChat();
-
-      playSound("success");
-
-
-    }catch(error){
-
-      console.error(error);
-
-      lobbyMessage.textContent =
-        "Could not join room.";
-    }
-  };
-
-
-/* WINNER */
-
-function checkWinner(board){
-
-  const wins = [
-    [0,1,2],[3,4,5],[6,7,8],
-    [0,3,6],[1,4,7],[2,5,8],
-    [0,4,8],[2,4,6]
-  ];
-
-
-  for(const line of wins){
-
-    const [a,b,c] =
-      line;
-
-    if(
-      board[a] &&
-      board[a] === board[b] &&
-      board[a] === board[c]
-    ){
-
-      return {
-        winner:board[a],
-        cells:line
-      };
-    }
-  }
-
-
-  if(
-    board.every(
-      value => value
-    )
-  ){
-
-    return {
-      winner:"DRAW",
-      cells:[]
-    };
-  }
-
-
-  return {
-    winner:"",
-    cells:[]
-  };
-}
-
-
-/* LISTEN ROOM */
-
-function listenRoom(){
-
-  if(roomUnsubscribe){
-
-    roomUnsubscribe();
-  }
-
-
-  roomUnsubscribe =
-    onValue(
-      ref(
-        db,
-        `rooms/${currentRoom}`
-      ),
-      snapshot => {
-
-        if(!snapshot.exists()){
-
-          rematchModal.classList.add(
-            "hidden"
-          );
-
-          resetRoom();
-
-          showScreen(
-            lobbyScreen
-          );
-
-          lobbyMessage.textContent =
-            "The room was closed.";
-
-          return;
-        }
-
-
-        const room =
-          snapshot.val();
-
-
-        chatTopBtn.classList.remove(
-          "hidden"
-        );
-
-
-        if(
-          room.status ===
-          "waiting"
-        ){
-
-          roomCodeDisplay.textContent =
-            currentRoom;
-
-          showScreen(
-            waitingScreen
-          );
-
-          return;
-        }
-
-
-        showScreen(
-          gameScreen
-        );
-
-        renderGame(room);
-        handleRematch(room);
-      }
-    );
-}
-
-
-/* RENDER */
-
-function renderGame(room){
-
-  const board =
-    toArray(room.board);
-
-
-  playerXName.textContent =
-    room.playerX?.name ||
-    "Player X";
-
-  playerOName.textContent =
-    room.playerO?.name ||
-    "Player O";
-
-  playerXAvatar.textContent =
-    room.playerX?.avatar ||
-    "🥷";
-
-  playerOAvatar.textContent =
-    room.playerO?.avatar ||
-    "🤖";
-
-
-  yourSymbol.textContent =
-    `You are ${mySymbol}`;
-
-  gameRoomCode.textContent =
-    currentRoom;
-
-
-  const winCells =
-    room.winningCells || [];
-
-
-  cells.forEach(
-    (cell,index) => {
-
-      const value =
-        board[index];
-
-      cell.textContent =
-        value;
-
-      cell.classList.remove(
-        "x",
-        "o",
-        "win"
-      );
-
-      if(value === "X"){
-        cell.classList.add("x");
-      }
-
-      if(value === "O"){
-        cell.classList.add("o");
-      }
-
-      if(
-        winCells.includes(
-          index
-        )
-      ){
-        cell.classList.add("win");
-      }
-
-      cell.disabled =
-        room.status !== "playing" ||
-        room.turn !== mySymbol ||
-        Boolean(value);
-    }
-  );
-
-
-  if(
-    room.status ===
-    "finished"
-  ){
-
-    turnText.textContent =
-      "Game Over";
-
-    requestRematchBtn.classList.remove(
-      "hidden"
-    );
-
-
-    if(
-      room.winner ===
-      "DRAW"
-    ){
-
-      gameResult.textContent =
-        "Draw!";
-
-    }else if(
-      room.winner ===
-      mySymbol
-    ){
-
-      gameResult.textContent =
-        "You Win! 🏆";
-
-    }else{
-
-      gameResult.textContent =
-        "Opponent Wins!";
-    }
-
-    return;
-  }
-
-
-  requestRematchBtn.classList.add(
-    "hidden"
-  );
-
-  gameResult.textContent =
-    "";
-
-  rematchStatus.textContent =
-    "";
-
-
-  turnText.textContent =
-    room.turn === mySymbol
-      ? "Your Turn"
-      : "Opponent's Turn";
-}
-
-
-/* MOVE */
-
-cells.forEach(
-  cell => {
-
-    cell.onclick =
-      async () => {
-
-        if(
-          processingMove ||
-          !currentRoom
-        ){
-          return;
-        }
-
-        processingMove =
-          true;
-
-        const index =
-          Number(
-            cell.dataset.index
-          );
-
-
-        try{
-
-          const result =
-            await runTransaction(
-              ref(
-                db,
-                `rooms/${currentRoom}`
-              ),
-              room => {
-
-                if(
-                  !room ||
-                  room.status !== "playing" ||
-                  room.turn !== mySymbol
-                ){
-                  return room;
-                }
-
-
-                const board =
-                  toArray(
-                    room.board
-                  );
-
-
-                if(board[index]){
-                  return room;
-                }
-
-
-                board[index] =
-                  mySymbol;
-
-
-                const game =
-                  checkWinner(
-                    board
-                  );
-
-
-                room.board =
-                  toObject(
-                    board
-                  );
-
-
-                if(game.winner){
-
-                  room.winner =
-                    game.winner;
-
-                  room.winningCells =
-                    game.cells;
-
-                  room.status =
-                    "finished";
-
-                  room.rematchRequest =
-                    null;
-
-                }else{
-
-                  room.turn =
-                    mySymbol === "X"
-                      ? "O"
-                      : "X";
-                }
-
-                return room;
-              }
-            );
-
-
-          if(result.committed){
-
-            playSound("move");
-
-            const room =
-              result.snapshot.val();
-
-            if(
-              room?.status ===
-              "finished" &&
-              room.winner ===
-              mySymbol
-            ){
-
-              playSound("win");
-            }
-          }
-
-
-        }finally{
-
-          processingMove =
-            false;
-        }
-      };
-  }
-);
-
-
-/* REMATCH */
-
-requestRematchBtn.onclick =
-  async () => {
-
-    await runTransaction(
-      ref(
-        db,
-        `rooms/${currentRoom}`
-      ),
-      room => {
-
-        if(
-          !room ||
-          room.status !==
-          "finished"
-        ){
-
-          return room;
-        }
-
-
-        if(
-          room.rematchRequest?.status ===
-          "pending"
-        ){
-
-          return room;
-        }
-
-
-        room.rematchRequest = {
-
-          from:mySymbol,
-          status:"pending",
-          time:Date.now()
-
-        };
-
-
-        return room;
-      }
-    );
-
-
-    rematchStatus.textContent =
-      "Rematch request sent.";
-
-    playSound("success");
-  };
-
-
-function handleRematch(room){
-
-  const request =
-    room.rematchRequest;
-
-
-  if(
-    !request ||
-    request.status !==
-    "pending"
-  ){
-
-    rematchModal.classList.add(
-      "hidden"
-    );
-
-    return;
-  }
-
-
-  if(
-    request.from ===
-    mySymbol
-  ){
-
-    rematchStatus.textContent =
-      "Waiting for opponent to accept...";
-
-    rematchModal.classList.add(
-      "hidden"
-    );
-
-  }else{
-
-    rematchModal.classList.remove(
-      "hidden"
-    );
-  }
-}
-
-
-$("acceptRematchBtn").onclick =
-  async () => {
-
-    await runTransaction(
-      ref(
-        db,
-        `rooms/${currentRoom}`
-      ),
-      room => {
-
-        if(!room){
-          return room;
-        }
-
-
-        if(
-          !room.rematchRequest ||
-          room.rematchRequest.from ===
-          mySymbol
-        ){
-
-          return room;
-        }
-
-
-        room.board =
-          emptyBoard();
-
-        room.turn =
-          "X";
-
-        room.winner =
-          "";
-
-        room.winningCells =
-          [];
-
-        room.status =
-          "playing";
-
-        room.rematchRequest =
-          null;
-
-
-        return room;
-      }
-    );
-
-
-    rematchModal.classList.add(
-      "hidden"
-    );
-
-    playSound("success");
-  };
-
-
-$("declineRematchBtn").onclick =
-  async () => {
-
-    await remove(
-      ref(
-        db,
-        `rooms/${currentRoom}`
-      )
-    );
-
-    rematchModal.classList.add(
-      "hidden"
-    );
-  };
-
-
-/* LEAVE */
-
-$("leaveWaitingBtn").onclick =
-  async () => {
-
-    if(
-      currentRoom &&
-      mySymbol === "X"
-    ){
-
-      await remove(
-        ref(
-          db,
-          `rooms/${currentRoom}`
-        )
-      );
-    }
-
-
-    resetRoom();
-
-    showScreen(
-      lobbyScreen
-    );
-  };
-
-
-$("leaveGameBtn").onclick =
-  async () => {
-
-    if(currentRoom){
-
-      await remove(
-        ref(
-          db,
-          `rooms/${currentRoom}`
-        )
-      );
-    }
-
-
-    resetRoom();
-
-    showScreen(
-      lobbyScreen
-    );
-  };
-
-
-function resetRoom(){
-
-  if(roomUnsubscribe){
-    roomUnsubscribe();
-  }
-
-  if(chatUnsubscribe){
-    chatUnsubscribe();
-  }
-
-
-  roomUnsubscribe =
-    null;
-
-  chatUnsubscribe =
-    null;
-
-  currentRoom =
-    "";
-
-  mySymbol =
-    "";
-
-  chatTopBtn.classList.add(
-    "hidden"
-  );
-
-  closeChat();
-}
-
-
-/* COPY */
-
-$("copyRoomBtn").onclick =
-  async () => {
-
-    try{
-
-      await navigator.clipboard.writeText(
-        currentRoom
-      );
-
-      $("copyRoomBtn").textContent =
-        "Copied ✓";
-
-      setTimeout(
-        () => {
-          $("copyRoomBtn").textContent =
-            "Copy Room Code";
-        },
-        1200
-      );
-
-    }catch{
-
-      alert(
-        `Room Code: ${currentRoom}`
-      );
-    }
-  };
-
-
-/* CHAT */
-
-function listenChat(){
-
-  if(chatUnsubscribe){
-    chatUnsubscribe();
-  }
-
-
-  previousMessageCount =
-    0;
-
-
-  chatUnsubscribe =
-    onValue(
-      ref(
-        db,
-        `rooms/${currentRoom}/messages`
-      ),
-      snapshot => {
-
-        const object =
-          snapshot.val() || {};
-
-        const messages =
-          Object.values(object)
-            .sort(
-              (a,b) =>
-                (a.time || 0) -
-                (b.time || 0)
-            );
-
-
-        renderChat(messages);
-
-
-        if(
-          messages.length >
-          previousMessageCount
-        ){
-
-          const newest =
-            messages[
-              messages.length - 1
-            ];
-
-
-          if(
-            newest &&
-            newest.symbol !==
-            mySymbol &&
-            !chatOpen
-          ){
-
-            unread++;
-
-            updateBadge();
-
-            playSound("message");
-          }
-        }
-
-
-        previousMessageCount =
-          messages.length;
-      }
-    );
-}
-
-
-function renderChat(messages){
-
-  chatMessages.innerHTML =
-    "";
-
-
-  messages.forEach(
-    message => {
-
-      const box =
-        document.createElement(
-          "div"
-        );
-
-      box.className =
-        "chat-message";
-
-      if(
-        message.symbol ===
-        mySymbol
-      ){
-
-        box.classList.add(
-          "mine"
-        );
-      }
-
-
-      const name =
-        document.createElement(
-          "div"
-        );
-
-      name.className =
-        "chat-name";
-
-      name.textContent =
-        message.name ||
-        "Player";
-
-
-      const text =
-        document.createElement(
-          "div"
-        );
-
-      text.className =
-        "chat-text";
-
-      text.textContent =
-        message.text || "";
-
-
-      box.appendChild(name);
-      box.appendChild(text);
-
-      chatMessages.appendChild(
-        box
-      );
-    }
-  );
-
-
-  chatMessages.scrollTop =
-    chatMessages.scrollHeight;
-}
-
-
-function openChat(){
-
-  if(!currentRoom){
-    return;
-  }
-
-  chatOpen = true;
-  unread = 0;
-
-  updateBadge();
-
-  chatPanel.classList.remove(
-    "hidden"
-  );
-}
-
-
-function closeChat(){
-
-  chatOpen = false;
-
-  chatPanel.classList.add(
-    "hidden"
-  );
-}
-
-
-function updateBadge(){
-
-  if(unread <= 0){
-
-    chatBadge.classList.add(
-      "hidden"
-    );
-
-  }else{
-
-    chatBadge.textContent =
-      unread > 9
-        ? "9+"
-        : unread;
-
-    chatBadge.classList.remove(
-      "hidden"
-    );
-  }
-}
-
-
-async function sendChat(){
-
-  const text =
-    chatInput.value
-      .trim()
-      .slice(0,150);
-
-
-  if(
-    !text ||
-    !currentRoom
-  ){
-    return;
-  }
-
-
-  chatInput.value =
-    "";
-
-
-  await set(
-    push(
-      ref(
-        db,
-        `rooms/${currentRoom}/messages`
-      )
-    ),
-    {
-
-      name:profile.name,
-      symbol:mySymbol,
-      text,
-      time:Date.now()
-
-    }
-  );
-}
-
-
-$("chatGameBtn").onclick =
-  openChat;
-
-chatTopBtn.onclick =
-  openChat;
-
-$("closeChatBtn").onclick =
-  closeChat;
-
-$("sendChatBtn").onclick =
-  sendChat;
-
-
-chatInput.addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key === "Enter"){
-      sendChat();
-    }
-  }
-);
-
-
-/* THEMES */
-
-const themes = {
-
-neon:["Neon Blue","#050713","#1c2460","#62e7ff","#745cff","#ff6685"],
-
-cyber:["Cyber Green","#03110b","#0a3927","#38ff8c","#00b967","#ff4e90"],
-
-sunset:["Sunset","#1c0714","#6c213f","#ff9c59","#ff446c","#ffd166"],
-
-royal:["Royal Purple","#10071f","#432374","#b889ff","#754be8","#ff70bd"],
-
-fire:["Fire","#160402","#691d08","#ff9e00","#ff3d00","#ffe16b"],
-
-ocean:["Ocean","#02101c","#064875","#34dbff","#0087ff","#3cffc2"],
-
-gold:["Black Gold","#090909","#30270a","#ffd84e","#b98b00","#fff1a6"],
-
-candy:["Candy","#17091b","#62236c","#ff72dc","#945cff","#61f3ff"],
-
-ice:["Ice","#061118","#255063","#b5f5ff","#55c2e2","#ffffff"],
-
-retro:["Retro","#170d28","#623878","#ffea67","#ff6baa","#6effd5"],
-
-matrix:["Matrix","#000500","#072407","#00ff41","#0b8f2d","#aaffbe"],
-
-lava:["Lava","#160000","#5f0600","#ff4b19","#ff9500","#ffe260"],
-
-space:["Deep Space","#02030d","#17113f","#7cc8ff","#875cff","#ff65df"],
-
-mint:["Mint","#05110f","#164c42","#67ffd8","#32b89c","#e3fff8"],
-
-rose:["Rose","#19080e","#5d2338","#ff86aa","#d44978","#ffd0dd"],
-
-electric:["Electric","#030617","#091d6b","#00e5ff","#0066ff","#f600ff"],
-
-forest:["Forest","#061007","#21482a","#8eff7a","#3a9b4b","#e1ff6b"],
-
-peach:["Peach","#21100c","#71402f","#ffb183","#ed6d5a","#ffe0a6"],
-
-violet:["Violet Storm","#0d0718","#4d2374","#d98cff","#872dff","#70eaff"],
-
-mono:["Monochrome","#090909","#2b2b2b","#ffffff","#777777","#d0d0d0"]
-
+$("playBtn").onclick=()=>{show($("lobby"));fx("click")};
+$("homeBtn").onclick=()=>{show($("dashboard"));counter()};
+
+/* ROOMS */
+const blank=()=>({0:"",1:"",2:"",3:"",4:"",5:"",6:"",7:"",8:""});
+const arr=b=>Array.from({length:9},(_,i)=>b?.[i]||"");
+const obj=a=>Object.fromEntries(a.map((v,i)=>[i,v||""]));
+function makeCode(){let c="",chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";for(let i=0;i<6;i++)c+=chars[Math.floor(Math.random()*chars.length)];return c}
+$("roomInput").oninput=()=>$("roomInput").value=$("roomInput").value.toUpperCase().replace(/[^A-Z0-9]/g,"");
+
+$("createBtn").onclick=async()=>{
+ try{
+  let code,exists=true;while(exists){code=makeCode();exists=(await get(ref(db,`rooms/${code}`))).exists()}
+  room=code;symbol="X";
+  await set(ref(db,`rooms/${room}`),{playerX:{name:user.name,avatar:user.avatar},playerO:null,board:blank(),turn:"X",winner:"",winningCells:[],status:"waiting",rematchRequest:null,createdAt:Date.now()});
+  $("codeDisplay").textContent=room;show($("waiting"));listenRoom();listenChat();fx("success")
+ }catch(e){$("lobbyMsg").textContent="Could not create room."}
 };
 
+$("joinBtn").onclick=async()=>{
+ const code=$("roomInput").value.trim().toUpperCase();if(code.length!==6)return $("lobbyMsg").textContent="Enter a valid room code.";
+ try{
+  const r=await runTransaction(ref(db,`rooms/${code}`),x=>{
+   if(!x||x.status!=="waiting"||x.playerO)return;
+   x.playerO={name:user.name,avatar:user.avatar};x.status="playing";return x
+  });
+  if(!r.committed)return $("lobbyMsg").textContent="Room not found or already full.";
+  room=code;symbol="O";listenRoom();listenChat();fx("success")
+ }catch(e){$("lobbyMsg").textContent="Could not join room."}
+};
 
-function renderThemes(){
-
-  themeGrid.innerHTML =
-    "";
-
-
-  Object.entries(
-    themes
-  ).forEach(
-    ([key,value]) => {
-
-      const [
-        name,
-        bg1,
-        bg2,
-        primary,
-        secondary
-      ] = value;
-
-
-      const button =
-        document.createElement(
-          "button"
-        );
-
-      button.className =
-        "theme-card";
-
-      button.dataset.theme =
-        key;
-
-
-      button.innerHTML = `
-        <div
-          class="theme-preview"
-          style="
-            background:
-            linear-gradient(
-              135deg,
-              ${primary},
-              ${secondary}
-            )
-          "
-        ></div>
-        <div class="theme-name">
-          ${name}
-        </div>
-      `;
-
-
-      button.onclick =
-        () => {
-
-          setTheme(key);
-          playSound("click");
-        };
-
-
-      themeGrid.appendChild(
-        button
-      );
-    }
-  );
+function winner(b){
+ const w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+ for(const l of w){let[a,b1,c]=l;if(b[a]&&b[a]===b[b1]&&b[a]===b[c])return{winner:b[a],cells:l}}
+ return b.every(Boolean)?{winner:"DRAW",cells:[]}:{winner:"",cells:[]}
 }
 
-
-function setTheme(key){
-
-  const theme =
-    themes[key] ||
-    themes.neon;
-
-
-  const [
-    ,
-    bg1,
-    bg2,
-    primary,
-    secondary,
-    accent
-  ] = theme;
-
-
-  const root =
-    document.documentElement;
-
-
-  root.style.setProperty(
-    "--bg1",
-    bg1
-  );
-
-  root.style.setProperty(
-    "--bg2",
-    bg2
-  );
-
-  root.style.setProperty(
-    "--primary",
-    primary
-  );
-
-  root.style.setProperty(
-    "--secondary",
-    secondary
-  );
-
-  root.style.setProperty(
-    "--accent",
-    accent
-  );
-
-
-  localStorage.setItem(
-    "fgTheme",
-    key
-  );
-
-
-  document
-    .querySelectorAll(
-      ".theme-card"
-    )
-    .forEach(
-      button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.theme ===
-          key
-        );
-      }
-    );
+function listenRoom(){
+ if(roomOff)roomOff();
+ roomOff=onValue(ref(db,`rooms/${room}`),snap=>{
+  if(!snap.exists()){reset();show($("lobby"));$("lobbyMsg").textContent="The room was closed.";return}
+  const r=snap.val();$("chatTop").classList.remove("hidden");
+  if(r.status==="waiting"){show($("waiting"));$("codeDisplay").textContent=room;return}
+  show($("game"));renderGame(r);handleRematch(r)
+ })
 }
 
-
-function openSettings(){
-
-  settingsPanel.classList.add(
-    "open"
-  );
+function renderGame(r){
+ const b=arr(r.board),wins=r.winningCells||[];
+ $("xName").textContent=r.playerX?.name||"Player X";$("oName").textContent=r.playerO?.name||"Player O";
+ $("xAvatar").textContent=r.playerX?.avatar||"🥷";$("oAvatar").textContent=r.playerO?.avatar||"🤖";
+ $("you").textContent=`You are ${symbol}`;$("gameCode").textContent=room;
+ cells.forEach((c,i)=>{
+  c.textContent=b[i];c.className="cell"+(b[i]==="X"?" x":b[i]==="O"?" o":"")+(wins.includes(i)?" win":"");
+  c.disabled=r.status!=="playing"||r.turn!==symbol||!!b[i]
+ });
+ if(r.status==="finished"){
+  $("turn").textContent="Game Over";$("rematchBtn").classList.remove("hidden");
+  $("result").textContent=r.winner==="DRAW"?"Draw!":r.winner===symbol?"You Win! 🏆":"Opponent Wins!"
+ }else{
+  $("rematchBtn").classList.add("hidden");$("result").textContent="";$("rematchStatus").textContent="";
+  $("turn").textContent=r.turn===symbol?"Your Turn":"Opponent's Turn"
+ }
 }
 
+cells.forEach(c=>c.onclick=async()=>{
+ if(busy||!room)return;busy=true;
+ try{
+  const index=+c.dataset.i;
+  const t=await runTransaction(ref(db,`rooms/${room}`),r=>{
+   if(!r||r.status!=="playing"||r.turn!==symbol)return r;
+   const b=arr(r.board);if(b[index])return r;b[index]=symbol;const win=winner(b);r.board=obj(b);
+   if(win.winner){r.winner=win.winner;r.winningCells=win.cells;r.status="finished";r.rematchRequest=null}
+   else r.turn=symbol==="X"?"O":"X";return r
+  });
+  if(t.committed){fx("move");if(t.snapshot.val()?.winner===symbol)fx("win")}
+ }finally{busy=false}
+});
 
-$("settingsBtn").onclick =
-  openSettings;
+/* REMATCH */
+$("rematchBtn").onclick=async()=>{
+ await runTransaction(ref(db,`rooms/${room}`),r=>{
+  if(!r||r.status!=="finished"||r.rematchRequest?.status==="pending")return r;
+  r.rematchRequest={from:symbol,status:"pending",time:Date.now()};return r
+ });
+ $("rematchStatus").textContent="Rematch request sent. Waiting for opponent..."
+};
+function handleRematch(r){
+ const q=r.rematchRequest;
+ if(!q||q.status!=="pending")return $("rematchModal").classList.add("hidden");
+ if(q.from===symbol){$("rematchStatus").textContent="Waiting for opponent to accept...";$("rematchModal").classList.add("hidden")}
+ else $("rematchModal").classList.remove("hidden")
+}
+$("acceptBtn").onclick=async()=>{
+ await runTransaction(ref(db,`rooms/${room}`),r=>{
+  if(!r||!r.rematchRequest||r.rematchRequest.from===symbol)return r;
+  r.board=blank();r.turn="X";r.winner="";r.winningCells=[];r.status="playing";r.rematchRequest=null;return r
+ });
+ $("rematchModal").classList.add("hidden")
+};
+$("declineBtn").onclick=async()=>{await remove(ref(db,`rooms/${room}`));$("rematchModal").classList.add("hidden")};
 
-$("dashboardThemeBtn").onclick =
-  openSettings;
+/* LEAVE + COPY */
+$("leaveWait").onclick=async()=>{if(room&&symbol==="X")await remove(ref(db,`rooms/${room}`));reset();show($("lobby"))};
+$("leaveGame").onclick=async()=>{if(room)await remove(ref(db,`rooms/${room}`));reset();show($("lobby"))};
+$("copyBtn").onclick=async()=>{
+ try{await navigator.clipboard.writeText(room);$("copyBtn").textContent="Copied ✓";setTimeout(()=>$("copyBtn").textContent="Copy Room Code",1200)}
+ catch(e){alert("Room Code: "+room)}
+};
+function reset(){
+ if(roomOff)roomOff();if(chatOff)chatOff();roomOff=chatOff=null;room="";symbol="";lastCount=0;unread=0;
+ $("chatTop").classList.add("hidden");closeChat();badge()
+}
 
-$("closeSettingsBtn").onclick =
-  () => {
+/* CHAT */
+function listenChat(){
+ if(chatOff)chatOff();lastCount=0;
+ chatOff=onValue(ref(db,`rooms/${room}/messages`),snap=>{
+  const m=Object.values(snap.val()||{}).sort((a,b)=>(a.time||0)-(b.time||0));drawChat(m);
+  if(m.length>lastCount){const n=m[m.length-1];if(n&&n.symbol!==symbol&&!chatOpen){unread++;badge();fx("message")}}
+  lastCount=m.length
+ })
+}
+function drawChat(ms){
+ $("messages").innerHTML="";
+ ms.forEach(m=>{
+  const d=document.createElement("div");d.className="message"+(m.symbol===symbol?" mine":"");
+  const n=document.createElement("div");n.className="mn";n.textContent=m.name||"Player";
+  const t=document.createElement("div");t.className="mt";t.textContent=m.text||"";
+  d.append(n,t);$("messages").appendChild(d)
+ });$("messages").scrollTop=$("messages").scrollHeight
+}
+function openChat(){if(!room)return;chatOpen=true;unread=0;badge();$("chatPanel").classList.remove("hidden")}
+function closeChat(){chatOpen=false;$("chatPanel").classList.add("hidden")}
+function badge(){$("badge").classList.toggle("hidden",unread===0);$("badge").textContent=unread>9?"9+":unread}
+async function sendChat(){
+ const text=$("chatInput").value.trim().slice(0,150);if(!text||!room)return;$("chatInput").value="";
+ await set(push(ref(db,`rooms/${room}/messages`)),{name:user.name,symbol,text,time:Date.now()})
+}
+$("chatTop").onclick=openChat;$("chatBtn").onclick=openChat;$("closeChat").onclick=closeChat;$("sendBtn").onclick=sendChat;
+$("chatInput").onkeydown=e=>{if(e.key==="Enter")sendChat()};
 
-    settingsPanel.classList.remove(
-      "open"
-    );
-  };
-
+/* 20 THEMES */
+const themeData={
+ neon:["Neon Blue","#050713","#17245c","#61e8ff","#765cff","#ff6585"],
+ cyber:["Cyber Green","#03110b","#0a3927","#38ff8c","#00b967","#ff4e90"],
+ sunset:["Sunset","#1c0714","#6c213f","#ff9c59","#ff446c","#ffd166"],
+ royal:["Royal Purple","#10071f","#432374","#b889ff","#754be8","#ff70bd"],
+ fire:["Fire","#160402","#691d08","#ff9e00","#ff3d00","#ffe16b"],
+ ocean:["Ocean","#02101c","#064875","#34dbff","#0087ff","#3cffc2"],
+ gold:["Black Gold","#090909","#30270a","#ffd84e","#b98b00","#fff1a6"],
+ candy:["Candy","#17091b","#62236c","#ff72dc","#945cff","#61f3ff"],
+ ice:["Ice","#061118","#255063","#b5f5ff","#55c2e2","#fff"],
+ retro:["Retro","#170d28","#623878","#ffea67","#ff6baa","#6effd5"],
+ matrix:["Matrix","#000500","#072407","#00ff41","#0b8f2d","#aaffbe"],
+ lava:["Lava","#160000","#5f0600","#ff4b19","#ff9500","#ffe260"],
+ space:["Deep Space","#02030d","#17113f","#7cc8ff","#875cff","#ff65df"],
+ mint:["Mint","#05110f","#164c42","#67ffd8","#32b89c","#e3fff8"],
+ rose:["Rose","#19080e","#5d2338","#ff86aa","#d44978","#ffd0dd"],
+ electric:["Electric","#030617","#091d6b","#00e5ff","#0066ff","#f600ff"],
+ forest:["Forest","#061007","#21482a","#8eff7a","#3a9b4b","#e1ff6b"],
+ peach:["Peach","#21100c","#71402f","#ffb183","#ed6d5a","#ffe0a6"],
+ violet:["Violet Storm","#0d0718","#4d2374","#d98cff","#872dff","#70eaff"],
+ mono:["Monochrome","#090909","#2b2b2b","#fff","#777","#d0d0d0"]
+};
+function drawThemes(){
+ $("themes").innerHTML="";
+ Object.entries(themeData).forEach(([k,v])=>{
+  const b=document.createElement("button");b.className="theme";b.dataset.theme=k;
+  b.innerHTML=`<div class="preview" style="background:linear-gradient(135deg,${v[3]},${v[4]})"></div><div class="tname">${v[0]}</div>`;
+  b.onclick=()=>setTheme(k);$("themes").appendChild(b)
+ })
+}
+function setTheme(k){
+ const v=themeData[k]||themeData.neon,r=document.documentElement;
+ r.style.setProperty("--bg",v[1]);r.style.setProperty("--bg2",v[2]);r.style.setProperty("--p",v[3]);r.style.setProperty("--s",v[4]);r.style.setProperty("--a",v[5]);
+ localStorage.setItem("fgTheme",k);document.querySelectorAll(".theme").forEach(b=>b.classList.toggle("active",b.dataset.theme===k))
+}
+function openSettings(){$("settings").classList.add("open")}
+$("themeTop").onclick=openSettings;$("themeBtn").onclick=openSettings;$("closeSettings").onclick=()=>$("settings").classList.remove("open");
 
 /* START */
-
-renderThemes();
-
-setTheme(
-  localStorage.getItem(
-    "fgTheme"
-  ) || "neon"
-);
-
-updateSoundUI();
-updateMusicUI();
-
-
-profile =
-  loadProfile();
-
-
-if(profile){
-
-  selectedAvatar =
-    profile.avatar ||
-    "🥷";
-
-  updateDashboard();
-
-  showScreen(
-    dashboardScreen
-  );
-
-  animateUsers();
-
+drawThemes();setTheme(localStorage.getItem("fgTheme")||"neon");soundUI();musicUI();
+try{user=JSON.parse(localStorage.getItem("farizProfile"))}catch(e){}
+if(user){
+ chosen=user.avatar||"🥷";updateDash();show($("dashboard"));counter()
 }else{
-
-  profileAvatar.textContent =
-    selectedAvatar;
-
-  renderAvatars(
-    profileAvatarGrid
-  );
-
-  showScreen(
-    profileScreen
-  );
+ $("profileAvatar").textContent=chosen;drawAvatars($("profileAvatars"));show($("profile"))
 }
-
 </script>
-
 </body>
 </html>
