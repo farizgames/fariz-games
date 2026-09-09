@@ -2,35 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Fariz Games</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --bg1:#050713;
   --bg2:#1c2460;
-  --card:rgba(16,22,52,.96);
-  --card2:#0d1431;
+  --card:#111735;
+  --card2:#0b1029;
   --primary:#62e7ff;
   --secondary:#745cff;
   --accent:#ff6685;
   --text:#fff;
   --muted:#aab2d0;
   --border:#34406f;
-  --success:#72f5af;
+  --success:#70f2ae;
   --warning:#ffd166;
   --danger:#ff5577;
-}
-
-html{
-  scroll-behavior:smooth;
 }
 
 body{
@@ -38,101 +29,60 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   color:var(--text);
   background:
-    radial-gradient(circle at top,var(--bg2),var(--bg1) 65%);
-  overflow-x:hidden;
+    radial-gradient(circle at top,var(--bg2),var(--bg1) 67%);
   transition:.3s;
 }
 
-button,
-input{
+button,input{
   font:inherit;
 }
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
-.hidden{
-  display:none!important;
-}
+.hidden{display:none!important}
 
 .bg-grid{
   position:fixed;
   inset:0;
-  z-index:-3;
-  pointer-events:none;
+  z-index:-2;
   background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:35px 35px;
 }
 
-.orb{
-  position:fixed;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.18;
-  z-index:-2;
-  pointer-events:none;
-}
-
-.orb.one{
-  width:330px;
-  height:330px;
-  left:-120px;
-  top:-120px;
-  background:var(--primary);
-}
-
-.orb.two{
-  width:380px;
-  height:380px;
-  right:-140px;
-  bottom:-140px;
-  background:var(--secondary);
-}
-
-/* TOP BAR */
-
 .topbar{
   width:calc(100% - 24px);
-  max-width:920px;
-  margin:12px auto 0;
-  padding:11px 13px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:var(--card);
+  max-width:900px;
+  margin:12px auto;
+  padding:10px 12px;
   border:1px solid var(--border);
+  background:var(--card);
   border-radius:18px;
-  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   position:relative;
-  z-index:20;
+  z-index:30;
 }
 
-.brand-small{
+.mini-brand{
   display:flex;
   align-items:center;
   gap:9px;
-  color:var(--primary);
   font-weight:900;
+  color:var(--primary);
 }
 
-.brand-small-icon{
+.mini-logo{
   width:38px;
   height:38px;
   border-radius:12px;
   display:grid;
   place-items:center;
-  color:white;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
   font-size:12px;
-  font-weight:1000;
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
 }
 
 .top-actions{
@@ -144,98 +94,79 @@ button{
   min-width:42px;
   height:42px;
   padding:0 10px;
-  border-radius:12px;
   border:1px solid var(--border);
+  border-radius:12px;
   background:var(--card2);
   color:var(--text);
 }
 
 .app{
-  padding:16px;
-  min-height:100vh;
+  width:100%;
+  padding:14px;
 }
 
 .screen{
   width:100%;
   max-width:490px;
-  margin:0 auto;
-  animation:screenIn .28s ease;
+  margin:auto;
+  animation:appear .3s ease;
 }
 
-@keyframes screenIn{
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+@keyframes appear{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
 }
-
-/* LOGO */
 
 .logo-wrap{
   text-align:center;
   margin:14px 0 23px;
 }
 
-.logo-icon{
+.logo{
   width:76px;
   height:76px;
   margin:auto;
-  border-radius:24px;
   display:grid;
   place-items:center;
-  font-size:27px;
+  border-radius:24px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  font-size:26px;
   font-weight:1000;
-  color:white;
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
-  box-shadow:0 0 40px rgba(80,210,255,.25);
+  color:#fff;
+  box-shadow:0 0 35px rgba(70,220,255,.23);
 }
 
 .logo-title{
-  margin-top:12px;
-  color:var(--primary);
+  margin-top:11px;
   font-size:37px;
+  color:var(--primary);
   font-weight:1000;
 }
 
-.logo-subtitle{
+.subtitle{
+  margin-top:5px;
   color:var(--muted);
   font-size:14px;
-  margin-top:5px;
 }
-
-/* CARDS */
 
 .card{
+  padding:23px;
+  border-radius:24px;
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:24px;
-  padding:23px;
-  box-shadow:0 25px 70px rgba(0,0,0,.38);
+  box-shadow:0 25px 70px rgba(0,0,0,.42);
 }
 
-.card-title{
-  font-size:24px;
-  font-weight:900;
-  margin-bottom:6px;
+.card h2{
+  margin-bottom:7px;
 }
 
-.card-subtitle{
+.description{
   color:var(--muted);
-  line-height:1.6;
   font-size:14px;
+  line-height:1.6;
   margin-bottom:18px;
 }
-
-/* FORMS */
 
 .field{
   margin-bottom:14px;
@@ -251,53 +182,31 @@ button{
 
 input{
   width:100%;
-  padding:14px 15px;
-  border-radius:13px;
-  border:1px solid var(--border);
+  padding:14px;
   color:var(--text);
   background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:13px;
   outline:none;
 }
 
 input:focus{
   border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(70,220,255,.08);
 }
-
-input::placeholder{
-  color:var(--muted);
-  opacity:.65;
-}
-
-/* BUTTONS */
 
 .btn{
   width:100%;
   border:none;
+  padding:14px;
   border-radius:13px;
-  padding:14px 15px;
+  color:#fff;
   font-weight:900;
-  color:white;
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
-  transition:.17s ease;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  transition:.18s;
 }
 
 .btn:hover{
   transform:translateY(-2px);
-}
-
-.btn:active{
-  transform:scale(.98);
-}
-
-.btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-  transform:none;
 }
 
 .btn.secondary{
@@ -307,34 +216,35 @@ input::placeholder{
 }
 
 .btn.danger{
-  background:linear-gradient(
-    135deg,
-    #ff5577,
-    #ae2858
-  );
+  background:linear-gradient(135deg,#ff5577,#ad2858);
+}
+
+.btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none;
 }
 
 .message{
-  margin-top:12px;
   min-height:20px;
+  margin-top:12px;
   color:#ff7890;
   text-align:center;
   font-size:13px;
 }
 
-/* PROFILE */
+/* AVATARS */
 
 .avatar-large{
   width:88px;
   height:88px;
-  margin:0 auto 15px;
+  margin:0 auto 14px;
   display:grid;
   place-items:center;
   border-radius:50%;
   font-size:45px;
   background:var(--card2);
   border:3px solid var(--primary);
-  box-shadow:0 0 25px rgba(80,220,255,.16);
 }
 
 .avatar-grid{
@@ -346,29 +256,15 @@ input::placeholder{
 
 .avatar-choice{
   aspect-ratio:1;
-  display:grid;
-  place-items:center;
-  font-size:27px;
   border-radius:13px;
-  color:white;
+  font-size:27px;
   background:var(--card2);
   border:2px solid var(--border);
-  transition:.15s;
-}
-
-.avatar-choice:hover{
-  transform:translateY(-2px);
 }
 
 .avatar-choice.selected{
   border-color:var(--primary);
-  background:rgba(100,220,255,.1);
-}
-
-.avatar-label{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
+  background:rgba(98,231,255,.12);
 }
 
 /* DASHBOARD */
@@ -377,85 +273,66 @@ input::placeholder{
   text-align:center;
 }
 
-.player-name-main{
-  font-size:27px;
+.player-main-name{
+  font-size:28px;
   font-weight:1000;
 }
 
 .player-info{
-  margin:8px 0 18px;
-  line-height:1.7;
   color:var(--muted);
-  font-size:14px;
+  margin:7px 0 16px;
+  line-height:1.7;
 }
 
-/* STATS */
-
-.stats-card{
+.stats{
   margin:16px 0;
   padding:18px;
+  border:1px solid var(--border);
+  border-radius:18px;
   position:relative;
   overflow:hidden;
-  border-radius:18px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(98,231,255,.11),
-      rgba(116,92,255,.12)
-    );
-  border:1px solid var(--border);
+  background:linear-gradient(
+    135deg,
+    rgba(98,231,255,.1),
+    rgba(116,92,255,.11)
+  );
 }
 
-.stats-card::before{
+.stats::before{
   content:"";
   position:absolute;
-  width:100px;
-  height:200%;
-  top:-50%;
+  width:80px;
+  height:180%;
+  top:-40%;
   left:-120px;
   transform:rotate(20deg);
   background:linear-gradient(
     90deg,
     transparent,
-    rgba(255,255,255,.15),
+    rgba(255,255,255,.16),
     transparent
   );
-  animation:statsShine 3s linear infinite;
+  animation:shine 2.8s linear infinite;
 }
 
-@keyframes statsShine{
-  from{
-    left:-140px;
-  }
-
-  to{
-    left:120%;
-  }
+@keyframes shine{
+  to{left:120%}
 }
 
 .stats-number{
   position:relative;
-  font-size:35px;
+  font-size:36px;
   font-weight:1000;
   color:var(--primary);
-  animation:statsPulse 1.8s ease-in-out infinite;
+  animation:pulse 1.6s ease-in-out infinite;
 }
 
-@keyframes statsPulse{
-  0%,100%{
-    transform:scale(1);
-    text-shadow:0 0 8px rgba(90,220,255,.15);
-  }
-
-  50%{
-    transform:scale(1.045);
-    text-shadow:0 0 25px rgba(90,220,255,.45);
-  }
+@keyframes pulse{
+  50%{transform:scale(1.05)}
 }
 
 .stats-label{
   position:relative;
-  margin-top:3px;
   color:var(--muted);
   font-size:13px;
 }
@@ -463,43 +340,22 @@ input::placeholder{
 /* LOBBY */
 
 .divider{
-  position:relative;
   margin:18px 0;
   text-align:center;
   color:var(--muted);
   font-size:12px;
 }
 
-.divider::before,
-.divider::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  width:38%;
-  height:1px;
-  background:var(--border);
-}
-
-.divider::before{
-  left:0;
-}
-
-.divider::after{
-  right:0;
-}
-
 /* WAITING */
 
-.waiting{
-  text-align:center;
-}
+.waiting{text-align:center}
 
 .room-code{
   margin:20px 0;
-  color:var(--primary);
-  font-weight:1000;
   font-size:38px;
   letter-spacing:7px;
+  color:var(--primary);
+  font-weight:1000;
 }
 
 .loader{
@@ -513,9 +369,7 @@ input::placeholder{
 }
 
 @keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
+  to{transform:rotate(360deg)}
 }
 
 /* GAME */
@@ -524,60 +378,52 @@ input::placeholder{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-bottom:17px;
+  margin-bottom:16px;
 }
 
 .player-box{
-  padding:11px 7px;
+  text-align:center;
+  padding:11px;
   border-radius:14px;
   background:var(--card2);
   border:1px solid var(--border);
-  text-align:center;
 }
 
-.player-avatar{
+.game-avatar{
+  display:block;
   font-size:28px;
-  display:block;
-  margin-bottom:3px;
 }
 
-.player-label{
-  color:var(--muted);
+.game-name{
   display:block;
-  white-space:nowrap;
+  color:var(--muted);
+  font-size:13px;
   overflow:hidden;
   text-overflow:ellipsis;
-  font-size:13px;
 }
 
-.player-symbol{
+.symbol{
+  display:block;
+  margin-top:4px;
   font-size:28px;
   font-weight:1000;
-  display:block;
-  margin-top:3px;
 }
 
-.x{
-  color:var(--primary);
-}
-
-.o{
-  color:var(--accent);
-}
+.symbol.x{color:var(--primary)}
+.symbol.o{color:var(--accent)}
 
 .turn{
   min-height:24px;
-  text-align:center;
   color:var(--warning);
-  font-size:18px;
   font-weight:900;
+  text-align:center;
 }
 
-.you-symbol{
-  margin-top:4px;
-  text-align:center;
+.you-are{
+  margin-top:5px;
   color:var(--muted);
   font-size:12px;
+  text-align:center;
 }
 
 .board{
@@ -592,75 +438,143 @@ input::placeholder{
   border-radius:16px;
   border:2px solid var(--border);
   background:var(--card2);
-  color:var(--text);
   font-size:50px;
   font-weight:1000;
 }
 
-.cell:hover:not(:disabled){
-  transform:translateY(-2px);
-}
-
-.cell.x{
-  color:var(--primary);
-}
-
-.cell.o{
-  color:var(--accent);
-}
+.cell.x{color:var(--primary)}
+.cell.o{color:var(--accent)}
 
 .cell.win{
   border-color:var(--success);
-  background:rgba(80,255,160,.1);
-  box-shadow:0 0 25px rgba(80,255,160,.17);
+  background:rgba(112,242,174,.12);
+  box-shadow:0 0 25px rgba(112,242,174,.16);
 }
 
 .result{
-  min-height:33px;
-  text-align:center;
+  min-height:34px;
   color:var(--success);
   font-size:22px;
   font-weight:900;
+  text-align:center;
+}
+
+.rematch-status{
+  min-height:20px;
+  text-align:center;
+  font-size:13px;
+  color:var(--warning);
+  margin:7px 0;
 }
 
 .room-bottom{
   margin-top:15px;
-  text-align:center;
   color:var(--muted);
+  text-align:center;
   font-size:12px;
 }
 
-.game-action-grid{
+/* SETTINGS */
+
+.settings{
+  position:fixed;
+  top:0;
+  right:-390px;
+  z-index:150;
+  width:min(380px,93vw);
+  height:100vh;
+  padding:20px;
+  overflow:auto;
+  background:var(--card);
+  border-left:1px solid var(--border);
+  transition:.3s;
+}
+
+.settings.open{right:0}
+
+.settings-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.theme-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
+  gap:9px;
+  margin-top:14px;
 }
 
-.game-action-grid .btn{
-  margin:0;
+.theme-card{
+  padding:9px;
+  color:var(--text);
+  background:var(--card2);
+  border:2px solid transparent;
+  border-radius:13px;
 }
 
-/* REMATCH */
-
-.rematch-status{
-  margin:10px 0;
-  min-height:20px;
-  color:var(--warning);
-  font-size:13px;
-  text-align:center;
+.theme-card.active{
+  border-color:var(--primary);
 }
 
-.modal-backdrop{
+.theme-preview{
+  height:40px;
+  border-radius:8px;
+  margin-bottom:7px;
+}
+
+.theme-name{
+  font-size:11px;
+  font-weight:800;
+}
+
+.setting-row{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.toggle{
+  width:52px;
+  height:29px;
+  padding:3px;
+  border:0;
+  border-radius:18px;
+  background:#555b70;
+}
+
+.toggle span{
+  display:block;
+  width:23px;
+  height:23px;
+  background:#fff;
+  border-radius:50%;
+  transition:.2s;
+}
+
+.toggle.on{
+  background:var(--primary);
+}
+
+.toggle.on span{
+  transform:translateX(23px);
+}
+
+/* MODAL */
+
+.overlay{
   position:fixed;
   inset:0;
   z-index:200;
-  padding:18px;
   display:flex;
   justify-content:center;
   align-items:center;
+  padding:18px;
   background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
 }
 
 .modal{
@@ -668,48 +582,42 @@ input::placeholder{
   max-width:390px;
   padding:24px;
   border-radius:22px;
+  text-align:center;
   background:var(--card);
   border:1px solid var(--border);
-  box-shadow:0 25px 80px rgba(0,0,0,.6);
-  text-align:center;
 }
 
 .modal-icon{
   font-size:48px;
-  margin-bottom:9px;
-}
-
-.modal h2{
-  margin-bottom:7px;
+  margin-bottom:10px;
 }
 
 .modal p{
   color:var(--muted);
-  line-height:1.6;
-  margin-bottom:17px;
+  margin:8px 0 18px;
 }
 
 /* CHAT */
 
-.chat-panel{
+.chat{
   position:fixed;
   right:14px;
   bottom:14px;
+  z-index:130;
   width:min(360px,calc(100vw - 28px));
-  height:480px;
-  max-height:70vh;
-  z-index:120;
-  border-radius:20px;
-  background:var(--card);
-  border:1px solid var(--border);
-  box-shadow:0 25px 70px rgba(0,0,0,.5);
+  height:460px;
+  max-height:72vh;
   display:flex;
   flex-direction:column;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
   overflow:hidden;
+  box-shadow:0 25px 70px rgba(0,0,0,.5);
 }
 
 .chat-head{
-  padding:13px;
+  padding:12px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -717,14 +625,14 @@ input::placeholder{
 }
 
 .chat-title{
-  font-weight:900;
   color:var(--primary);
+  font-weight:900;
 }
 
 .chat-messages{
   flex:1;
-  overflow-y:auto;
-  padding:12px;
+  overflow:auto;
+  padding:10px;
   display:flex;
   flex-direction:column;
   gap:8px;
@@ -740,214 +648,59 @@ input::placeholder{
 
 .chat-message.mine{
   margin-left:auto;
-  background:rgba(80,220,255,.11);
   border-color:var(--primary);
 }
 
 .chat-name{
-  font-size:10px;
   color:var(--primary);
+  font-size:10px;
+  font-weight:bold;
   margin-bottom:3px;
-  font-weight:800;
 }
 
 .chat-text{
   font-size:13px;
-  line-height:1.4;
   word-break:break-word;
 }
 
 .chat-input-area{
   display:grid;
-  grid-template-columns:1fr auto;
+  grid-template-columns:1fr 52px;
   gap:7px;
-  padding:10px;
+  padding:9px;
   border-top:1px solid var(--border);
 }
 
 .chat-send{
-  width:50px;
-  border:none;
+  border:0;
   border-radius:12px;
-  color:white;
+  color:#fff;
   font-weight:900;
-  background:linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
 }
 
-.chat-badge{
+.badge{
   position:absolute;
   width:18px;
   height:18px;
-  border-radius:50%;
-  background:#ff5577;
-  color:white;
-  font-size:10px;
   display:grid;
   place-items:center;
-  margin-left:27px;
   margin-top:-8px;
-}
-
-/* SETTINGS */
-
-.settings{
-  position:fixed;
-  z-index:150;
-  top:0;
-  right:-390px;
-  height:100vh;
-  width:min(380px,93vw);
-  padding:20px;
-  overflow-y:auto;
-  background:var(--card);
-  border-left:1px solid var(--border);
-  box-shadow:-20px 0 60px rgba(0,0,0,.4);
-  transition:right .3s;
-}
-
-.settings.open{
-  right:0;
-}
-
-.settings-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
-}
-
-.settings-description{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-  margin-top:5px;
-}
-
-.theme-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:13px;
-}
-
-.theme-card{
-  color:var(--text);
-  padding:9px;
-  border-radius:13px;
-  border:2px solid transparent;
-  background:var(--card2);
-  text-align:left;
-}
-
-.theme-card.active{
-  border-color:var(--primary);
-}
-
-.theme-preview{
-  height:39px;
-  border-radius:8px;
-  margin-bottom:7px;
-}
-
-.theme-name{
-  font-size:11px;
-  font-weight:800;
-}
-
-.settings-divider{
-  margin:22px 0;
-  height:1px;
-  background:var(--border);
-}
-
-.setting-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin:14px 0;
-}
-
-.toggle{
-  width:51px;
-  height:29px;
-  padding:3px;
-  border:none;
-  border-radius:20px;
-  background:#575d70;
-}
-
-.toggle span{
-  display:block;
-  width:23px;
-  height:23px;
+  margin-left:27px;
+  background:#ff5577;
+  color:#fff;
   border-radius:50%;
-  background:white;
-  transition:.2s;
-}
-
-.toggle.on{
-  background:var(--primary);
-}
-
-.toggle.on span{
-  transform:translateX(22px);
-}
-
-/* MUSIC */
-
-.music-status{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:7px;
-}
-
-#musicFrame{
-  position:absolute;
-  width:1px;
-  height:1px;
-  left:-9999px;
-  border:0;
+  font-size:10px;
 }
 
 @media(max-width:520px){
-
-  .app{
-    padding:11px;
-  }
-
-  .card{
-    padding:19px;
-  }
-
-  .logo-title{
-    font-size:32px;
-  }
-
-  .room-code{
-    font-size:29px;
-    letter-spacing:5px;
-  }
-
-  .cell{
-    font-size:42px;
-  }
-
-  .avatar-grid{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .brand-small span:last-child{
-    display:none;
-  }
-
-  .stats-number{
-    font-size:31px;
-  }
+  .app{padding:10px}
+  .card{padding:19px}
+  .logo-title{font-size:32px}
+  .room-code{font-size:29px;letter-spacing:5px}
+  .cell{font-size:42px}
+  .avatar-grid{grid-template-columns:repeat(4,1fr)}
+  .mini-brand span{display:none}
 }
 </style>
 </head>
@@ -955,53 +708,34 @@ input::placeholder{
 <body>
 
 <div class="bg-grid"></div>
-<div class="orb one"></div>
-<div class="orb two"></div>
+
+<!-- DIRECT MP3 MUSIC -->
+<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
 
 <header id="topbar" class="topbar hidden">
 
-  <div class="brand-small">
-    <div class="brand-small-icon">FG</div>
+  <div class="mini-brand">
+    <div class="mini-logo">FG</div>
     <span>Fariz Games</span>
   </div>
 
   <div class="top-actions">
 
-    <button
-      id="chatTopBtn"
-      class="icon-btn hidden"
-      title="Chat"
-    >
+    <button id="chatTopBtn" class="icon-btn hidden">
       💬
-      <span
-        id="chatBadge"
-        class="chat-badge hidden"
-      >
-        1
-      </span>
+      <span id="chatBadge" class="badge hidden">1</span>
     </button>
 
-    <button
-      id="musicTopBtn"
-      class="icon-btn"
-      title="Music"
-    >
+    <button id="musicTopBtn" class="icon-btn">
       🎵
     </button>
 
-    <button
-      id="settingsBtn"
-      class="icon-btn"
-      title="Themes"
-    >
+    <button id="settingsBtn" class="icon-btn">
       🎨
     </button>
 
-    <button
-      id="soundTopBtn"
-      class="icon-btn"
-      title="Sound Effects"
-    >
+    <button id="soundTopBtn" class="icon-btn">
       🔊
     </button>
 
@@ -1009,8 +743,8 @@ input::placeholder{
 
 </header>
 
-<main class="app">
 
+<main class="app">
 
 <!-- PROFILE -->
 
@@ -1018,15 +752,13 @@ input::placeholder{
 
   <div class="logo-wrap">
 
-    <div class="logo-icon">
-      FG
-    </div>
+    <div class="logo">FG</div>
 
     <h1 class="logo-title">
       Fariz Games
     </h1>
 
-    <p class="logo-subtitle">
+    <p class="subtitle">
       Play. Compete. Win.
     </p>
 
@@ -1035,49 +767,32 @@ input::placeholder{
 
   <div class="card">
 
-    <div
-      id="profileAvatarPreview"
-      class="avatar-large"
-    >
+    <div id="profileAvatar" class="avatar-large">
       🥷
     </div>
 
-    <h2 class="card-title">
-      Create Your Profile
-    </h2>
+    <h2>Create Your Profile</h2>
 
-    <p class="card-subtitle">
+    <p class="description">
       Choose your character and enter your details.
     </p>
 
 
-    <div class="avatar-label">
-      Choose Character
-    </div>
-
-    <div
-      id="profileAvatarGrid"
-      class="avatar-grid"
-    ></div>
+    <div id="profileAvatarGrid" class="avatar-grid"></div>
 
 
     <div class="field">
-
       <label>Name</label>
-
       <input
         id="profileName"
         maxlength="20"
         placeholder="Enter your name"
       >
-
     </div>
 
 
     <div class="field">
-
       <label>Age</label>
-
       <input
         id="profileAge"
         type="number"
@@ -1085,35 +800,24 @@ input::placeholder{
         max="100"
         placeholder="Enter your age"
       >
-
     </div>
 
 
     <div class="field">
-
       <label>Location</label>
-
       <input
         id="profileLocation"
         maxlength="30"
         placeholder="Enter your location"
       >
-
     </div>
 
 
-    <button
-      id="continueBtn"
-      class="btn"
-    >
+    <button id="continueBtn" class="btn">
       Continue
     </button>
 
-
-    <p
-      id="profileMessage"
-      class="message"
-    ></p>
+    <p id="profileMessage" class="message"></p>
 
   </div>
 
@@ -1122,94 +826,54 @@ input::placeholder{
 
 <!-- DASHBOARD -->
 
-<section
-  id="dashboardScreen"
-  class="screen hidden"
->
+<section id="dashboardScreen" class="screen hidden">
 
   <div class="logo-wrap">
-
-    <div class="logo-icon">
-      FG
-    </div>
-
-    <h1 class="logo-title">
-      Fariz Games
-    </h1>
-
-    <p class="logo-subtitle">
-      Your Gaming Zone
-    </p>
-
+    <div class="logo">FG</div>
+    <h1 class="logo-title">Fariz Games</h1>
+    <p class="subtitle">Your Gaming Zone</p>
   </div>
 
 
   <div class="card dashboard">
 
-    <div
-      id="dashboardAvatar"
-      class="avatar-large"
-    >
+    <div id="dashboardAvatar" class="avatar-large">
       🥷
     </div>
 
-    <div
-      id="dashboardName"
-      class="player-name-main"
-    >
+    <div id="dashboardName" class="player-main-name">
       Player
     </div>
 
-    <div
-      id="dashboardInfo"
-      class="player-info"
-    ></div>
+    <div id="dashboardInfo" class="player-info"></div>
 
 
-    <div class="stats-card">
+    <div class="stats">
 
-      <div
-        id="usersCounter"
-        class="stats-number"
-      >
+      <div id="usersCounter" class="stats-number">
         0+
       </div>
 
       <div class="stats-label">
-        Fariz Games Community Goal
+        Fariz Games Community
       </div>
 
     </div>
 
 
-    <button
-      id="playBtn"
-      class="btn"
-    >
+    <button id="playBtn" class="btn">
       ▶ Play Game
     </button>
 
-
-    <button
-      id="changeAvatarBtn"
-      class="btn secondary"
-    >
+    <button id="changeAvatarBtn" class="btn secondary">
       👤 Change Character
     </button>
 
-
-    <button
-      id="dashboardThemeBtn"
-      class="btn secondary"
-    >
+    <button id="dashboardThemeBtn" class="btn secondary">
       🎨 Choose Theme
     </button>
 
-
-    <button
-      id="editProfileBtn"
-      class="btn secondary"
-    >
+    <button id="editProfileBtn" class="btn secondary">
       Edit Profile
     </button>
 
@@ -1220,43 +884,25 @@ input::placeholder{
 
 <!-- LOBBY -->
 
-<section
-  id="lobbyScreen"
-  class="screen hidden"
->
+<section id="lobbyScreen" class="screen hidden">
 
   <div class="logo-wrap">
-
-    <div class="logo-icon">
-      FG
-    </div>
-
-    <h1 class="logo-title">
-      Fariz Games
-    </h1>
-
-    <p class="logo-subtitle">
-      Online Tic Tac Toe
-    </p>
-
+    <div class="logo">FG</div>
+    <h1 class="logo-title">Fariz Games</h1>
+    <p class="subtitle">Online Tic Tac Toe</p>
   </div>
 
 
   <div class="card">
 
-    <h2 class="card-title">
-      Online Match
-    </h2>
+    <h2>Online Match</h2>
 
-    <p class="card-subtitle">
+    <p class="description">
       Create a room or join your friend's room.
     </p>
 
 
-    <button
-      id="createRoomBtn"
-      class="btn"
-    >
+    <button id="createRoomBtn" class="btn">
       Create Room
     </button>
 
@@ -1279,26 +925,15 @@ input::placeholder{
     </div>
 
 
-    <button
-      id="joinRoomBtn"
-      class="btn"
-    >
+    <button id="joinRoomBtn" class="btn">
       Join Room
     </button>
 
-
-    <button
-      id="backHomeBtn"
-      class="btn secondary"
-    >
+    <button id="backHomeBtn" class="btn secondary">
       Back Home
     </button>
 
-
-    <p
-      id="lobbyMessage"
-      class="message"
-    ></p>
+    <p id="lobbyMessage" class="message"></p>
 
   </div>
 
@@ -1307,63 +942,37 @@ input::placeholder{
 
 <!-- WAITING -->
 
-<section
-  id="waitingScreen"
-  class="screen hidden"
->
+<section id="waitingScreen" class="screen hidden">
 
   <div class="logo-wrap">
-
-    <div class="logo-icon">
-      FG
-    </div>
-
-    <h1 class="logo-title">
-      Fariz Games
-    </h1>
-
+    <div class="logo">FG</div>
+    <h1 class="logo-title">Fariz Games</h1>
   </div>
 
 
   <div class="card waiting">
 
-    <h2 class="card-title">
-      Room Created
-    </h2>
+    <h2>Room Created</h2>
 
-    <p class="card-subtitle">
+    <p class="description">
       Send this room code to your friend.
     </p>
 
-
-    <div
-      id="roomCodeDisplay"
-      class="room-code"
-    >
+    <div id="roomCodeDisplay" class="room-code">
       ------
     </div>
 
-
-    <button
-      id="copyRoomBtn"
-      class="btn"
-    >
+    <button id="copyRoomBtn" class="btn">
       Copy Room Code
     </button>
 
-
-    <button
-      id="leaveWaitingBtn"
-      class="btn secondary"
-    >
+    <button id="leaveWaitingBtn" class="btn secondary">
       Leave Room
     </button>
 
-
     <div class="loader"></div>
 
-
-    <p class="card-subtitle">
+    <p class="description">
       Waiting for opponent...
     </p>
 
@@ -1374,21 +983,11 @@ input::placeholder{
 
 <!-- GAME -->
 
-<section
-  id="gameScreen"
-  class="screen hidden"
->
+<section id="gameScreen" class="screen hidden">
 
   <div class="logo-wrap">
-
-    <div class="logo-icon">
-      FG
-    </div>
-
-    <h1 class="logo-title">
-      Fariz Games
-    </h1>
-
+    <div class="logo">FG</div>
+    <h1 class="logo-title">Fariz Games</h1>
   </div>
 
 
@@ -1397,65 +996,25 @@ input::placeholder{
     <div class="players">
 
       <div class="player-box">
-
-        <span
-          id="playerXAvatar"
-          class="player-avatar"
-        >
-          🥷
-        </span>
-
-        <span
-          id="playerXName"
-          class="player-label"
-        >
-          Player X
-        </span>
-
-        <strong class="player-symbol x">
-          X
-        </strong>
-
+        <span id="playerXAvatar" class="game-avatar">🥷</span>
+        <span id="playerXName" class="game-name">Player X</span>
+        <span class="symbol x">X</span>
       </div>
 
-
       <div class="player-box">
-
-        <span
-          id="playerOAvatar"
-          class="player-avatar"
-        >
-          🤖
-        </span>
-
-        <span
-          id="playerOName"
-          class="player-label"
-        >
-          Player O
-        </span>
-
-        <strong class="player-symbol o">
-          O
-        </strong>
-
+        <span id="playerOAvatar" class="game-avatar">🤖</span>
+        <span id="playerOName" class="game-name">Player O</span>
+        <span class="symbol o">O</span>
       </div>
 
     </div>
 
 
-    <div
-      id="turnText"
-      class="turn"
-    >
+    <div id="turnText" class="turn">
       Waiting...
     </div>
 
-
-    <div
-      id="yourSymbol"
-      class="you-symbol"
-    ></div>
+    <div id="yourSymbol" class="you-are"></div>
 
 
     <div class="board">
@@ -1475,50 +1034,27 @@ input::placeholder{
     </div>
 
 
-    <div
-      id="gameResult"
-      class="result"
-    ></div>
+    <div id="gameResult" class="result"></div>
+
+    <div id="rematchStatus" class="rematch-status"></div>
 
 
-    <div
-      id="rematchStatus"
-      class="rematch-status"
-    ></div>
-
-
-    <button
-      id="requestRematchBtn"
-      class="btn hidden"
-    >
+    <button id="requestRematchBtn" class="btn hidden">
       Request Rematch
     </button>
 
+    <button id="chatGameBtn" class="btn secondary">
+      💬 Open Chat
+    </button>
 
-    <div class="game-action-grid">
-
-      <button
-        id="chatGameBtn"
-        class="btn secondary"
-      >
-        💬 Chat
-      </button>
-
-      <button
-        id="leaveGameBtn"
-        class="btn secondary"
-      >
-        Leave Game
-      </button>
-
-    </div>
+    <button id="leaveGameBtn" class="btn secondary">
+      Leave Game
+    </button>
 
 
     <p class="room-bottom">
       Room:
-      <span id="gameRoomCode">
-        ------
-      </span>
+      <span id="gameRoomCode">------</span>
     </p>
 
   </div>
@@ -1528,39 +1064,25 @@ input::placeholder{
 </main>
 
 
-<!-- REMATCH MODAL -->
+<!-- REMATCH REQUEST -->
 
-<div
-  id="rematchModal"
-  class="modal-backdrop hidden"
->
+<div id="rematchModal" class="overlay hidden">
 
   <div class="modal">
 
-    <div class="modal-icon">
-      🔁
-    </div>
+    <div class="modal-icon">🔁</div>
 
-    <h2>
-      Rematch Request
-    </h2>
+    <h2>Rematch Request</h2>
 
     <p>
       Your opponent wants to play another match.
     </p>
 
-    <button
-      id="acceptRematchBtn"
-      class="btn"
-    >
+    <button id="acceptRematchBtn" class="btn">
       Accept Rematch
     </button>
 
-    <button
-      id="declineRematchBtn"
-      class="btn danger"
-      style="margin-top:9px"
-    >
+    <button id="declineRematchBtn" class="btn danger" style="margin-top:9px">
       Decline Rematch
     </button>
 
@@ -1569,36 +1091,23 @@ input::placeholder{
 </div>
 
 
-<!-- CHARACTER MODAL -->
+<!-- AVATAR MODAL -->
 
-<div
-  id="avatarModal"
-  class="modal-backdrop hidden"
->
+<div id="avatarModal" class="overlay hidden">
 
   <div class="modal">
 
-    <div class="modal-icon">
-      👤
-    </div>
+    <div class="modal-icon">👤</div>
 
-    <h2>
-      Choose Character
-    </h2>
+    <h2>Choose Character</h2>
 
     <p>
       Select your Fariz Games character.
     </p>
 
-    <div
-      id="avatarModalGrid"
-      class="avatar-grid"
-    ></div>
+    <div id="avatarModalGrid" class="avatar-grid"></div>
 
-    <button
-      id="closeAvatarModalBtn"
-      class="btn secondary"
-    >
+    <button id="closeAvatarModalBtn" class="btn secondary">
       Close
     </button>
 
@@ -1609,10 +1118,7 @@ input::placeholder{
 
 <!-- CHAT -->
 
-<div
-  id="chatPanel"
-  class="chat-panel hidden"
->
+<div id="chatPanel" class="chat hidden">
 
   <div class="chat-head">
 
@@ -1620,20 +1126,13 @@ input::placeholder{
       💬 Room Chat
     </div>
 
-    <button
-      id="closeChatBtn"
-      class="icon-btn"
-    >
+    <button id="closeChatBtn" class="icon-btn">
       ✕
     </button>
 
   </div>
 
-
-  <div
-    id="chatMessages"
-    class="chat-messages"
-  ></div>
+  <div id="chatMessages" class="chat-messages"></div>
 
 
   <div class="chat-input-area">
@@ -1644,10 +1143,7 @@ input::placeholder{
       placeholder="Type a message..."
     >
 
-    <button
-      id="sendChatBtn"
-      class="chat-send"
-    >
+    <button id="sendChatBtn" class="chat-send">
       ➤
     </button>
 
@@ -1658,55 +1154,27 @@ input::placeholder{
 
 <!-- SETTINGS -->
 
-<aside
-  id="settingsPanel"
-  class="settings"
->
+<aside id="settingsPanel" class="settings">
 
   <div class="settings-head">
+    <h2>Settings</h2>
 
-    <h2>
-      Settings
-    </h2>
-
-    <button
-      id="closeSettingsBtn"
-      class="icon-btn"
-    >
+    <button id="closeSettingsBtn" class="icon-btn">
       ✕
     </button>
-
   </div>
 
 
-  <h3>
-    Themes
-  </h3>
+  <h3>20 Themes</h3>
 
-  <p class="settings-description">
-    Choose from 20 Fariz Games themes.
-  </p>
-
-
-  <div
-    id="themeGrid"
-    class="theme-grid"
-  ></div>
-
-
-  <div class="settings-divider"></div>
+  <div id="themeGrid" class="theme-grid"></div>
 
 
   <div class="setting-row">
 
-    <span>
-      Sound Effects
-    </span>
+    <span>Sound Effects</span>
 
-    <button
-      id="soundToggle"
-      class="toggle"
-    >
+    <button id="soundToggle" class="toggle">
       <span></span>
     </button>
 
@@ -1715,55 +1183,32 @@ input::placeholder{
 
   <div class="setting-row">
 
-    <span>
-      Background Music
-    </span>
+    <span>Background Music</span>
 
-    <button
-      id="musicToggle"
-      class="toggle"
-    >
+    <button id="musicToggle" class="toggle">
       <span></span>
     </button>
 
-  </div>
-
-
-  <div
-    id="musicStatus"
-    class="music-status"
-  >
-    Music ON
   </div>
 
 </aside>
 
 
-<iframe
-  id="musicFrame"
-  allow="autoplay; encrypted-media"
-></iframe>
-
-
 
 <script type="module">
 
-/* =====================================
-   FIREBASE IMPORTS
-===================================== */
+/* FIREBASE */
 
 import {
   initializeApp
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-
 import {
   getDatabase,
   ref,
   set,
   get,
-  update,
   remove,
   onValue,
   runTransaction,
@@ -1771,10 +1216,6 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-
-/* =====================================
-   FIREBASE CONFIG
-===================================== */
 
 const firebaseConfig = {
 
@@ -1797,10 +1238,8 @@ const firebaseConfig = {
     "40340677094",
 
   appId:
-    "1:40340677094:web:57efac0a6de70c23ef3627",
+    "1:40340677094:web:57efac0a6de70c23ef3627"
 
-  measurementId:
-    "G-GCJRXRE8HG"
 };
 
 
@@ -1811,264 +1250,82 @@ const db =
   getDatabase(app);
 
 
-/* =====================================
-   NEW MUSIC
-===================================== */
+/* ELEMENTS */
 
-/*
-Paste the NEW YouTube URL here.
-
-Example:
-const NEW_MUSIC_URL =
-"https://youtu.be/XXXXXXXXXXX";
-*/
-
-const NEW_MUSIC_URL =
-  "PASTE_NEW_YOUTUBE_LINK_HERE";
+const $ =
+  id =>
+    document.getElementById(id);
 
 
-/* =====================================
-   ELEMENTS
-===================================== */
+const profileScreen = $("profileScreen");
+const dashboardScreen = $("dashboardScreen");
+const lobbyScreen = $("lobbyScreen");
+const waitingScreen = $("waitingScreen");
+const gameScreen = $("gameScreen");
+const topbar = $("topbar");
 
-const profileScreen =
-  document.getElementById("profileScreen");
+const profileAvatar = $("profileAvatar");
+const profileAvatarGrid = $("profileAvatarGrid");
+const profileName = $("profileName");
+const profileAge = $("profileAge");
+const profileLocation = $("profileLocation");
+const profileMessage = $("profileMessage");
 
-const dashboardScreen =
-  document.getElementById("dashboardScreen");
+const dashboardAvatar = $("dashboardAvatar");
+const dashboardName = $("dashboardName");
+const dashboardInfo = $("dashboardInfo");
+const usersCounter = $("usersCounter");
 
-const lobbyScreen =
-  document.getElementById("lobbyScreen");
+const roomInput = $("roomInput");
+const roomCodeDisplay = $("roomCodeDisplay");
+const lobbyMessage = $("lobbyMessage");
 
-const waitingScreen =
-  document.getElementById("waitingScreen");
+const playerXAvatar = $("playerXAvatar");
+const playerOAvatar = $("playerOAvatar");
+const playerXName = $("playerXName");
+const playerOName = $("playerOName");
 
-const gameScreen =
-  document.getElementById("gameScreen");
+const turnText = $("turnText");
+const yourSymbol = $("yourSymbol");
+const gameResult = $("gameResult");
+const rematchStatus = $("rematchStatus");
+const requestRematchBtn = $("requestRematchBtn");
+const gameRoomCode = $("gameRoomCode");
 
-const topbar =
-  document.getElementById("topbar");
+const rematchModal = $("rematchModal");
+const avatarModal = $("avatarModal");
 
+const chatPanel = $("chatPanel");
+const chatMessages = $("chatMessages");
+const chatInput = $("chatInput");
+const chatTopBtn = $("chatTopBtn");
+const chatBadge = $("chatBadge");
 
-const profileAvatarPreview =
-  document.getElementById("profileAvatarPreview");
+const settingsPanel = $("settingsPanel");
+const themeGrid = $("themeGrid");
 
-const profileAvatarGrid =
-  document.getElementById("profileAvatarGrid");
-
-const profileName =
-  document.getElementById("profileName");
-
-const profileAge =
-  document.getElementById("profileAge");
-
-const profileLocation =
-  document.getElementById("profileLocation");
-
-const continueBtn =
-  document.getElementById("continueBtn");
-
-const profileMessage =
-  document.getElementById("profileMessage");
-
-
-const dashboardAvatar =
-  document.getElementById("dashboardAvatar");
-
-const dashboardName =
-  document.getElementById("dashboardName");
-
-const dashboardInfo =
-  document.getElementById("dashboardInfo");
-
-const usersCounter =
-  document.getElementById("usersCounter");
-
-const playBtn =
-  document.getElementById("playBtn");
-
-const changeAvatarBtn =
-  document.getElementById("changeAvatarBtn");
-
-const dashboardThemeBtn =
-  document.getElementById("dashboardThemeBtn");
-
-const editProfileBtn =
-  document.getElementById("editProfileBtn");
-
-
-const createRoomBtn =
-  document.getElementById("createRoomBtn");
-
-const joinRoomBtn =
-  document.getElementById("joinRoomBtn");
-
-const roomInput =
-  document.getElementById("roomInput");
-
-const lobbyMessage =
-  document.getElementById("lobbyMessage");
-
-const backHomeBtn =
-  document.getElementById("backHomeBtn");
-
-
-const roomCodeDisplay =
-  document.getElementById("roomCodeDisplay");
-
-const copyRoomBtn =
-  document.getElementById("copyRoomBtn");
-
-const leaveWaitingBtn =
-  document.getElementById("leaveWaitingBtn");
-
-
-const playerXAvatar =
-  document.getElementById("playerXAvatar");
-
-const playerOAvatar =
-  document.getElementById("playerOAvatar");
-
-const playerXName =
-  document.getElementById("playerXName");
-
-const playerOName =
-  document.getElementById("playerOName");
-
-const turnText =
-  document.getElementById("turnText");
-
-const yourSymbol =
-  document.getElementById("yourSymbol");
-
-const gameResult =
-  document.getElementById("gameResult");
-
-const rematchStatus =
-  document.getElementById("rematchStatus");
-
-const requestRematchBtn =
-  document.getElementById("requestRematchBtn");
-
-const leaveGameBtn =
-  document.getElementById("leaveGameBtn");
-
-const chatGameBtn =
-  document.getElementById("chatGameBtn");
-
-const gameRoomCode =
-  document.getElementById("gameRoomCode");
+const bgMusic = $("bgMusic");
 
 const cells =
   document.querySelectorAll(".cell");
 
 
-const rematchModal =
-  document.getElementById("rematchModal");
+/* STATE */
 
-const acceptRematchBtn =
-  document.getElementById("acceptRematchBtn");
+let profile = null;
+let selectedAvatar = "🥷";
 
-const declineRematchBtn =
-  document.getElementById("declineRematchBtn");
+let currentRoom = "";
+let mySymbol = "";
 
+let roomUnsubscribe = null;
+let chatUnsubscribe = null;
 
-const avatarModal =
-  document.getElementById("avatarModal");
+let processingMove = false;
 
-const avatarModalGrid =
-  document.getElementById("avatarModalGrid");
-
-const closeAvatarModalBtn =
-  document.getElementById("closeAvatarModalBtn");
-
-
-const chatPanel =
-  document.getElementById("chatPanel");
-
-const chatMessages =
-  document.getElementById("chatMessages");
-
-const chatInput =
-  document.getElementById("chatInput");
-
-const sendChatBtn =
-  document.getElementById("sendChatBtn");
-
-const closeChatBtn =
-  document.getElementById("closeChatBtn");
-
-const chatTopBtn =
-  document.getElementById("chatTopBtn");
-
-const chatBadge =
-  document.getElementById("chatBadge");
-
-
-const settingsPanel =
-  document.getElementById("settingsPanel");
-
-const settingsBtn =
-  document.getElementById("settingsBtn");
-
-const closeSettingsBtn =
-  document.getElementById("closeSettingsBtn");
-
-const themeGrid =
-  document.getElementById("themeGrid");
-
-const soundToggle =
-  document.getElementById("soundToggle");
-
-const soundTopBtn =
-  document.getElementById("soundTopBtn");
-
-const musicToggle =
-  document.getElementById("musicToggle");
-
-const musicTopBtn =
-  document.getElementById("musicTopBtn");
-
-const musicStatus =
-  document.getElementById("musicStatus");
-
-const musicFrame =
-  document.getElementById("musicFrame");
-
-
-/* =====================================
-   STATE
-===================================== */
-
-let playerProfile =
-  null;
-
-let selectedAvatar =
-  "🥷";
-
-let currentRoom =
-  "";
-
-let mySymbol =
-  "";
-
-let roomListener =
-  null;
-
-let chatListener =
-  null;
-
-let processingMove =
-  false;
-
-let chatOpen =
-  false;
-
-let unreadMessages =
-  0;
-
-let lastChatCount =
-  0;
+let chatOpen = false;
+let unread = 0;
+let previousMessageCount = 0;
 
 let soundEnabled =
   localStorage.getItem("fgSound") !== "off";
@@ -2076,41 +1333,19 @@ let soundEnabled =
 let musicEnabled =
   localStorage.getItem("fgMusic") !== "off";
 
-let musicStarted =
-  false;
 
-
-/* =====================================
-   CHARACTERS
-===================================== */
+/* AVATARS */
 
 const avatars = [
-  "🥷",
-  "🤖",
-  "🧙‍♂️",
-  "🧙‍♀️",
-  "🧑‍🚀",
-  "👨‍🚀",
-  "👩‍🚀",
-  "👑",
-  "🦸‍♂️",
-  "🦸‍♀️",
-  "🧛‍♂️",
-  "🧛‍♀️",
-  "🧟‍♂️",
-  "🧟‍♀️",
-  "👽",
-  "🐱",
-  "🦊",
-  "🐯",
-  "🐲",
-  "👻"
+  "🥷","🤖","🧙‍♂️","🧙‍♀️",
+  "🧑‍🚀","👨‍🚀","👩‍🚀","👑",
+  "🦸‍♂️","🦸‍♀️","🧛‍♂️","🧛‍♀️",
+  "👽","👻","🐯","🦊",
+  "🐲","🐱","🦁","🤠"
 ];
 
 
-/* =====================================
-   SCREEN SYSTEM
-===================================== */
+/* SCREENS */
 
 function showScreen(screen){
 
@@ -2121,10 +1356,9 @@ function showScreen(screen){
     waitingScreen,
     gameScreen
   ].forEach(
-    item =>
-      item.classList.add("hidden")
+    screen =>
+      screen.classList.add("hidden")
   );
-
 
   screen.classList.remove("hidden");
 
@@ -2140,13 +1374,253 @@ function showScreen(screen){
 }
 
 
-/* =====================================
-   PROFILE
-===================================== */
+/* MUSIC */
 
-function renderAvatarChoices(
+bgMusic.volume = .35;
+
+
+async function startMusic(){
+
+  if(!musicEnabled){
+    return;
+  }
+
+  try{
+
+    await bgMusic.play();
+
+  }catch(error){
+
+    /*
+    Browser may block audio before
+    first user interaction.
+    */
+  }
+}
+
+
+function stopMusic(){
+
+  bgMusic.pause();
+}
+
+
+function updateMusicUI(){
+
+  $("musicToggle")
+    .classList
+    .toggle(
+      "on",
+      musicEnabled
+    );
+
+  $("musicTopBtn").textContent =
+    musicEnabled
+      ? "🎵"
+      : "🚫";
+}
+
+
+function toggleMusic(){
+
+  musicEnabled =
+    !musicEnabled;
+
+  localStorage.setItem(
+    "fgMusic",
+    musicEnabled
+      ? "on"
+      : "off"
+  );
+
+  updateMusicUI();
+
+  if(musicEnabled){
+
+    startMusic();
+
+  }else{
+
+    stopMusic();
+  }
+
+  playSound("click");
+}
+
+
+$("musicToggle").onclick =
+  toggleMusic;
+
+$("musicTopBtn").onclick =
+  toggleMusic;
+
+
+/*
+Music is enabled by default.
+Browser restrictions may block
+audio until first interaction.
+*/
+
+document.addEventListener(
+  "pointerdown",
+  () => {
+
+    if(musicEnabled){
+
+      startMusic();
+    }
+
+  },
+  {once:true}
+);
+
+
+/* SOUND */
+
+let audioContext = null;
+
+
+function tone(
+  frequency,
+  duration,
+  volume=.05
+){
+
+  if(!soundEnabled){
+    return;
+  }
+
+  try{
+
+    if(!audioContext){
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+    }
+
+    const oscillator =
+      audioContext.createOscillator();
+
+    const gain =
+      audioContext.createGain();
+
+    oscillator.frequency.value =
+      frequency;
+
+    gain.gain.value =
+      volume;
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      audioContext.currentTime +
+      duration
+    );
+
+    oscillator.stop(
+      audioContext.currentTime +
+      duration
+    );
+
+  }catch{}
+}
+
+
+function playSound(type){
+
+  if(type === "click"){
+    tone(430,.07,.035);
+  }
+
+  if(type === "move"){
+    tone(620,.08,.05);
+  }
+
+  if(type === "success"){
+    tone(540,.1,.05);
+    setTimeout(
+      () => tone(730,.14,.05),
+      80
+    );
+  }
+
+  if(type === "error"){
+    tone(180,.18,.05);
+  }
+
+  if(type === "message"){
+    tone(900,.1,.04);
+  }
+
+  if(type === "win"){
+    tone(520,.12,.06);
+    setTimeout(
+      () => tone(700,.14,.06),
+      100
+    );
+    setTimeout(
+      () => tone(900,.25,.07),
+      210
+    );
+  }
+}
+
+
+function updateSoundUI(){
+
+  $("soundToggle")
+    .classList
+    .toggle(
+      "on",
+      soundEnabled
+    );
+
+  $("soundTopBtn").textContent =
+    soundEnabled
+      ? "🔊"
+      : "🔇";
+}
+
+
+function toggleSound(){
+
+  soundEnabled =
+    !soundEnabled;
+
+  localStorage.setItem(
+    "fgSound",
+    soundEnabled
+      ? "on"
+      : "off"
+  );
+
+  updateSoundUI();
+
+  if(soundEnabled){
+    playSound("click");
+  }
+}
+
+
+$("soundToggle").onclick =
+  toggleSound;
+
+$("soundTopBtn").onclick =
+  toggleSound;
+
+
+/* PROFILE */
+
+function renderAvatars(
   container,
-  callback
+  saveImmediately=false
 ){
 
   container.innerHTML = "";
@@ -2158,17 +1632,15 @@ function renderAvatarChoices(
       const button =
         document.createElement("button");
 
-
       button.className =
         "avatar-choice";
-
 
       button.textContent =
         avatar;
 
-
       if(
-        avatar === selectedAvatar
+        avatar ===
+        selectedAvatar
       ){
 
         button.classList.add(
@@ -2183,26 +1655,31 @@ function renderAvatarChoices(
           selectedAvatar =
             avatar;
 
-
-          profileAvatarPreview.textContent =
+          profileAvatar.textContent =
             avatar;
 
-
-          renderAvatarChoices(
+          renderAvatars(
             profileAvatarGrid
           );
 
-
-          renderAvatarChoices(
-            avatarModalGrid,
-            callback
+          renderAvatars(
+            $("avatarModalGrid"),
+            true
           );
 
 
-          if(callback){
-            callback(avatar);
-          }
+          if(
+            saveImmediately &&
+            profile
+          ){
 
+            profile.avatar =
+              avatar;
+
+            saveProfileLocal();
+
+            updateDashboard();
+          }
 
           playSound("click");
         };
@@ -2220,14 +1697,13 @@ function loadProfile(){
 
   try{
 
-    const data =
+    const saved =
       localStorage.getItem(
         "farizProfile"
       );
 
-
-    return data
-      ? JSON.parse(data)
+    return saved
+      ? JSON.parse(saved)
       : null;
 
   }catch{
@@ -2237,259 +1713,193 @@ function loadProfile(){
 }
 
 
-function saveProfile(){
-
-  const name =
-    profileName.value.trim();
-
-  const age =
-    Number(profileAge.value);
-
-  const location =
-    profileLocation.value.trim();
-
-
-  profileMessage.textContent =
-    "";
-
-
-  if(!name){
-
-    profileMessage.textContent =
-      "Please enter your name.";
-
-    playSound("error");
-
-    return;
-  }
-
-
-  if(
-    !age ||
-    age < 5 ||
-    age > 100
-  ){
-
-    profileMessage.textContent =
-      "Please enter a valid age.";
-
-    playSound("error");
-
-    return;
-  }
-
-
-  if(!location){
-
-    profileMessage.textContent =
-      "Please enter your location.";
-
-    playSound("error");
-
-    return;
-  }
-
-
-  playerProfile = {
-    name,
-    age,
-    location,
-    avatar:
-      selectedAvatar
-  };
-
+function saveProfileLocal(){
 
   localStorage.setItem(
     "farizProfile",
-    JSON.stringify(playerProfile)
-  );
-
-
-  updateDashboard();
-
-  playSound("success");
-
-  showScreen(
-    dashboardScreen
+    JSON.stringify(profile)
   );
 }
 
 
-continueBtn.onclick =
-  saveProfile;
-
-
-function updateDashboard(){
-
-  if(!playerProfile){
-    return;
-  }
-
-
-  selectedAvatar =
-    playerProfile.avatar ||
-    "🥷";
-
-
-  dashboardAvatar.textContent =
-    selectedAvatar;
-
-
-  dashboardName.textContent =
-    playerProfile.name;
-
-
-  dashboardInfo.innerHTML =
-    `
-      Age: ${playerProfile.age}
-      <br>
-      Location: ${escapeHTML(
-        playerProfile.location
-      )}
-    `;
-}
-
-
-editProfileBtn.onclick =
+$("continueBtn").onclick =
   () => {
 
-    if(!playerProfile){
+    const name =
+      profileName.value.trim();
+
+    const age =
+      Number(profileAge.value);
+
+    const location =
+      profileLocation.value.trim();
+
+
+    profileMessage.textContent =
+      "";
+
+
+    if(!name){
+
+      profileMessage.textContent =
+        "Please enter your name.";
+
+      playSound("error");
+
       return;
     }
 
 
-    profileName.value =
-      playerProfile.name;
+    if(
+      age < 5 ||
+      age > 100
+    ){
 
-    profileAge.value =
-      playerProfile.age;
+      profileMessage.textContent =
+        "Please enter a valid age.";
 
-    profileLocation.value =
-      playerProfile.location;
+      playSound("error");
 
-    selectedAvatar =
-      playerProfile.avatar ||
-      "🥷";
-
-    profileAvatarPreview.textContent =
-      selectedAvatar;
+      return;
+    }
 
 
-    renderAvatarChoices(
-      profileAvatarGrid
+    if(!location){
+
+      profileMessage.textContent =
+        "Please enter your location.";
+
+      playSound("error");
+
+      return;
+    }
+
+
+    profile = {
+      name,
+      age,
+      location,
+      avatar:selectedAvatar
+    };
+
+
+    saveProfileLocal();
+
+    updateDashboard();
+
+    showScreen(
+      dashboardScreen
     );
 
+    animateUsers();
+
+    playSound("success");
+
+    startMusic();
+  };
+
+
+function updateDashboard(){
+
+  if(!profile){
+    return;
+  }
+
+  dashboardAvatar.textContent =
+    profile.avatar || "🥷";
+
+  dashboardName.textContent =
+    profile.name;
+
+  dashboardInfo.textContent =
+    `Age: ${profile.age} • ${profile.location}`;
+}
+
+
+$("editProfileBtn").onclick =
+  () => {
+
+    profileName.value =
+      profile.name;
+
+    profileAge.value =
+      profile.age;
+
+    profileLocation.value =
+      profile.location;
+
+    selectedAvatar =
+      profile.avatar || "🥷";
+
+    profileAvatar.textContent =
+      selectedAvatar;
+
+    renderAvatars(
+      profileAvatarGrid
+    );
 
     showScreen(
       profileScreen
     );
-
-
-    playSound("click");
   };
 
 
-/* =====================================
-   CHARACTER MODAL
-===================================== */
-
-changeAvatarBtn.onclick =
+$("changeAvatarBtn").onclick =
   () => {
 
-    renderAvatarChoices(
-      avatarModalGrid,
-      avatar => {
-
-        if(!playerProfile){
-          return;
-        }
-
-
-        playerProfile.avatar =
-          avatar;
-
-
-        localStorage.setItem(
-          "farizProfile",
-          JSON.stringify(playerProfile)
-        );
-
-
-        updateDashboard();
-      }
+    renderAvatars(
+      $("avatarModalGrid"),
+      true
     );
-
 
     avatarModal.classList.remove(
       "hidden"
     );
-
-
-    playSound("click");
   };
 
 
-closeAvatarModalBtn.onclick =
+$("closeAvatarModalBtn").onclick =
   () => {
 
     avatarModal.classList.add(
       "hidden"
     );
-
-    playSound("click");
   };
 
 
-/* =====================================
-   ANIMATED COMMUNITY NUMBER
-===================================== */
+/* COUNTER */
 
-function animateCounter(){
+function animateUsers(){
 
-  const target =
-    10000;
+  const target = 10000;
+  const duration = 1700;
+  const start = performance.now();
 
-  const duration =
-    1800;
-
-  const start =
-    performance.now();
-
-
-  function frame(now){
+  function update(now){
 
     const progress =
       Math.min(
-        (now - start) /
-        duration,
+        (now-start)/duration,
         1
       );
-
 
     const eased =
       1 -
       Math.pow(
-        1 - progress,
+        1-progress,
         3
       );
 
-
-    const value =
-      Math.floor(
-        target *
-        eased
-      );
-
-
     usersCounter.textContent =
-      value.toLocaleString() +
+      Math.floor(
+        target * eased
+      ).toLocaleString() +
       "+";
-
 
     if(progress < 1){
 
       requestAnimationFrame(
-        frame
+        update
       );
 
     }else{
@@ -2499,18 +1909,13 @@ function animateCounter(){
     }
   }
 
-
-  requestAnimationFrame(
-    frame
-  );
+  requestAnimationFrame(update);
 }
 
 
-/* =====================================
-   DASHBOARD
-===================================== */
+/* NAVIGATION */
 
-playBtn.onclick =
+$("playBtn").onclick =
   () => {
 
     showScreen(
@@ -2521,36 +1926,29 @@ playBtn.onclick =
   };
 
 
-backHomeBtn.onclick =
+$("backHomeBtn").onclick =
   () => {
 
     showScreen(
       dashboardScreen
     );
 
+    animateUsers();
+
     playSound("click");
   };
 
 
-/* =====================================
-   ROOM HELPERS
-===================================== */
+/* ROOM */
 
-function generateRoomCode(){
+function roomCode(){
 
   const chars =
     "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
+  let code = "";
 
-  let code =
-    "";
-
-
-  for(
-    let i = 0;
-    i < 6;
-    i++
-  ){
+  for(let i=0;i<6;i++){
 
     code +=
       chars[
@@ -2561,12 +1959,11 @@ function generateRoomCode(){
       ];
   }
 
-
   return code;
 }
 
 
-function blankBoard(){
+function emptyBoard(){
 
   return {
     0:"",
@@ -2582,9 +1979,7 @@ function blankBoard(){
 }
 
 
-function boardToArray(
-  board = {}
-){
+function toArray(board={}){
 
   return Array.from(
     {length:9},
@@ -2594,21 +1989,17 @@ function boardToArray(
 }
 
 
-function arrayToBoard(array){
+function toObject(array){
 
-  const board = {};
-
+  const result = {};
 
   array.forEach(
-    (value,index) => {
-
-      board[index] =
-        value || "";
-    }
+    (value,index) =>
+      result[index] =
+        value || ""
   );
 
-
-  return board;
+  return result;
 }
 
 
@@ -2625,41 +2016,20 @@ roomInput.oninput =
   };
 
 
-/* =====================================
-   CREATE ROOM
-===================================== */
-
-createRoomBtn.onclick =
+$("createRoomBtn").onclick =
   async () => {
 
-    if(!playerProfile){
-      return;
-    }
-
-
     try{
-
-      createRoomBtn.disabled =
-        true;
-
 
       lobbyMessage.textContent =
         "";
 
-
-      let code =
-        "";
-
-
-      let exists =
-        true;
-
+      let code = "";
+      let exists = true;
 
       while(exists){
 
-        code =
-          generateRoomCode();
-
+        code = roomCode();
 
         const snapshot =
           await get(
@@ -2669,7 +2039,6 @@ createRoomBtn.onclick =
             )
           );
 
-
         exists =
           snapshot.exists();
       }
@@ -2677,7 +2046,6 @@ createRoomBtn.onclick =
 
       currentRoom =
         code;
-
 
       mySymbol =
         "X";
@@ -2691,37 +2059,25 @@ createRoomBtn.onclick =
         {
 
           playerX:{
-            name:
-              playerProfile.name,
-
-            avatar:
-              playerProfile.avatar ||
-              "🥷"
+            name:profile.name,
+            avatar:profile.avatar
           },
 
-          playerO:
-            null,
+          playerO:null,
 
-          board:
-            blankBoard(),
+          board:emptyBoard(),
 
-          turn:
-            "X",
+          turn:"X",
 
-          winner:
-            "",
+          winner:"",
 
-          winningCells:
-            [],
+          winningCells:[],
 
-          status:
-            "waiting",
+          status:"waiting",
 
-          rematchRequest:
-            null,
+          rematchRequest:null,
 
-          createdAt:
-            Date.now()
+          createdAt:Date.now()
         }
       );
 
@@ -2729,15 +2085,12 @@ createRoomBtn.onclick =
       roomCodeDisplay.textContent =
         code;
 
-
       showScreen(
         waitingScreen
       );
 
-
-      listenToRoom();
-
-      startChatListener();
+      listenRoom();
+      listenChat();
 
       playSound("success");
 
@@ -2746,32 +2099,14 @@ createRoomBtn.onclick =
 
       console.error(error);
 
-
       lobbyMessage.textContent =
         "Could not create room.";
-
-
-      playSound("error");
-
-    }finally{
-
-      createRoomBtn.disabled =
-        false;
     }
   };
 
 
-/* =====================================
-   JOIN ROOM
-===================================== */
-
-joinRoomBtn.onclick =
+$("joinRoomBtn").onclick =
   async () => {
-
-    if(!playerProfile){
-      return;
-    }
-
 
     const code =
       roomInput.value
@@ -2782,32 +2117,22 @@ joinRoomBtn.onclick =
     if(code.length !== 6){
 
       lobbyMessage.textContent =
-        "Enter a valid 6-character room code.";
-
-      playSound("error");
+        "Enter a valid room code.";
 
       return;
     }
 
 
+    const roomRef =
+      ref(
+        db,
+        `rooms/${code}`
+      );
+
+
     try{
 
-      joinRoomBtn.disabled =
-        true;
-
-
-      lobbyMessage.textContent =
-        "";
-
-
-      const roomRef =
-        ref(
-          db,
-          `rooms/${code}`
-        );
-
-
-      const result =
+      const transaction =
         await runTransaction(
           roomRef,
           room => {
@@ -2816,7 +2141,6 @@ joinRoomBtn.onclick =
               return;
             }
 
-
             if(
               room.status !==
               "waiting"
@@ -2824,52 +2148,28 @@ joinRoomBtn.onclick =
               return;
             }
 
-
             if(room.playerO){
               return;
             }
 
 
             room.playerO = {
-              name:
-                playerProfile.name,
-
-              avatar:
-                playerProfile.avatar ||
-                "🤖"
+              name:profile.name,
+              avatar:profile.avatar
             };
-
 
             room.status =
               "playing";
-
 
             return room;
           }
         );
 
 
-      if(
-        !result.committed
-      ){
+      if(!transaction.committed){
 
-        const check =
-          await get(roomRef);
-
-
-        if(!check.exists()){
-
-          lobbyMessage.textContent =
-            "Room not found.";
-
-        }else{
-
-          lobbyMessage.textContent =
-            "This room is unavailable or already full.";
-        }
-
-
-        playSound("error");
+        lobbyMessage.textContent =
+          "Room not found or already full.";
 
         return;
       }
@@ -2878,14 +2178,11 @@ joinRoomBtn.onclick =
       currentRoom =
         code;
 
-
       mySymbol =
         "O";
 
-
-      listenToRoom();
-
-      startChatListener();
+      listenRoom();
+      listenChat();
 
       playSound("success");
 
@@ -2894,51 +2191,27 @@ joinRoomBtn.onclick =
 
       console.error(error);
 
-
       lobbyMessage.textContent =
         "Could not join room.";
-
-
-      playSound("error");
-
-    }finally{
-
-      joinRoomBtn.disabled =
-        false;
     }
   };
 
 
-/* =====================================
-   CHECK GAME
-===================================== */
+/* WINNER */
 
-function checkGame(board){
+function checkWinner(board){
 
-  const patterns = [
-
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-
-    [0,4,8],
-    [2,4,6]
-
+  const wins = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
   ];
 
 
-  for(
-    const pattern
-    of patterns
-  ){
+  for(const line of wins){
 
     const [a,b,c] =
-      pattern;
-
+      line;
 
     if(
       board[a] &&
@@ -2947,11 +2220,8 @@ function checkGame(board){
     ){
 
       return {
-        winner:
-          board[a],
-
-        cells:
-          pattern
+        winner:board[a],
+        cells:line
       };
     }
   }
@@ -2959,17 +2229,13 @@ function checkGame(board){
 
   if(
     board.every(
-      value =>
-        value !== ""
+      value => value
     )
   ){
 
     return {
-      winner:
-        "DRAW",
-
-      cells:
-        []
+      winner:"DRAW",
+      cells:[]
     };
   }
 
@@ -2981,55 +2247,38 @@ function checkGame(board){
 }
 
 
-/* =====================================
-   ROOM LISTENER
-===================================== */
+/* LISTEN ROOM */
 
-function listenToRoom(){
+function listenRoom(){
 
-  if(roomListener){
+  if(roomUnsubscribe){
 
-    roomListener();
-
-    roomListener =
-      null;
+    roomUnsubscribe();
   }
 
 
-  const roomRef =
-    ref(
-      db,
-      `rooms/${currentRoom}`
-    );
-
-
-  roomListener =
+  roomUnsubscribe =
     onValue(
-      roomRef,
+      ref(
+        db,
+        `rooms/${currentRoom}`
+      ),
       snapshot => {
 
-        if(
-          !snapshot.exists()
-        ){
+        if(!snapshot.exists()){
 
           rematchModal.classList.add(
             "hidden"
           );
 
-
-          closeChat();
-
           resetRoom();
-
 
           showScreen(
             lobbyScreen
           );
 
-
           lobbyMessage.textContent =
             "The room was closed.";
-
 
           return;
         }
@@ -3037,6 +2286,11 @@ function listenToRoom(){
 
         const room =
           snapshot.val();
+
+
+        chatTopBtn.classList.remove(
+          "hidden"
+        );
 
 
         if(
@@ -3047,75 +2301,44 @@ function listenToRoom(){
           roomCodeDisplay.textContent =
             currentRoom;
 
-
           showScreen(
             waitingScreen
           );
-
-
-          chatTopBtn.classList.remove(
-            "hidden"
-          );
-
 
           return;
         }
 
 
-        if(
-          room.status ===
-          "playing" ||
-          room.status ===
-          "finished"
-        ){
+        showScreen(
+          gameScreen
+        );
 
-          showScreen(
-            gameScreen
-          );
-
-
-          chatTopBtn.classList.remove(
-            "hidden"
-          );
-
-
-          renderGame(room);
-
-          handleRematchRequest(
-            room
-          );
-        }
+        renderGame(room);
+        handleRematch(room);
       }
     );
 }
 
 
-/* =====================================
-   RENDER GAME
-===================================== */
+/* RENDER */
 
 function renderGame(room){
 
   const board =
-    boardToArray(
-      room.board
-    );
+    toArray(room.board);
 
 
   playerXName.textContent =
     room.playerX?.name ||
     "Player X";
 
-
   playerOName.textContent =
     room.playerO?.name ||
     "Player O";
 
-
   playerXAvatar.textContent =
     room.playerX?.avatar ||
     "🥷";
-
 
   playerOAvatar.textContent =
     room.playerO?.avatar ||
@@ -3125,14 +2348,12 @@ function renderGame(room){
   yourSymbol.textContent =
     `You are ${mySymbol}`;
 
-
   gameRoomCode.textContent =
     currentRoom;
 
 
-  const winningCells =
-    room.winningCells ||
-    [];
+  const winCells =
+    room.winningCells || [];
 
 
   cells.forEach(
@@ -3141,10 +2362,8 @@ function renderGame(room){
       const value =
         board[index];
 
-
       cell.textContent =
         value;
-
 
       cell.classList.remove(
         "x",
@@ -3152,47 +2371,25 @@ function renderGame(room){
         "win"
       );
 
-
       if(value === "X"){
-
-        cell.classList.add(
-          "x"
-        );
+        cell.classList.add("x");
       }
-
 
       if(value === "O"){
-
-        cell.classList.add(
-          "o"
-        );
+        cell.classList.add("o");
       }
 
-
       if(
-        winningCells.includes(
+        winCells.includes(
           index
         )
       ){
-
-        cell.classList.add(
-          "win"
-        );
+        cell.classList.add("win");
       }
 
-
       cell.disabled =
-
-        room.status !==
-          "playing"
-
-        ||
-
-        room.turn !==
-          mySymbol
-
-        ||
-
+        room.status !== "playing" ||
+        room.turn !== mySymbol ||
         Boolean(value);
     }
   );
@@ -3205,7 +2402,6 @@ function renderGame(room){
 
     turnText.textContent =
       "Game Over";
-
 
     requestRematchBtn.classList.remove(
       "hidden"
@@ -3234,7 +2430,6 @@ function renderGame(room){
         "Opponent Wins!";
     }
 
-
     return;
   }
 
@@ -3243,34 +2438,21 @@ function renderGame(room){
     "hidden"
   );
 
+  gameResult.textContent =
+    "";
 
   rematchStatus.textContent =
     "";
 
 
-  gameResult.textContent =
-    "";
-
-
-  if(
-    room.turn ===
-    mySymbol
-  ){
-
-    turnText.textContent =
-      "Your Turn";
-
-  }else{
-
-    turnText.textContent =
-      "Opponent's Turn";
-  }
+  turnText.textContent =
+    room.turn === mySymbol
+      ? "Your Turn"
+      : "Opponent's Turn";
 }
 
 
-/* =====================================
-   MOVE
-===================================== */
+/* MOVE */
 
 cells.forEach(
   cell => {
@@ -3285,10 +2467,8 @@ cells.forEach(
           return;
         }
 
-
         processingMove =
           true;
-
 
         const index =
           Number(
@@ -3298,41 +2478,25 @@ cells.forEach(
 
         try{
 
-          const roomRef =
-            ref(
-              db,
-              `rooms/${currentRoom}`
-            );
-
-
-          const transaction =
+          const result =
             await runTransaction(
-              roomRef,
+              ref(
+                db,
+                `rooms/${currentRoom}`
+              ),
               room => {
 
-                if(!room){
-                  return room;
-                }
-
-
                 if(
-                  room.status !==
-                  "playing"
-                ){
-                  return room;
-                }
-
-
-                if(
-                  room.turn !==
-                  mySymbol
+                  !room ||
+                  room.status !== "playing" ||
+                  room.turn !== mySymbol
                 ){
                   return room;
                 }
 
 
                 const board =
-                  boardToArray(
+                  toArray(
                     room.board
                   );
 
@@ -3346,25 +2510,25 @@ cells.forEach(
                   mySymbol;
 
 
-                const result =
-                  checkGame(
+                const game =
+                  checkWinner(
                     board
                   );
 
 
                 room.board =
-                  arrayToBoard(
+                  toObject(
                     board
                   );
 
 
-                if(result.winner){
+                if(game.winner){
 
                   room.winner =
-                    result.winner;
+                    game.winner;
 
                   room.winningCells =
-                    result.cells;
+                    game.cells;
 
                   room.status =
                     "finished";
@@ -3380,53 +2544,29 @@ cells.forEach(
                       : "X";
                 }
 
-
                 return room;
               }
             );
 
 
-          if(
-            transaction.committed
-          ){
+          if(result.committed){
 
             playSound("move");
 
-
             const room =
-              transaction
-                .snapshot
-                .val();
-
+              result.snapshot.val();
 
             if(
               room?.status ===
-              "finished"
+              "finished" &&
+              room.winner ===
+              mySymbol
             ){
 
-              if(
-                room.winner ===
-                mySymbol
-              ){
-
-                playSound("win");
-
-              }else if(
-                room.winner !==
-                "DRAW"
-              ){
-
-                playSound("lose");
-              }
+              playSound("win");
             }
           }
 
-
-        }catch(error){
-
-          console.error(error);
-
-          playSound("error");
 
         }finally{
 
@@ -3438,124 +2578,62 @@ cells.forEach(
 );
 
 
-/* =====================================
-   REMATCH REQUEST
-===================================== */
+/* REMATCH */
 
 requestRematchBtn.onclick =
   async () => {
 
-    if(!currentRoom){
-      return;
-    }
+    await runTransaction(
+      ref(
+        db,
+        `rooms/${currentRoom}`
+      ),
+      room => {
+
+        if(
+          !room ||
+          room.status !==
+          "finished"
+        ){
+
+          return room;
+        }
 
 
-    try{
+        if(
+          room.rematchRequest?.status ===
+          "pending"
+        ){
 
-      requestRematchBtn.disabled =
-        true;
-
-
-      const roomRef =
-        ref(
-          db,
-          `rooms/${currentRoom}`
-        );
+          return room;
+        }
 
 
-      const transaction =
-        await runTransaction(
-          roomRef,
-          room => {
+        room.rematchRequest = {
 
-            if(!room){
-              return room;
-            }
+          from:mySymbol,
+          status:"pending",
+          time:Date.now()
 
-
-            if(
-              room.status !==
-              "finished"
-            ){
-              return room;
-            }
+        };
 
 
-            if(
-              room.rematchRequest &&
-              room.rematchRequest.status ===
-              "pending"
-            ){
-              return room;
-            }
-
-
-            room.rematchRequest = {
-
-              from:
-                mySymbol,
-
-              status:
-                "pending",
-
-              createdAt:
-                Date.now()
-            };
-
-
-            return room;
-          }
-        );
-
-
-      if(
-        transaction.committed
-      ){
-
-        rematchStatus.textContent =
-          "Rematch request sent. Waiting for opponent...";
-
-
-        playSound("success");
+        return room;
       }
+    );
 
 
-    }catch(error){
+    rematchStatus.textContent =
+      "Rematch request sent.";
 
-      console.error(error);
-
-      playSound("error");
-
-    }finally{
-
-      requestRematchBtn.disabled =
-        false;
-    }
+    playSound("success");
   };
 
 
-function handleRematchRequest(
-  room
-){
+function handleRematch(room){
 
   const request =
     room.rematchRequest;
-
-
-  if(
-    room.status !==
-    "finished"
-  ){
-
-    rematchModal.classList.add(
-      "hidden"
-    );
-
-    rematchStatus.textContent =
-      "";
-
-    return;
-  }
 
 
   if(
@@ -3577,20 +2655,14 @@ function handleRematchRequest(
     mySymbol
   ){
 
+    rematchStatus.textContent =
+      "Waiting for opponent to accept...";
+
     rematchModal.classList.add(
       "hidden"
     );
 
-
-    rematchStatus.textContent =
-      "Rematch request sent. Waiting for opponent...";
-
-
   }else{
-
-    rematchStatus.textContent =
-      "";
-
 
     rematchModal.classList.remove(
       "hidden"
@@ -3599,121 +2671,88 @@ function handleRematchRequest(
 }
 
 
-acceptRematchBtn.onclick =
+$("acceptRematchBtn").onclick =
   async () => {
 
-    if(!currentRoom){
-      return;
-    }
+    await runTransaction(
+      ref(
+        db,
+        `rooms/${currentRoom}`
+      ),
+      room => {
+
+        if(!room){
+          return room;
+        }
 
 
-    try{
-
-      acceptRematchBtn.disabled =
-        true;
-
-
-      const roomRef =
-        ref(
-          db,
-          `rooms/${currentRoom}`
-        );
-
-
-      await runTransaction(
-        roomRef,
-        room => {
-
-          if(!room){
-            return room;
-          }
-
-
-          const request =
-            room.rematchRequest;
-
-
-          if(
-            !request ||
-            request.status !==
-            "pending"
-          ){
-            return room;
-          }
-
-
-          if(
-            request.from ===
-            mySymbol
-          ){
-            return room;
-          }
-
-
-          room.board =
-            blankBoard();
-
-
-          room.turn =
-            "X";
-
-
-          room.winner =
-            "";
-
-
-          room.winningCells =
-            [];
-
-
-          room.status =
-            "playing";
-
-
-          room.rematchRequest =
-            null;
-
+        if(
+          !room.rematchRequest ||
+          room.rematchRequest.from ===
+          mySymbol
+        ){
 
           return room;
         }
-      );
 
 
-      rematchModal.classList.add(
-        "hidden"
-      );
+        room.board =
+          emptyBoard();
+
+        room.turn =
+          "X";
+
+        room.winner =
+          "";
+
+        room.winningCells =
+          [];
+
+        room.status =
+          "playing";
+
+        room.rematchRequest =
+          null;
 
 
-      playSound("success");
+        return room;
+      }
+    );
 
 
-    }catch(error){
+    rematchModal.classList.add(
+      "hidden"
+    );
 
-      console.error(error);
-
-      playSound("error");
-
-    }finally{
-
-      acceptRematchBtn.disabled =
-        false;
-    }
+    playSound("success");
   };
 
 
-declineRematchBtn.onclick =
+$("declineRematchBtn").onclick =
   async () => {
 
-    if(!currentRoom){
-      return;
-    }
+    await remove(
+      ref(
+        db,
+        `rooms/${currentRoom}`
+      )
+    );
+
+    rematchModal.classList.add(
+      "hidden"
+    );
+  };
 
 
-    declineRematchBtn.disabled =
-      true;
+/* LEAVE */
 
+$("leaveWaitingBtn").onclick =
+  async () => {
 
-    try{
+    if(
+      currentRoom &&
+      mySymbol === "X"
+    ){
 
       await remove(
         ref(
@@ -3721,60 +2760,8 @@ declineRematchBtn.onclick =
           `rooms/${currentRoom}`
         )
       );
-
-
-      rematchModal.classList.add(
-        "hidden"
-      );
-
-
-      playSound("click");
-
-
-    }catch(error){
-
-      console.error(error);
-
-      playSound("error");
-
-    }finally{
-
-      declineRematchBtn.disabled =
-        false;
-    }
-  };
-
-
-/* =====================================
-   ROOM LEAVE
-===================================== */
-
-leaveWaitingBtn.onclick =
-  async () => {
-
-    if(
-      currentRoom &&
-      mySymbol ===
-      "X"
-    ){
-
-      try{
-
-        await remove(
-          ref(
-            db,
-            `rooms/${currentRoom}`
-          )
-        );
-
-      }catch(error){
-
-        console.error(error);
-      }
     }
 
-
-    closeChat();
 
     resetRoom();
 
@@ -3784,118 +2771,80 @@ leaveWaitingBtn.onclick =
   };
 
 
-leaveGameBtn.onclick =
+$("leaveGameBtn").onclick =
   async () => {
 
     if(currentRoom){
 
-      try{
-
-        await remove(
-          ref(
-            db,
-            `rooms/${currentRoom}`
-          )
-        );
-
-      }catch(error){
-
-        console.error(error);
-      }
+      await remove(
+        ref(
+          db,
+          `rooms/${currentRoom}`
+        )
+      );
     }
 
-
-    closeChat();
 
     resetRoom();
 
     showScreen(
       lobbyScreen
     );
-
-
-    playSound("click");
   };
 
 
 function resetRoom(){
 
-  if(roomListener){
+  if(roomUnsubscribe){
+    roomUnsubscribe();
+  }
 
-    roomListener();
-
-    roomListener =
-      null;
+  if(chatUnsubscribe){
+    chatUnsubscribe();
   }
 
 
-  if(chatListener){
+  roomUnsubscribe =
+    null;
 
-    chatListener();
-
-    chatListener =
-      null;
-  }
-
+  chatUnsubscribe =
+    null;
 
   currentRoom =
     "";
 
-
   mySymbol =
     "";
-
-
-  processingMove =
-    false;
-
 
   chatTopBtn.classList.add(
     "hidden"
   );
 
-
-  unreadMessages =
-    0;
-
-
-  updateChatBadge();
+  closeChat();
 }
 
 
-/* =====================================
-   COPY ROOM
-===================================== */
+/* COPY */
 
-copyRoomBtn.onclick =
+$("copyRoomBtn").onclick =
   async () => {
 
     try{
 
-      await navigator
-        .clipboard
-        .writeText(
-          currentRoom
-        );
+      await navigator.clipboard.writeText(
+        currentRoom
+      );
 
-
-      copyRoomBtn.textContent =
+      $("copyRoomBtn").textContent =
         "Copied ✓";
-
-
-      playSound("success");
-
 
       setTimeout(
         () => {
-
-          copyRoomBtn.textContent =
+          $("copyRoomBtn").textContent =
             "Copy Room Code";
-
         },
-        1300
+        1200
       );
-
 
     }catch{
 
@@ -3906,101 +2855,32 @@ copyRoomBtn.onclick =
   };
 
 
-/* =====================================
-   CHAT
-===================================== */
+/* CHAT */
 
-function openChat(){
+function listenChat(){
 
-  if(!currentRoom){
-
-    return;
+  if(chatUnsubscribe){
+    chatUnsubscribe();
   }
 
 
-  chatOpen =
-    true;
-
-
-  unreadMessages =
+  previousMessageCount =
     0;
 
 
-  updateChatBadge();
-
-
-  chatPanel.classList.remove(
-    "hidden"
-  );
-
-
-  chatInput.focus();
-
-
-  playSound("click");
-}
-
-
-function closeChat(){
-
-  chatOpen =
-    false;
-
-
-  chatPanel.classList.add(
-    "hidden"
-  );
-}
-
-
-chatTopBtn.onclick =
-  openChat;
-
-
-chatGameBtn.onclick =
-  openChat;
-
-
-closeChatBtn.onclick =
-  closeChat;
-
-
-function startChatListener(){
-
-  if(chatListener){
-
-    chatListener();
-
-    chatListener =
-      null;
-  }
-
-
-  if(!currentRoom){
-
-    return;
-  }
-
-
-  const messagesRef =
-    ref(
-      db,
-      `rooms/${currentRoom}/messages`
-    );
-
-
-  chatListener =
+  chatUnsubscribe =
     onValue(
-      messagesRef,
+      ref(
+        db,
+        `rooms/${currentRoom}/messages`
+      ),
       snapshot => {
 
-        const data =
-          snapshot.val() ||
-          {};
-
+        const object =
+          snapshot.val() || {};
 
         const messages =
-          Object.values(data)
+          Object.values(object)
             .sort(
               (a,b) =>
                 (a.time || 0) -
@@ -4008,14 +2888,12 @@ function startChatListener(){
             );
 
 
-        renderChat(
-          messages
-        );
+        renderChat(messages);
 
 
         if(
           messages.length >
-          lastChatCount
+          previousMessageCount
         ){
 
           const newest =
@@ -4031,16 +2909,16 @@ function startChatListener(){
             !chatOpen
           ){
 
-            unreadMessages++;
+            unread++;
 
-            updateChatBadge();
+            updateBadge();
 
             playSound("message");
           }
         }
 
 
-        lastChatCount =
+        previousMessageCount =
           messages.length;
       }
     );
@@ -4056,22 +2934,20 @@ function renderChat(messages){
   messages.forEach(
     message => {
 
-      const item =
+      const box =
         document.createElement(
           "div"
         );
 
-
-      item.className =
+      box.className =
         "chat-message";
-
 
       if(
         message.symbol ===
         mySymbol
       ){
 
-        item.classList.add(
+        box.classList.add(
           "mine"
         );
       }
@@ -4082,10 +2958,8 @@ function renderChat(messages){
           "div"
         );
 
-
       name.className =
         "chat-name";
-
 
       name.textContent =
         message.name ||
@@ -4097,28 +2971,18 @@ function renderChat(messages){
           "div"
         );
 
-
       text.className =
         "chat-text";
 
-
       text.textContent =
-        message.text ||
-        "";
+        message.text || "";
 
 
-      item.appendChild(
-        name
-      );
-
-
-      item.appendChild(
-        text
-      );
-
+      box.appendChild(name);
+      box.appendChild(text);
 
       chatMessages.appendChild(
-        item
+        box
       );
     }
   );
@@ -4129,21 +2993,67 @@ function renderChat(messages){
 }
 
 
-async function sendMessage(){
+function openChat(){
 
-  if(
-    !currentRoom ||
-    !playerProfile
-  ){
+  if(!currentRoom){
     return;
   }
 
+  chatOpen = true;
+  unread = 0;
+
+  updateBadge();
+
+  chatPanel.classList.remove(
+    "hidden"
+  );
+}
+
+
+function closeChat(){
+
+  chatOpen = false;
+
+  chatPanel.classList.add(
+    "hidden"
+  );
+}
+
+
+function updateBadge(){
+
+  if(unread <= 0){
+
+    chatBadge.classList.add(
+      "hidden"
+    );
+
+  }else{
+
+    chatBadge.textContent =
+      unread > 9
+        ? "9+"
+        : unread;
+
+    chatBadge.classList.remove(
+      "hidden"
+    );
+  }
+}
+
+
+async function sendChat(){
 
   const text =
-    chatInput.value.trim();
+    chatInput.value
+      .trim()
+      .slice(0,150);
 
 
-  if(!text){
+  if(
+    !text ||
+    !currentRoom
+  ){
     return;
   }
 
@@ -4152,386 +3062,92 @@ async function sendMessage(){
     "";
 
 
-  try{
+  await set(
+    push(
+      ref(
+        db,
+        `rooms/${currentRoom}/messages`
+      )
+    ),
+    {
 
-    const messageRef =
-      push(
-        ref(
-          db,
-          `rooms/${currentRoom}/messages`
-        )
-      );
+      name:profile.name,
+      symbol:mySymbol,
+      text,
+      time:Date.now()
 
-
-    await set(
-      messageRef,
-      {
-
-        name:
-          playerProfile.name,
-
-        avatar:
-          playerProfile.avatar ||
-          "🥷",
-
-        symbol:
-          mySymbol,
-
-        text:
-          text.slice(
-            0,
-            150
-          ),
-
-        time:
-          Date.now()
-      }
-    );
-
-
-    playSound("click");
-
-
-  }catch(error){
-
-    console.error(error);
-
-    playSound("error");
-  }
+    }
+  );
 }
 
 
-sendChatBtn.onclick =
-  sendMessage;
+$("chatGameBtn").onclick =
+  openChat;
+
+chatTopBtn.onclick =
+  openChat;
+
+$("closeChatBtn").onclick =
+  closeChat;
+
+$("sendChatBtn").onclick =
+  sendChat;
 
 
 chatInput.addEventListener(
   "keydown",
   event => {
 
-    if(
-      event.key ===
-      "Enter"
-    ){
-
-      sendMessage();
+    if(event.key === "Enter"){
+      sendChat();
     }
   }
 );
 
 
-function updateChatBadge(){
-
-  if(
-    unreadMessages <=
-    0
-  ){
-
-    chatBadge.classList.add(
-      "hidden"
-    );
-
-    return;
-  }
-
-
-  chatBadge.textContent =
-    unreadMessages > 9
-      ? "9+"
-      : unreadMessages;
-
-
-  chatBadge.classList.remove(
-    "hidden"
-  );
-}
-
-
-/* =====================================
-   20 THEMES
-===================================== */
+/* THEMES */
 
 const themes = {
 
-neon:{
-name:"Neon Blue",
-bg1:"#050713",
-bg2:"#1c2460",
-card:"rgba(16,22,52,.96)",
-card2:"#0d1431",
-primary:"#62e7ff",
-secondary:"#745cff",
-accent:"#ff6685",
-text:"#ffffff",
-muted:"#aab2d0",
-border:"#34406f"
-},
+neon:["Neon Blue","#050713","#1c2460","#62e7ff","#745cff","#ff6685"],
 
-cyber:{
-name:"Cyber Green",
-bg1:"#03110b",
-bg2:"#0a3927",
-card:"rgba(6,31,23,.96)",
-card2:"#071f18",
-primary:"#38ff8c",
-secondary:"#00b967",
-accent:"#ff4e90",
-text:"#f1fff7",
-muted:"#91b9a9",
-border:"#235842"
-},
+cyber:["Cyber Green","#03110b","#0a3927","#38ff8c","#00b967","#ff4e90"],
 
-sunset:{
-name:"Sunset",
-bg1:"#1c0714",
-bg2:"#6c213f",
-card:"rgba(57,16,39,.96)",
-card2:"#301020",
-primary:"#ff9c59",
-secondary:"#ff446c",
-accent:"#ffd166",
-text:"#fff8f2",
-muted:"#d3a8b5",
-border:"#70334c"
-},
+sunset:["Sunset","#1c0714","#6c213f","#ff9c59","#ff446c","#ffd166"],
 
-royal:{
-name:"Royal Purple",
-bg1:"#10071f",
-bg2:"#432374",
-card:"rgba(36,19,65,.96)",
-card2:"#1c1034",
-primary:"#b889ff",
-secondary:"#754be8",
-accent:"#ff70bd",
-text:"#ffffff",
-muted:"#beaeda",
-border:"#523b75"
-},
+royal:["Royal Purple","#10071f","#432374","#b889ff","#754be8","#ff70bd"],
 
-fire:{
-name:"Fire",
-bg1:"#160402",
-bg2:"#691d08",
-card:"rgba(55,14,8,.96)",
-card2:"#290b06",
-primary:"#ff9e00",
-secondary:"#ff3d00",
-accent:"#ffe16b",
-text:"#fff7ed",
-muted:"#d6a28d",
-border:"#733526"
-},
+fire:["Fire","#160402","#691d08","#ff9e00","#ff3d00","#ffe16b"],
 
-ocean:{
-name:"Ocean",
-bg1:"#02101c",
-bg2:"#064875",
-card:"rgba(5,35,56,.96)",
-card2:"#08273b",
-primary:"#34dbff",
-secondary:"#0087ff",
-accent:"#3cffc2",
-text:"#f2fcff",
-muted:"#93bdcd",
-border:"#1e5874"
-},
+ocean:["Ocean","#02101c","#064875","#34dbff","#0087ff","#3cffc2"],
 
-gold:{
-name:"Black Gold",
-bg1:"#090909",
-bg2:"#30270a",
-card:"rgba(25,22,14,.97)",
-card2:"#16140e",
-primary:"#ffd84e",
-secondary:"#b98b00",
-accent:"#fff1a6",
-text:"#fffdf5",
-muted:"#b9af8e",
-border:"#574b23"
-},
+gold:["Black Gold","#090909","#30270a","#ffd84e","#b98b00","#fff1a6"],
 
-candy:{
-name:"Candy",
-bg1:"#17091b",
-bg2:"#62236c",
-card:"rgba(48,20,56,.96)",
-card2:"#28112e",
-primary:"#ff72dc",
-secondary:"#945cff",
-accent:"#61f3ff",
-text:"#ffffff",
-muted:"#cba9d2",
-border:"#693d73"
-},
+candy:["Candy","#17091b","#62236c","#ff72dc","#945cff","#61f3ff"],
 
-ice:{
-name:"Ice",
-bg1:"#061118",
-bg2:"#255063",
-card:"rgba(14,40,51,.96)",
-card2:"#0c2630",
-primary:"#b5f5ff",
-secondary:"#55c2e2",
-accent:"#ffffff",
-text:"#f6fdff",
-muted:"#accbd4",
-border:"#426674"
-},
+ice:["Ice","#061118","#255063","#b5f5ff","#55c2e2","#ffffff"],
 
-retro:{
-name:"Retro",
-bg1:"#170d28",
-bg2:"#623878",
-card:"rgba(47,29,66,.96)",
-card2:"#291a39",
-primary:"#ffea67",
-secondary:"#ff6baa",
-accent:"#6effd5",
-text:"#fffbea",
-muted:"#cab4d0",
-border:"#695177"
-},
+retro:["Retro","#170d28","#623878","#ffea67","#ff6baa","#6effd5"],
 
-matrix:{
-name:"Matrix",
-bg1:"#000500",
-bg2:"#072407",
-card:"rgba(4,22,5,.97)",
-card2:"#031405",
-primary:"#00ff41",
-secondary:"#0b8f2d",
-accent:"#aaffbe",
-text:"#eaffee",
-muted:"#77a982",
-border:"#17642a"
-},
+matrix:["Matrix","#000500","#072407","#00ff41","#0b8f2d","#aaffbe"],
 
-lava:{
-name:"Lava",
-bg1:"#160000",
-bg2:"#5f0600",
-card:"rgba(49,8,5,.97)",
-card2:"#250403",
-primary:"#ff4b19",
-secondary:"#ff9500",
-accent:"#ffe260",
-text:"#fff7f1",
-muted:"#cfa091",
-border:"#6b2c20"
-},
+lava:["Lava","#160000","#5f0600","#ff4b19","#ff9500","#ffe260"],
 
-space:{
-name:"Deep Space",
-bg1:"#02030d",
-bg2:"#17113f",
-card:"rgba(13,12,39,.97)",
-card2:"#090824",
-primary:"#7cc8ff",
-secondary:"#875cff",
-accent:"#ff65df",
-text:"#f7f7ff",
-muted:"#9d9abc",
-border:"#35315f"
-},
+space:["Deep Space","#02030d","#17113f","#7cc8ff","#875cff","#ff65df"],
 
-mint:{
-name:"Mint",
-bg1:"#05110f",
-bg2:"#164c42",
-card:"rgba(11,39,34,.96)",
-card2:"#092922",
-primary:"#67ffd8",
-secondary:"#32b89c",
-accent:"#e3fff8",
-text:"#f5fffc",
-muted:"#a3cbc0",
-border:"#376b60"
-},
+mint:["Mint","#05110f","#164c42","#67ffd8","#32b89c","#e3fff8"],
 
-rose:{
-name:"Rose",
-bg1:"#19080e",
-bg2:"#5d2338",
-card:"rgba(49,19,31,.96)",
-card2:"#28101b",
-primary:"#ff86aa",
-secondary:"#d44978",
-accent:"#ffd0dd",
-text:"#fff7fa",
-muted:"#d0a6b3",
-border:"#6d3c4c"
-},
+rose:["Rose","#19080e","#5d2338","#ff86aa","#d44978","#ffd0dd"],
 
-electric:{
-name:"Electric",
-bg1:"#030617",
-bg2:"#091d6b",
-card:"rgba(7,20,60,.96)",
-card2:"#06133a",
-primary:"#00e5ff",
-secondary:"#0066ff",
-accent:"#f600ff",
-text:"#ffffff",
-muted:"#91a4d0",
-border:"#284a89"
-},
+electric:["Electric","#030617","#091d6b","#00e5ff","#0066ff","#f600ff"],
 
-forest:{
-name:"Forest",
-bg1:"#061007",
-bg2:"#21482a",
-card:"rgba(14,36,18,.96)",
-card2:"#0b2711",
-primary:"#8eff7a",
-secondary:"#3a9b4b",
-accent:"#e1ff6b",
-text:"#f6fff5",
-muted:"#a8c5aa",
-border:"#3c6843"
-},
+forest:["Forest","#061007","#21482a","#8eff7a","#3a9b4b","#e1ff6b"],
 
-peach:{
-name:"Peach",
-bg1:"#21100c",
-bg2:"#71402f",
-card:"rgba(61,31,24,.96)",
-card2:"#321c16",
-primary:"#ffb183",
-secondary:"#ed6d5a",
-accent:"#ffe0a6",
-text:"#fffaf6",
-muted:"#d6b2a5",
-border:"#785146"
-},
+peach:["Peach","#21100c","#71402f","#ffb183","#ed6d5a","#ffe0a6"],
 
-violet:{
-name:"Violet Storm",
-bg1:"#0d0718",
-bg2:"#4d2374",
-card:"rgba(39,20,61,.96)",
-card2:"#211033",
-primary:"#d98cff",
-secondary:"#872dff",
-accent:"#70eaff",
-text:"#fff",
-muted:"#bba5cb",
-border:"#5f3c79"
-},
+violet:["Violet Storm","#0d0718","#4d2374","#d98cff","#872dff","#70eaff"],
 
-mono:{
-name:"Monochrome",
-bg1:"#090909",
-bg2:"#2b2b2b",
-card:"rgba(27,27,27,.97)",
-card2:"#151515",
-primary:"#ffffff",
-secondary:"#777777",
-accent:"#d0d0d0",
-text:"#ffffff",
-muted:"#aaaaaa",
-border:"#4a4a4a"
-}
+mono:["Monochrome","#090909","#2b2b2b","#ffffff","#777777","#d0d0d0"]
 
 };
 
@@ -4545,17 +3161,24 @@ function renderThemes(){
   Object.entries(
     themes
   ).forEach(
-    ([key,theme]) => {
+    ([key,value]) => {
+
+      const [
+        name,
+        bg1,
+        bg2,
+        primary,
+        secondary
+      ] = value;
+
 
       const button =
         document.createElement(
           "button"
         );
 
-
       button.className =
         "theme-card";
-
 
       button.dataset.theme =
         key;
@@ -4566,16 +3189,15 @@ function renderThemes(){
           class="theme-preview"
           style="
             background:
-              linear-gradient(
-                135deg,
-                ${theme.primary},
-                ${theme.secondary}
-              )
+            linear-gradient(
+              135deg,
+              ${primary},
+              ${secondary}
+            )
           "
         ></div>
-
         <div class="theme-name">
-          ${theme.name}
+          ${name}
         </div>
       `;
 
@@ -4584,7 +3206,6 @@ function renderThemes(){
         () => {
 
           setTheme(key);
-
           playSound("click");
         };
 
@@ -4597,61 +3218,56 @@ function renderThemes(){
 }
 
 
-function setTheme(name){
+function setTheme(key){
 
   const theme =
-    themes[name] ||
+    themes[key] ||
     themes.neon;
+
+
+  const [
+    ,
+    bg1,
+    bg2,
+    primary,
+    secondary,
+    accent
+  ] = theme;
 
 
   const root =
     document.documentElement;
 
 
-  Object.entries({
-    "--bg1":
-      theme.bg1,
+  root.style.setProperty(
+    "--bg1",
+    bg1
+  );
 
-    "--bg2":
-      theme.bg2,
+  root.style.setProperty(
+    "--bg2",
+    bg2
+  );
 
-    "--card":
-      theme.card,
+  root.style.setProperty(
+    "--primary",
+    primary
+  );
 
-    "--card2":
-      theme.card2,
+  root.style.setProperty(
+    "--secondary",
+    secondary
+  );
 
-    "--primary":
-      theme.primary,
-
-    "--secondary":
-      theme.secondary,
-
-    "--accent":
-      theme.accent,
-
-    "--text":
-      theme.text,
-
-    "--muted":
-      theme.muted,
-
-    "--border":
-      theme.border
-  }).forEach(
-    ([property,value]) => {
-
-      root.style.setProperty(
-        property,
-        value
-      );
-    }
+  root.style.setProperty(
+    "--accent",
+    accent
   );
 
 
   localStorage.setItem(
     "fgTheme",
-    name
+    key
   );
 
 
@@ -4660,623 +3276,81 @@ function setTheme(name){
       ".theme-card"
     )
     .forEach(
-      element => {
+      button => {
 
-        element.classList.toggle(
+        button.classList.toggle(
           "active",
-          element.dataset.theme ===
-            name
+          button.dataset.theme ===
+          key
         );
       }
     );
 }
 
 
-/* =====================================
-   SETTINGS
-===================================== */
-
 function openSettings(){
 
   settingsPanel.classList.add(
     "open"
   );
-
-  playSound("click");
 }
 
 
-function closeSettings(){
-
-  settingsPanel.classList.remove(
-    "open"
-  );
-}
-
-
-settingsBtn.onclick =
+$("settingsBtn").onclick =
   openSettings;
 
-
-dashboardThemeBtn.onclick =
+$("dashboardThemeBtn").onclick =
   openSettings;
 
-
-closeSettingsBtn.onclick =
-  closeSettings;
-
-
-/* =====================================
-   SOUND EFFECTS
-===================================== */
-
-let audioContext =
-  null;
-
-
-function getAudioContext(){
-
-  if(!audioContext){
-
-    audioContext =
-      new(
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
-  }
-
-
-  if(
-    audioContext.state ===
-    "suspended"
-  ){
-
-    audioContext.resume();
-  }
-
-
-  return audioContext;
-}
-
-
-function tone(
-  frequency,
-  duration,
-  volume=.05,
-  type="sine"
-){
-
-  if(!soundEnabled){
-    return;
-  }
-
-
-  try{
-
-    const ctx =
-      getAudioContext();
-
-
-    const oscillator =
-      ctx.createOscillator();
-
-
-    const gain =
-      ctx.createGain();
-
-
-    oscillator.type =
-      type;
-
-
-    oscillator.frequency.value =
-      frequency;
-
-
-    gain.gain.value =
-      volume;
-
-
-    oscillator.connect(
-      gain
-    );
-
-
-    gain.connect(
-      ctx.destination
-    );
-
-
-    oscillator.start();
-
-
-    gain.gain.exponentialRampToValueAtTime(
-      .001,
-      ctx.currentTime +
-      duration
-    );
-
-
-    oscillator.stop(
-      ctx.currentTime +
-      duration
-    );
-
-
-  }catch{}
-}
-
-
-function playSound(type){
-
-  if(!soundEnabled){
-    return;
-  }
-
-
-  if(type === "click"){
-
-    tone(
-      420,
-      .07,
-      .04,
-      "square"
-    );
-
-  }
-
-
-  if(type === "move"){
-
-    tone(
-      600,
-      .08,
-      .055
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          780,
-          .08,
-          .04
-        ),
-      55
-    );
-  }
-
-
-  if(type === "success"){
-
-    tone(
-      520,
-      .1,
-      .055
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          700,
-          .13,
-          .055
-        ),
-      85
-    );
-  }
-
-
-  if(type === "win"){
-
-    tone(
-      520,
-      .12,
-      .07
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          670,
-          .13,
-          .07
-        ),
-      110
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          880,
-          .3,
-          .075
-        ),
-      220
-    );
-  }
-
-
-  if(type === "lose"){
-
-    tone(
-      330,
-      .17,
-      .055
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          220,
-          .28,
-          .055
-        ),
-      120
-    );
-  }
-
-
-  if(type === "message"){
-
-    tone(
-      850,
-      .08,
-      .045
-    );
-
-
-    setTimeout(
-      () =>
-        tone(
-          1050,
-          .09,
-          .035
-        ),
-      60
-    );
-  }
-
-
-  if(type === "error"){
-
-    tone(
-      180,
-      .18,
-      .045,
-      "sawtooth"
-    );
-  }
-}
-
-
-function updateSoundUI(){
-
-  soundToggle.classList.toggle(
-    "on",
-    soundEnabled
-  );
-
-
-  soundTopBtn.textContent =
-    soundEnabled
-      ? "🔊"
-      : "🔇";
-}
-
-
-function toggleSound(){
-
-  soundEnabled =
-    !soundEnabled;
-
-
-  localStorage.setItem(
-    "fgSound",
-    soundEnabled
-      ? "on"
-      : "off"
-  );
-
-
-  updateSoundUI();
-
-
-  if(soundEnabled){
-
-    playSound("click");
-  }
-}
-
-
-soundToggle.onclick =
-  toggleSound;
-
-
-soundTopBtn.onclick =
-  toggleSound;
-
-
-/* =====================================
-   MUSIC
-===================================== */
-
-function getYouTubeID(url){
-
-  if(
-    !url ||
-    url.includes(
-      "PASTE_NEW"
-    )
-  ){
-    return "";
-  }
-
-
-  try{
-
-    const parsed =
-      new URL(url);
-
-
-    if(
-      parsed.hostname.includes(
-        "youtu.be"
-      )
-    ){
-
-      return parsed.pathname
-        .replace("/","")
-        .split("?")[0];
-    }
-
-
-    if(
-      parsed.searchParams.get("v")
-    ){
-
-      return parsed.searchParams.get(
-        "v"
-      );
-    }
-
-
-    const match =
-      parsed.pathname.match(
-        /\/embed\/([^/?]+)/
-      );
-
-
-    return match
-      ? match[1]
-      : "";
-
-
-  }catch{
-
-    return "";
-  }
-}
-
-
-function startMusic(){
-
-  if(
-    !musicEnabled ||
-    musicStarted
-  ){
-    return;
-  }
-
-
-  const videoID =
-    getYouTubeID(
-      NEW_MUSIC_URL
-    );
-
-
-  if(!videoID){
-
-    musicStatus.textContent =
-      "Add your new YouTube link in NEW_MUSIC_URL.";
-
-    return;
-  }
-
-
-  musicFrame.src =
-    `https://www.youtube.com/embed/${videoID}?autoplay=1&loop=1&playlist=${videoID}&controls=0&rel=0`;
-
-
-  musicStarted =
-    true;
-
-
-  musicStatus.textContent =
-    "Music ON";
-}
-
-
-function stopMusic(){
-
-  musicFrame.src =
-    "";
-
-
-  musicStarted =
-    false;
-
-
-  musicStatus.textContent =
-    "Music OFF";
-}
-
-
-function updateMusicUI(){
-
-  musicToggle.classList.toggle(
-    "on",
-    musicEnabled
-  );
-
-
-  musicTopBtn.textContent =
-    musicEnabled
-      ? "🎵"
-      : "🚫";
-
-
-  if(
-    !musicEnabled
-  ){
-
-    stopMusic();
-
-  }else{
-
-    musicStatus.textContent =
-      "Music ON";
-  }
-}
-
-
-function toggleMusic(){
-
-  musicEnabled =
-    !musicEnabled;
-
-
-  localStorage.setItem(
-    "fgMusic",
-    musicEnabled
-      ? "on"
-      : "off"
-  );
-
-
-  updateMusicUI();
-
-
-  if(musicEnabled){
-
-    startMusic();
-
-  }else{
-
-    stopMusic();
-  }
-
-
-  playSound("click");
-}
-
-
-musicToggle.onclick =
-  toggleMusic;
-
-
-musicTopBtn.onclick =
-  toggleMusic;
-
-
-/*
-Browsers normally block sound autoplay
-until the user interacts with the page.
-Music is enabled by default, and this
-starts it immediately after the first
-click/tap.
-*/
-
-document.addEventListener(
-  "pointerdown",
+$("closeSettingsBtn").onclick =
   () => {
 
-    if(musicEnabled){
-
-      startMusic();
-    }
-
-  },
-  {
-    once:true
-  }
-);
+    settingsPanel.classList.remove(
+      "open"
+    );
+  };
 
 
-/* =====================================
-   SAFETY
-===================================== */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =====================================
-   START APP
-===================================== */
+/* START */
 
 renderThemes();
-
 
 setTheme(
   localStorage.getItem(
     "fgTheme"
-  ) ||
-  "neon"
+  ) || "neon"
 );
 
-
 updateSoundUI();
-
 updateMusicUI();
 
 
-playerProfile =
+profile =
   loadProfile();
 
 
-if(playerProfile){
+if(profile){
 
   selectedAvatar =
-    playerProfile.avatar ||
+    profile.avatar ||
     "🥷";
 
-
   updateDashboard();
-
 
   showScreen(
     dashboardScreen
   );
 
-
-  animateCounter();
+  animateUsers();
 
 }else{
 
-  selectedAvatar =
-    "🥷";
-
-
-  profileAvatarPreview.textContent =
+  profileAvatar.textContent =
     selectedAvatar;
 
-
-  renderAvatarChoices(
+  renderAvatars(
     profileAvatarGrid
   );
-
 
   showScreen(
     profileScreen
