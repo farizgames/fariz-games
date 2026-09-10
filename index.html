@@ -7,192 +7,554 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 :root{
- --bg:#050713;--bg2:#17245c;--card:#101630;--card2:#090e23;
- --p:#61e8ff;--s:#765cff;--a:#ff6585;--text:#fff;
- --muted:#aab4d5;--border:#35416e;--green:#68f2ad
+ --bg:#050713;
+ --bg2:#17245c;
+ --card:#101630;
+ --card2:#090e23;
+ --p:#61e8ff;
+ --s:#765cff;
+ --a:#ff6585;
+ --text:#fff;
+ --muted:#aab4d5;
+ --border:#35416e;
+ --green:#68f2ad
 }
+
 body{
- min-height:100vh;font-family:Arial,sans-serif;color:var(--text);
+ min-height:100vh;
+ font-family:Arial,sans-serif;
+ color:var(--text);
  background:radial-gradient(circle at top,var(--bg2),var(--bg) 70%);
  transition:.3s
 }
+
 button,input{font:inherit}
 button{cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed}
 .hidden{display:none!important}
+
 .gridbg{
- position:fixed;inset:0;z-index:-1;
- background-image:linear-gradient(#ffffff08 1px,transparent 1px),
+ position:fixed;
+ inset:0;
+ z-index:-1;
+ background-image:
+ linear-gradient(#ffffff08 1px,transparent 1px),
  linear-gradient(90deg,#ffffff08 1px,transparent 1px);
  background-size:35px 35px
 }
+
 .top{
- max-width:900px;margin:12px auto;padding:10px 12px;width:calc(100% - 24px);
- display:flex;align-items:center;justify-content:space-between;
- background:var(--card);border:1px solid var(--border);border-radius:18px
+ max-width:900px;
+ margin:12px auto;
+ padding:10px 12px;
+ width:calc(100% - 24px);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:18px
 }
-.brand{display:flex;align-items:center;gap:9px;color:var(--p);font-weight:900}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ color:var(--p);
+ font-weight:900
+}
+
 .fg{
- width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
- background:linear-gradient(135deg,var(--p),var(--s));color:white;font-weight:900
+ width:40px;
+ height:40px;
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ background:linear-gradient(135deg,var(--p),var(--s));
+ color:white;
+ font-weight:900
 }
+
 .actions{display:flex;gap:7px}
+
 .icon{
- min-width:42px;height:42px;border-radius:12px;border:1px solid var(--border);
- background:var(--card2);color:white
+ min-width:42px;
+ height:42px;
+ border-radius:12px;
+ border:1px solid var(--border);
+ background:var(--card2);
+ color:white
 }
+
 main{padding:14px}
 .screen{max-width:490px;margin:auto}
-.logo{text-align:center;margin:15px 0 22px}
+
+.logo{
+ text-align:center;
+ margin:15px 0 22px
+}
+
 .bigfg{
- width:78px;height:78px;margin:auto;border-radius:24px;display:grid;
- place-items:center;font-size:26px;font-weight:1000;
+ width:78px;
+ height:78px;
+ margin:auto;
+ border-radius:24px;
+ display:grid;
+ place-items:center;
+ font-size:26px;
+ font-weight:1000;
  background:linear-gradient(135deg,var(--p),var(--s))
 }
-.logo h1{font-size:36px;color:var(--p);margin-top:10px}
-.logo p,.desc{color:var(--muted);font-size:14px}
-.card{
- padding:22px;background:var(--card);border:1px solid var(--border);
- border-radius:24px;box-shadow:0 25px 70px #0007
+
+.logo h1{
+ font-size:36px;
+ color:var(--p);
+ margin-top:10px
 }
+
+.logo p,.desc{
+ color:var(--muted);
+ font-size:14px
+}
+
+.card{
+ padding:22px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:24px;
+ box-shadow:0 25px 70px #0007
+}
+
 .card h2{margin-bottom:8px}
-.desc{line-height:1.6;margin-bottom:17px}
+
+.desc{
+ line-height:1.6;
+ margin-bottom:17px
+}
+
 .avatar{
- width:88px;height:88px;border-radius:50%;margin:0 auto 15px;
- display:grid;place-items:center;font-size:45px;background:var(--card2);
+ width:88px;
+ height:88px;
+ border-radius:50%;
+ margin:0 auto 15px;
+ display:grid;
+ place-items:center;
+ font-size:45px;
+ background:var(--card2);
  border:3px solid var(--p)
 }
-.avatargrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+
+.avatargrid{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:8px;
+ margin:14px 0
+}
+
 .avatarbtn{
- aspect-ratio:1;border-radius:13px;background:var(--card2);
- border:2px solid var(--border);font-size:27px
+ aspect-ratio:1;
+ border-radius:13px;
+ background:var(--card2);
+ border:2px solid var(--border);
+ font-size:27px
 }
+
 .avatarbtn.sel{border-color:var(--p)}
+
 .field{margin:13px 0}
-.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+
+.field label{
+ display:block;
+ color:var(--muted);
+ font-size:13px;
+ margin-bottom:6px
+}
+
 input{
- width:100%;padding:14px;border-radius:13px;border:1px solid var(--border);
- background:var(--card2);color:white;outline:none
+ width:100%;
+ padding:14px;
+ border-radius:13px;
+ border:1px solid var(--border);
+ background:var(--card2);
+ color:white;
+ outline:none
 }
+
 input:focus{border-color:var(--p)}
+
 .btn{
- width:100%;padding:14px;border:0;border-radius:13px;color:white;
- font-weight:900;background:linear-gradient(135deg,var(--p),var(--s))
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:13px;
+ color:white;
+ font-weight:900;
+ background:linear-gradient(135deg,var(--p),var(--s))
 }
-.btn2{margin-top:9px;background:var(--card2);border:1px solid var(--border)}
-.danger{background:linear-gradient(135deg,#ff5577,#a92352)}
-.msg{text-align:center;color:#ff7890;min-height:20px;margin-top:10px;font-size:13px}
+
+.btn2{
+ margin-top:9px;
+ background:var(--card2);
+ border:1px solid var(--border)
+}
+
+.danger{
+ background:linear-gradient(135deg,#ff5577,#a92352)
+}
+
+.msg{
+ text-align:center;
+ color:#ff7890;
+ min-height:20px;
+ margin-top:10px;
+ font-size:13px
+}
+
 .dashboard{text-align:center}
-.name{font-size:28px;font-weight:1000}
-.info{color:var(--muted);margin:7px 0 15px}
+
+.name{
+ font-size:28px;
+ font-weight:1000
+}
+
+.info{
+ color:var(--muted);
+ margin:7px 0 15px
+}
+
 .community{
- padding:18px;margin:16px 0;border:1px solid var(--border);border-radius:18px;
+ padding:18px;
+ margin:16px 0;
+ border:1px solid var(--border);
+ border-radius:18px;
  background:linear-gradient(135deg,#61e8ff18,#765cff20)
 }
-.count{font-size:36px;font-weight:1000;color:var(--p)}
-.community small{color:var(--muted)}
-.code{
- text-align:center;font-size:37px;letter-spacing:7px;color:var(--p);
- font-weight:1000;margin:18px 0
+
+.count{
+ font-size:36px;
+ font-weight:1000;
+ color:var(--p)
 }
+
+.community small{color:var(--muted)}
+
+.code{
+ text-align:center;
+ font-size:37px;
+ letter-spacing:7px;
+ color:var(--p);
+ font-weight:1000;
+ margin:18px 0
+}
+
 .center{text-align:center}
+
 .loader{
- width:42px;height:42px;margin:20px auto;border-radius:50%;
- border:4px solid #ffffff20;border-top-color:var(--p);
+ width:42px;
+ height:42px;
+ margin:20px auto;
+ border-radius:50%;
+ border:4px solid #ffffff20;
+ border-top-color:var(--p);
  animation:spin .8s linear infinite
 }
-@keyframes spin{to{transform:rotate(360deg)}}
-.players{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+
+@keyframes spin{
+ to{transform:rotate(360deg)}
+}
+
+.players{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
+ margin-bottom:14px
+}
+
 .player{
- padding:10px;text-align:center;border-radius:14px;background:var(--card2);
+ padding:10px;
+ text-align:center;
+ border-radius:14px;
+ background:var(--card2);
  border:1px solid var(--border)
 }
+
 .pav{font-size:29px}
-.pname{display:block;font-size:12px;color:var(--muted)}
-.sym{font-size:27px;font-weight:1000}
-.x{color:var(--p)}.o{color:var(--a)}
-.turn{text-align:center;color:#ffd166;font-weight:900;min-height:24px}
-.you{text-align:center;color:var(--muted);font-size:12px}
-.board{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
-.cell{
- aspect-ratio:1;border-radius:16px;border:2px solid var(--border);
- background:var(--card2);font-size:50px;font-weight:1000;color:white
+
+.pname{
+ display:block;
+ font-size:12px;
+ color:var(--muted)
 }
+
+.sym{
+ font-size:27px;
+ font-weight:1000
+}
+
+.x{color:var(--p)}
+.o{color:var(--a)}
+
+.turn{
+ text-align:center;
+ color:#ffd166;
+ font-weight:900;
+ min-height:24px
+}
+
+.you{
+ text-align:center;
+ color:var(--muted);
+ font-size:12px
+}
+
+.board{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:9px;
+ margin:18px 0
+}
+
+.cell{
+ aspect-ratio:1;
+ border-radius:16px;
+ border:2px solid var(--border);
+ background:var(--card2);
+ font-size:50px;
+ font-weight:1000;
+ color:white
+}
+
 .cell.x{color:var(--p)}
 .cell.o{color:var(--a)}
-.cell.win{border-color:var(--green);background:#68f2ad18}
-.result{text-align:center;color:var(--green);font-size:22px;font-weight:900;min-height:30px}
-.status{text-align:center;color:#ffd166;font-size:13px;min-height:20px;margin:6px}
-.room{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
+
+.cell.win{
+ border-color:var(--green);
+ background:#68f2ad18
+}
+
+.result{
+ text-align:center;
+ color:var(--green);
+ font-size:22px;
+ font-weight:900;
+ min-height:30px
+}
+
+.status{
+ text-align:center;
+ color:#ffd166;
+ font-size:13px;
+ min-height:20px;
+ margin:6px
+}
+
+.room{
+ text-align:center;
+ color:var(--muted);
+ font-size:12px;
+ margin-top:14px
+}
+
 .settings{
- position:fixed;right:-390px;top:0;width:min(380px,94vw);height:100vh;
- z-index:100;padding:20px;overflow:auto;background:var(--card);
- border-left:1px solid var(--border);transition:.3s
+ position:fixed;
+ right:-390px;
+ top:0;
+ width:min(380px,94vw);
+ height:100vh;
+ z-index:100;
+ padding:20px;
+ overflow:auto;
+ background:var(--card);
+ border-left:1px solid var(--border);
+ transition:.3s
 }
+
 .settings.open{right:0}
-.sethead{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.themegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+
+.sethead{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:18px
+}
+
+.themegrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ margin-top:12px
+}
+
 .theme{
- padding:8px;border-radius:12px;border:2px solid transparent;
- background:var(--card2);color:white
+ padding:8px;
+ border-radius:12px;
+ border:2px solid transparent;
+ background:var(--card2);
+ color:white
 }
+
 .theme.active{border-color:var(--p)}
-.preview{height:36px;border-radius:8px;margin-bottom:6px}
-.tname{font-size:11px;font-weight:bold}
+
+.preview{
+ height:36px;
+ border-radius:8px;
+ margin-bottom:6px
+}
+
+.tname{
+ font-size:11px;
+ font-weight:bold
+}
+
 .setrow{
- display:flex;justify-content:space-between;align-items:center;
- margin-top:20px;padding-top:17px;border-top:1px solid var(--border)
-}
-.toggle{width:52px;height:29px;padding:3px;border:0;border-radius:20px;background:#555}
-.toggle span{display:block;width:23px;height:23px;background:white;border-radius:50%;transition:.2s}
-.toggle.on{background:var(--p)}
-.toggle.on span{transform:translateX(23px)}
-.overlay{
- position:fixed;inset:0;z-index:150;background:#000b;display:flex;
- align-items:center;justify-content:center;padding:18px
-}
-.modal{
- max-width:390px;width:100%;padding:23px;text-align:center;border-radius:22px;
- background:var(--card);border:1px solid var(--border)
-}
-.modal p{color:var(--muted);margin:10px 0 17px}
-.chat{
- position:fixed;right:14px;bottom:14px;width:min(360px,calc(100vw - 28px));
- height:450px;max-height:72vh;z-index:90;background:var(--card);
- border:1px solid var(--border);border-radius:20px;display:flex;
- flex-direction:column;overflow:hidden
-}
-.chathead{
- padding:11px;display:flex;justify-content:space-between;align-items:center;
- border-bottom:1px solid var(--border)
-}
-.messages{flex:1;padding:10px;overflow:auto;display:flex;flex-direction:column;gap:7px}
-.message{
- max-width:82%;padding:9px;border-radius:12px;background:var(--card2);
- border:1px solid var(--border)
-}
-.message.mine{margin-left:auto;border-color:var(--p)}
-.mn{font-size:10px;color:var(--p);font-weight:bold}
-.mt{font-size:13px;word-break:break-word}
-.chatinput{
- display:grid;grid-template-columns:1fr 50px;gap:6px;padding:8px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-top:20px;
+ padding-top:17px;
  border-top:1px solid var(--border)
 }
-.send{border:0;border-radius:11px;background:var(--p);font-weight:bold}
-.badge{
- position:absolute;background:#ff5577;border-radius:50%;
- font-size:10px;padding:3px 5px
+
+.toggle{
+ width:52px;
+ height:29px;
+ padding:3px;
+ border:0;
+ border-radius:20px;
+ background:#555
 }
-#ytMusicHolder{
+
+.toggle span{
+ display:block;
+ width:23px;
+ height:23px;
+ background:white;
+ border-radius:50%;
+ transition:.2s
+}
+
+.toggle.on{background:var(--p)}
+.toggle.on span{transform:translateX(23px)}
+
+.overlay{
  position:fixed;
- width:1px;
- height:1px;
- left:-9999px;
- top:-9999px;
- opacity:0;
- pointer-events:none;
+ inset:0;
+ z-index:150;
+ background:#000b;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:18px
+}
+
+.modal{
+ max-width:390px;
+ width:100%;
+ padding:23px;
+ text-align:center;
+ border-radius:22px;
+ background:var(--card);
+ border:1px solid var(--border)
+}
+
+.modal p{
+ color:var(--muted);
+ margin:10px 0 17px
+}
+
+.chat{
+ position:fixed;
+ right:14px;
+ bottom:14px;
+ width:min(360px,calc(100vw - 28px));
+ height:450px;
+ max-height:72vh;
+ z-index:90;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:20px;
+ display:flex;
+ flex-direction:column;
  overflow:hidden
 }
+
+.chathead{
+ padding:11px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid var(--border)
+}
+
+.messages{
+ flex:1;
+ padding:10px;
+ overflow:auto;
+ display:flex;
+ flex-direction:column;
+ gap:7px
+}
+
+.message{
+ max-width:82%;
+ padding:9px;
+ border-radius:12px;
+ background:var(--card2);
+ border:1px solid var(--border)
+}
+
+.message.mine{
+ margin-left:auto;
+ border-color:var(--p)
+}
+
+.mn{
+ font-size:10px;
+ color:var(--p);
+ font-weight:bold
+}
+
+.mt{
+ font-size:13px;
+ word-break:break-word
+}
+
+.chatinput{
+ display:grid;
+ grid-template-columns:1fr 50px;
+ gap:6px;
+ padding:8px;
+ border-top:1px solid var(--border)
+}
+
+.send{
+ border:0;
+ border-radius:11px;
+ background:var(--p);
+ font-weight:bold
+}
+
+.badge{
+ position:absolute;
+ background:#ff5577;
+ border-radius:50%;
+ font-size:10px;
+ padding:3px 5px
+}
+
+#ytMusicHolder{
+ position:fixed;
+ left:-9999px;
+ top:-9999px;
+ width:2px;
+ height:2px;
+ opacity:.01;
+ overflow:hidden;
+ pointer-events:none
+}
+
 @media(max-width:520px){
  .avatargrid{grid-template-columns:repeat(4,1fr)}
  .brand span{display:none}
@@ -202,17 +564,25 @@ input:focus{border-color:var(--p)}
 </head>
 
 <body>
+
 <div class="gridbg"></div>
 
-<!-- Hidden YouTube background player -->
 <div id="ytMusicHolder">
  <div id="ytPlayer"></div>
 </div>
 
 <header id="top" class="top hidden">
- <div class="brand"><div class="fg">FG</div><span>Fariz Games</span></div>
+ <div class="brand">
+  <div class="fg">FG</div>
+  <span>Fariz Games</span>
+ </div>
+
  <div class="actions">
-  <button id="chatTop" class="icon hidden">💬<span id="badge" class="badge hidden">1</span></button>
+  <button id="chatTop" class="icon hidden">
+   💬
+   <span id="badge" class="badge hidden">1</span>
+  </button>
+
   <button id="musicTop" class="icon">🎵</button>
   <button id="themeTop" class="icon">🎨</button>
   <button id="soundTop" class="icon">🔊</button>
@@ -222,6 +592,7 @@ input:focus{border-color:var(--p)}
 <main>
 
 <section id="profile" class="screen">
+
  <div class="logo">
   <div class="bigfg">FG</div>
   <h1>Fariz Games</h1>
@@ -229,33 +600,55 @@ input:focus{border-color:var(--p)}
  </div>
 
  <div class="card">
+
   <div id="profileAvatar" class="avatar">🥷</div>
+
   <h2>Create Your Profile</h2>
-  <p class="desc">Choose your character and enter your details.</p>
+  <p class="desc">
+   Choose your character and enter your details.
+  </p>
 
   <div id="profileAvatars" class="avatargrid"></div>
 
   <div class="field">
    <label>Name</label>
-   <input id="nameInput" maxlength="20" placeholder="Enter your name">
+   <input
+    id="nameInput"
+    maxlength="20"
+    placeholder="Enter your name">
   </div>
 
   <div class="field">
    <label>Age</label>
-   <input id="ageInput" type="number" min="5" max="100" placeholder="Enter your age">
+   <input
+    id="ageInput"
+    type="number"
+    min="5"
+    max="100"
+    placeholder="Enter your age">
   </div>
 
   <div class="field">
    <label>Location</label>
-   <input id="locationInput" maxlength="30" placeholder="Enter your location">
+   <input
+    id="locationInput"
+    maxlength="30"
+    placeholder="Enter your location">
   </div>
 
-  <button id="continueBtn" class="btn">Continue</button>
+  <button id="continueBtn" class="btn">
+   Continue
+  </button>
+
   <div id="profileMsg" class="msg"></div>
+
  </div>
+
 </section>
 
+
 <section id="dashboard" class="screen hidden">
+
  <div class="logo">
   <div class="bigfg">FG</div>
   <h1>Fariz Games</h1>
@@ -263,23 +656,47 @@ input:focus{border-color:var(--p)}
  </div>
 
  <div class="card dashboard">
+
   <div id="dashAvatar" class="avatar">🥷</div>
-  <div id="dashName" class="name">Player</div>
+
+  <div id="dashName" class="name">
+   Player
+  </div>
+
   <div id="dashInfo" class="info"></div>
 
   <div class="community">
-   <div id="counter" class="count">0+</div>
-   <small>Fariz Games Community Goal</small>
+   <div id="counter" class="count">
+    0+
+   </div>
+   <small>
+    Fariz Games Community Goal
+   </small>
   </div>
 
-  <button id="playBtn" class="btn">▶ Play Game</button>
-  <button id="characterBtn" class="btn btn2">👤 Change Character</button>
-  <button id="themeBtn" class="btn btn2">🎨 Choose Theme</button>
-  <button id="editBtn" class="btn btn2">Edit Profile</button>
+  <button id="playBtn" class="btn">
+   ▶ Play Game
+  </button>
+
+  <button id="characterBtn" class="btn btn2">
+   👤 Change Character
+  </button>
+
+  <button id="themeBtn" class="btn btn2">
+   🎨 Choose Theme
+  </button>
+
+  <button id="editBtn" class="btn btn2">
+   Edit Profile
+  </button>
+
  </div>
+
 </section>
 
+
 <section id="lobby" class="screen hidden">
+
  <div class="logo">
   <div class="bigfg">FG</div>
   <h1>Fariz Games</h1>
@@ -287,46 +704,84 @@ input:focus{border-color:var(--p)}
  </div>
 
  <div class="card">
+
   <h2>Online Match</h2>
-  <p class="desc">Create a room or join your friend's room.</p>
 
-  <button id="createBtn" class="btn">Create Room</button>
+  <p class="desc">
+   Create a room or join your friend's room.
+  </p>
 
-  <p class="center desc" style="margin:17px">OR</p>
+  <button id="createBtn" class="btn">
+   Create Room
+  </button>
+
+  <p class="center desc" style="margin:17px">
+   OR
+  </p>
 
   <div class="field">
    <label>Room Code</label>
-   <input id="roomInput" maxlength="6" placeholder="Enter room code">
+   <input
+    id="roomInput"
+    maxlength="6"
+    placeholder="Enter room code">
   </div>
 
-  <button id="joinBtn" class="btn">Join Room</button>
-  <button id="homeBtn" class="btn btn2">Back Home</button>
+  <button id="joinBtn" class="btn">
+   Join Room
+  </button>
+
+  <button id="homeBtn" class="btn btn2">
+   Back Home
+  </button>
 
   <div id="lobbyMsg" class="msg"></div>
+
  </div>
+
 </section>
 
+
 <section id="waiting" class="screen hidden">
+
  <div class="logo">
   <div class="bigfg">FG</div>
   <h1>Fariz Games</h1>
  </div>
 
  <div class="card center">
+
   <h2>Room Created</h2>
-  <p class="desc">Send this room code to your friend.</p>
 
-  <div id="codeDisplay" class="code">------</div>
+  <p class="desc">
+   Send this room code to your friend.
+  </p>
 
-  <button id="copyBtn" class="btn">Copy Room Code</button>
-  <button id="leaveWait" class="btn btn2">Leave Room</button>
+  <div id="codeDisplay" class="code">
+   ------
+  </div>
+
+  <button id="copyBtn" class="btn">
+   Copy Room Code
+  </button>
+
+  <button id="leaveWait" class="btn btn2">
+   Leave Room
+  </button>
 
   <div class="loader"></div>
-  <p class="desc">Waiting for opponent...</p>
+
+  <p class="desc">
+   Waiting for opponent...
+  </p>
+
  </div>
+
 </section>
 
+
 <section id="game" class="screen hidden">
+
  <div class="logo">
   <div class="bigfg">FG</div>
   <h1>Fariz Games</h1>
@@ -335,6 +790,7 @@ input:focus{border-color:var(--p)}
  <div class="card">
 
   <div class="players">
+
    <div class="player">
     <div id="xAvatar" class="pav">🥷</div>
     <span id="xName" class="pname">Player X</span>
@@ -346,92 +802,174 @@ input:focus{border-color:var(--p)}
     <span id="oName" class="pname">Player O</span>
     <div class="sym o">O</div>
    </div>
+
   </div>
 
-  <div id="turn" class="turn">Waiting...</div>
+  <div id="turn" class="turn">
+   Waiting...
+  </div>
+
   <div id="you" class="you"></div>
 
   <div class="board">
+
    <button class="cell" data-i="0"></button>
    <button class="cell" data-i="1"></button>
    <button class="cell" data-i="2"></button>
+
    <button class="cell" data-i="3"></button>
    <button class="cell" data-i="4"></button>
    <button class="cell" data-i="5"></button>
+
    <button class="cell" data-i="6"></button>
    <button class="cell" data-i="7"></button>
    <button class="cell" data-i="8"></button>
+
   </div>
 
   <div id="result" class="result"></div>
+
   <div id="rematchStatus" class="status"></div>
 
-  <button id="rematchBtn" class="btn hidden">Request Rematch</button>
-  <button id="chatBtn" class="btn btn2">💬 Open Chat</button>
-  <button id="leaveGame" class="btn btn2">Leave Game</button>
+  <button id="rematchBtn" class="btn hidden">
+   Request Rematch
+  </button>
 
-  <div class="room">Room: <span id="gameCode">------</span></div>
+  <button id="chatBtn" class="btn btn2">
+   💬 Open Chat
+  </button>
+
+  <button id="leaveGame" class="btn btn2">
+   Leave Game
+  </button>
+
+  <div class="room">
+   Room:
+   <span id="gameCode">------</span>
+  </div>
+
  </div>
+
 </section>
 
 </main>
 
+
 <div id="avatarModal" class="overlay hidden">
+
  <div class="modal">
+
   <h2>Choose Character</h2>
+
   <p>Select your character.</p>
+
   <div id="modalAvatars" class="avatargrid"></div>
-  <button id="closeAvatar" class="btn btn2">Close</button>
+
+  <button id="closeAvatar" class="btn btn2">
+   Close
+  </button>
+
  </div>
+
 </div>
+
 
 <div id="rematchModal" class="overlay hidden">
+
  <div class="modal">
+
   <h2>🔁 Rematch Request</h2>
-  <p>Your opponent wants to play another match.</p>
-  <button id="acceptBtn" class="btn">Accept Rematch</button>
-  <button id="declineBtn" class="btn danger" style="margin-top:9px">Decline Rematch</button>
+
+  <p>
+   Your opponent wants to play another match.
+  </p>
+
+  <button id="acceptBtn" class="btn">
+   Accept Rematch
+  </button>
+
+  <button
+   id="declineBtn"
+   class="btn danger"
+   style="margin-top:9px">
+   Decline Rematch
+  </button>
+
  </div>
+
 </div>
 
+
 <div id="chatPanel" class="chat hidden">
+
  <div class="chathead">
+
   <b>💬 Room Chat</b>
-  <button id="closeChat" class="icon">✕</button>
+
+  <button id="closeChat" class="icon">
+   ✕
+  </button>
+
  </div>
 
  <div id="messages" class="messages"></div>
 
  <div class="chatinput">
-  <input id="chatInput" maxlength="150" placeholder="Type a message...">
-  <button id="sendBtn" class="send">➤</button>
+
+  <input
+   id="chatInput"
+   maxlength="150"
+   placeholder="Type a message...">
+
+  <button id="sendBtn" class="send">
+   ➤
+  </button>
+
  </div>
+
 </div>
 
+
 <aside id="settings" class="settings">
+
  <div class="sethead">
+
   <h2>Settings</h2>
-  <button id="closeSettings" class="icon">✕</button>
+
+  <button id="closeSettings" class="icon">
+   ✕
+  </button>
+
  </div>
 
  <h3>20 Themes</h3>
+
  <div id="themes" class="themegrid"></div>
 
  <div class="setrow">
   <span>Sound Effects</span>
-  <button id="soundToggle" class="toggle"><span></span></button>
+  <button id="soundToggle" class="toggle">
+   <span></span>
+  </button>
  </div>
 
  <div class="setrow">
   <span>Background Music</span>
-  <button id="musicToggle" class="toggle"><span></span></button>
+  <button id="musicToggle" class="toggle">
+   <span></span>
+  </button>
  </div>
+
 </aside>
+
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script type="module">
-import {initializeApp}
+
+import {
+ initializeApp
+}
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
@@ -446,20 +984,44 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
+
 const firebaseConfig={
+
  apiKey:"AIzaSyBKPJeJILSahLtcP2qzYIjNLgEq9-cAsKE",
- authDomain:"fariz-games.firebaseapp.com",
- databaseURL:"https://fariz-games-default-rtdb.firebaseio.com",
- projectId:"fariz-games",
- storageBucket:"fariz-games.firebasestorage.app",
- messagingSenderId:"40340677094",
- appId:"1:40340677094:web:57efac0a6de70c23ef3627"
+
+ authDomain:
+ "fariz-games.firebaseapp.com",
+
+ databaseURL:
+ "https://fariz-games-default-rtdb.firebaseio.com",
+
+ projectId:
+ "fariz-games",
+
+ storageBucket:
+ "fariz-games.firebasestorage.app",
+
+ messagingSenderId:
+ "40340677094",
+
+ appId:
+ "1:40340677094:web:57efac0a6de70c23ef3627",
+
+ measurementId:
+ "G-GCJRXRE8HG"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app);
 
-const $=id=>document.getElementById(id);
+const app=
+ initializeApp(firebaseConfig);
+
+const db=
+ getDatabase(app);
+
+const $=
+ id=>document.getElementById(id);
+
 
 const screens=[
  $("profile"),
@@ -472,6 +1034,7 @@ const screens=[
 const cells=[
  ...document.querySelectorAll(".cell")
 ];
+
 
 let user=null;
 let chosen="🥷";
@@ -493,98 +1056,132 @@ let soundOn=
 let musicOn=
  localStorage.getItem("fgMusic")!=="off";
 
+
 function show(screen){
- screens.forEach(s=>s.classList.add("hidden"));
+
+ screens.forEach(
+  s=>s.classList.add("hidden")
+ );
+
  screen.classList.remove("hidden");
 
  $("top").classList.toggle(
   "hidden",
   screen===$("profile")
  );
+
 }
 
+
 /* =========================
-   YOUTUBE BACKGROUND MUSIC
+   BACKGROUND MUSIC
 ========================= */
 
-const MUSIC_VIDEO_ID="2K9wxzFLye0";
+const MUSIC_VIDEO_ID=
+ "2K9wxzFLye0";
 
 let ytPlayer=null;
 let ytReady=false;
 
-window.onYouTubeIframeAPIReady=function(){
 
- ytPlayer=new YT.Player("ytPlayer",{
+window.onYouTubeIframeAPIReady=
+ function(){
 
-  height:"1",
-  width:"1",
+  ytPlayer=
+   new YT.Player(
+    "ytPlayer",
+    {
 
-  videoId:MUSIC_VIDEO_ID,
+     height:"2",
+     width:"2",
 
-  playerVars:{
-   autoplay:0,
-   controls:0,
-   disablekb:1,
-   fs:0,
-   rel:0,
-   playsinline:1,
-   loop:1,
-   playlist:MUSIC_VIDEO_ID
-  },
+     videoId:
+      MUSIC_VIDEO_ID,
 
-  events:{
+     playerVars:{
+      autoplay:0,
+      controls:0,
+      disablekb:1,
+      fs:0,
+      rel:0,
+      playsinline:1,
+      loop:1,
+      playlist:
+       MUSIC_VIDEO_ID
+     },
 
-   onReady:function(event){
+     events:{
 
-    ytReady=true;
+      onReady:event=>{
 
-    try{
-     event.target.setVolume(28);
-    }catch(e){}
+       ytReady=true;
 
-    musicUI();
-   },
+       try{
+        event.target.setVolume(25);
+       }catch(e){}
 
-   onStateChange:function(event){
+       musicUI();
+      },
 
-    if(
-     event.data===YT.PlayerState.ENDED &&
-     musicOn
-    ){
-     try{
-      ytPlayer.seekTo(0);
-      ytPlayer.playVideo();
-     }catch(e){}
+      onStateChange:event=>{
+
+       if(
+        event.data===
+        YT.PlayerState.ENDED &&
+        musicOn
+       ){
+
+        try{
+         ytPlayer.seekTo(0);
+         ytPlayer.playVideo();
+        }catch(e){}
+       }
+
+      }
+
+     }
+
     }
-   }
+   );
 
-  }
+ };
 
- });
-};
 
 function startMusic(){
 
- if(!musicOn || !ytReady || !ytPlayer){
+ if(
+  !musicOn ||
+  !ytReady ||
+  !ytPlayer
+ ){
   return;
  }
 
  try{
-  ytPlayer.setVolume(28);
+
+  ytPlayer.setVolume(25);
   ytPlayer.playVideo();
+
  }catch(e){}
+
 }
+
 
 function stopMusic(){
 
- if(!ytPlayer || !ytReady){
+ if(
+  !ytReady ||
+  !ytPlayer
+ ){
   return;
  }
 
  try{
   ytPlayer.pauseVideo();
  }catch(e){}
+
 }
+
 
 function musicUI(){
 
@@ -595,16 +1192,23 @@ function musicUI(){
   );
 
  $("musicTop").textContent=
-  musicOn ? "🎵" : "🚫";
+  musicOn
+   ? "🎵"
+   : "🚫";
+
 }
+
 
 function toggleMusic(){
 
- musicOn=!musicOn;
+ musicOn=
+  !musicOn;
 
  localStorage.setItem(
   "fgMusic",
-  musicOn ? "on" : "off"
+  musicOn
+   ? "on"
+   : "off"
  );
 
  musicUI();
@@ -614,33 +1218,36 @@ function toggleMusic(){
  }else{
   stopMusic();
  }
+
 }
 
-$("musicToggle").onclick=toggleMusic;
-$("musicTop").onclick=toggleMusic;
 
-/*
- First user interaction gives the browser
- permission to start audible playback.
-*/
-function firstMusicInteraction(){
+$("musicToggle").onclick=
+ toggleMusic;
 
- if(musicOn){
-  startMusic();
- }
+$("musicTop").onclick=
+ toggleMusic;
 
- setTimeout(()=>{
-  if(musicOn){
-   startMusic();
-  }
- },700);
-}
 
 document.addEventListener(
  "pointerdown",
- firstMusicInteraction,
+ ()=>{
+
+  if(musicOn){
+
+   startMusic();
+
+   setTimeout(
+    startMusic,
+    700
+   );
+
+  }
+
+ },
  {once:true}
 );
+
 
 /* =========================
    SOUND EFFECTS
@@ -648,61 +1255,113 @@ document.addEventListener(
 
 let fxCtx=null;
 
-function tone(f,d=.08,v=.035){
+
+function tone(
+ f,
+ d=.08,
+ v=.035
+){
 
  if(!soundOn)return;
 
  try{
 
   if(!fxCtx){
+
    fxCtx=
     new (
      window.AudioContext ||
      window.webkitAudioContext
     )();
+
   }
 
-  const o=fxCtx.createOscillator();
-  const g=fxCtx.createGain();
+  if(
+   fxCtx.state===
+   "suspended"
+  ){
+   fxCtx.resume();
+  }
+
+  const o=
+   fxCtx.createOscillator();
+
+  const g=
+   fxCtx.createGain();
 
   o.frequency.value=f;
-  g.gain.value=v;
 
-  o.connect(g);
-  g.connect(fxCtx.destination);
-
-  o.start();
+  g.gain.setValueAtTime(
+   v,
+   fxCtx.currentTime
+  );
 
   g.gain.exponentialRampToValueAtTime(
    .001,
    fxCtx.currentTime+d
   );
 
+  o.connect(g);
+  g.connect(fxCtx.destination);
+
+  o.start();
+
   o.stop(
    fxCtx.currentTime+d
   );
 
  }catch(e){}
+
 }
+
 
 function fx(type){
 
- if(type==="click")tone(430);
- if(type==="move")tone(620);
- if(type==="message")tone(900,.1);
- if(type==="error")tone(180,.18);
+ if(type==="click"){
+  tone(430);
+ }
+
+ if(type==="move"){
+  tone(620);
+ }
+
+ if(type==="message"){
+  tone(900,.1);
+ }
+
+ if(type==="error"){
+  tone(180,.18);
+ }
 
  if(type==="success"){
+
   tone(540,.1);
-  setTimeout(()=>tone(730,.13),80);
+
+  setTimeout(
+   ()=>tone(730,.13),
+   80
+  );
+
  }
 
  if(type==="win"){
+
   tone(520,.12);
-  setTimeout(()=>tone(700,.14),100);
-  setTimeout(()=>tone(900,.22),210);
+
+  setTimeout(
+   ()=>tone(700,.14),
+   100
+  );
+
+  setTimeout(
+   ()=>tone(900,.22),
+   210
+  );
+
  }
+
 }
+
 
 function soundUI(){
 
@@ -713,16 +1372,23 @@ function soundUI(){
   );
 
  $("soundTop").textContent=
-  soundOn ? "🔊" : "🔇";
+  soundOn
+   ? "🔊"
+   : "🔇";
+
 }
+
 
 function toggleSound(){
 
- soundOn=!soundOn;
+ soundOn=
+  !soundOn;
 
  localStorage.setItem(
   "fgSound",
-  soundOn ? "on" : "off"
+  soundOn
+   ? "on"
+   : "off"
  );
 
  soundUI();
@@ -730,10 +1396,16 @@ function toggleSound(){
  if(soundOn){
   fx("click");
  }
+
 }
 
-$("soundToggle").onclick=toggleSound;
-$("soundTop").onclick=toggleSound;
+
+$("soundToggle").onclick=
+ toggleSound;
+
+$("soundTop").onclick=
+ toggleSound;
+
 
 /* =========================
    AVATARS
@@ -747,17 +1419,26 @@ const avatars=[
  "🐲","🐱","🦁","🤠"
 ];
 
-function drawAvatars(el,save=false){
+
+function drawAvatars(
+ el,
+ save=false
+){
 
  el.innerHTML="";
 
  avatars.forEach(a=>{
 
-  const b=document.createElement("button");
+  const b=
+   document.createElement("button");
 
   b.className=
    "avatarbtn"+
-   (a===chosen ? " sel" : "");
+   (
+    a===chosen
+     ? " sel"
+     : ""
+   );
 
   b.textContent=a;
 
@@ -765,9 +1446,13 @@ function drawAvatars(el,save=false){
 
    chosen=a;
 
-   $("profileAvatar").textContent=a;
+   $("profileAvatar")
+    .textContent=a;
 
-   if(save && user){
+   if(
+    save &&
+    user
+   ){
 
     user.avatar=a;
 
@@ -777,6 +1462,7 @@ function drawAvatars(el,save=false){
     );
 
     updateDash();
+
    }
 
    drawAvatars(
@@ -789,11 +1475,15 @@ function drawAvatars(el,save=false){
    );
 
    fx("click");
+
   };
 
   el.appendChild(b);
+
  });
+
 }
+
 
 function updateDash(){
 
@@ -807,117 +1497,153 @@ function updateDash(){
 
  $("dashInfo").textContent=
   `Age: ${user.age} • ${user.location}`;
+
 }
 
-$("continueBtn").onclick=()=>{
 
- const name=
-  $("nameInput").value.trim();
+$("continueBtn").onclick=
+ ()=>{
 
- const age=
-  +$("ageInput").value;
+  const name=
+   $("nameInput")
+    .value
+    .trim();
 
- const location=
-  $("locationInput").value.trim();
+  const age=
+   +$("ageInput").value;
 
- $("profileMsg").textContent="";
+  const location=
+   $("locationInput")
+    .value
+    .trim();
 
- if(!name){
-  $("profileMsg").textContent=
-   "Please enter your name.";
-  fx("error");
-  return;
- }
+  $("profileMsg").textContent="";
 
- if(age<5 || age>100){
-  $("profileMsg").textContent=
-   "Please enter a valid age.";
-  fx("error");
-  return;
- }
+  if(!name){
 
- if(!location){
-  $("profileMsg").textContent=
-   "Please enter your location.";
-  fx("error");
-  return;
- }
+   $("profileMsg").textContent=
+    "Please enter your name.";
 
- user={
-  name,
-  age,
-  location,
-  avatar:chosen
+   fx("error");
+   return;
+
+  }
+
+  if(
+   age<5 ||
+   age>100
+  ){
+
+   $("profileMsg").textContent=
+    "Please enter a valid age.";
+
+   fx("error");
+   return;
+
+  }
+
+  if(!location){
+
+   $("profileMsg").textContent=
+    "Please enter your location.";
+
+   fx("error");
+   return;
+
+  }
+
+  user={
+   name,
+   age,
+   location,
+   avatar:chosen
+  };
+
+  localStorage.setItem(
+   "farizProfile",
+   JSON.stringify(user)
+  );
+
+  updateDash();
+
+  show(
+   $("dashboard")
+  );
+
+  counter();
+
+  fx("success");
+  startMusic();
+
  };
 
- localStorage.setItem(
-  "farizProfile",
-  JSON.stringify(user)
- );
 
- updateDash();
+$("editBtn").onclick=
+ ()=>{
 
- show(
-  $("dashboard")
- );
+  $("nameInput").value=
+   user.name;
 
- counter();
+  $("ageInput").value=
+   user.age;
 
- fx("success");
+  $("locationInput").value=
+   user.location;
 
- startMusic();
-};
+  chosen=
+   user.avatar || "🥷";
 
-$("editBtn").onclick=()=>{
+  $("profileAvatar").textContent=
+   chosen;
 
- $("nameInput").value=user.name;
- $("ageInput").value=user.age;
- $("locationInput").value=user.location;
+  drawAvatars(
+   $("profileAvatars")
+  );
 
- chosen=
-  user.avatar || "🥷";
+  show(
+   $("profile")
+  );
 
- $("profileAvatar").textContent=
-  chosen;
+ };
 
- drawAvatars(
-  $("profileAvatars")
- );
 
- show(
-  $("profile")
- );
-};
+$("characterBtn").onclick=
+ ()=>{
 
-$("characterBtn").onclick=()=>{
+  $("avatarModal")
+   .classList
+   .remove("hidden");
 
- $("avatarModal")
-  .classList
-  .remove("hidden");
+  drawAvatars(
+   $("modalAvatars"),
+   true
+  );
 
- drawAvatars(
-  $("modalAvatars"),
-  true
- );
-};
+ };
 
-$("closeAvatar").onclick=()=>{
 
- $("avatarModal")
-  .classList
-  .add("hidden");
-};
+$("closeAvatar").onclick=
+ ()=>{
 
-/* COUNTER */
+  $("avatarModal")
+   .classList
+   .add("hidden");
+
+ };
+
+
+/* =========================
+   COMMUNITY COUNTER
+========================= */
 
 function counter(){
 
- let start=
+ const start=
   performance.now();
 
  function go(now){
 
-  let p=
+  const p=
    Math.min(
     (now-start)/1600,
     1
@@ -926,381 +1652,496 @@ function counter(){
   $("counter").textContent=
    Math.floor(
     10000*
-    (1-Math.pow(1-p,3))
-   ).toLocaleString()+"+";
+    (
+     1-
+     Math.pow(
+      1-p,
+      3
+     )
+    )
+   ).toLocaleString()
+   +"+";
 
   if(p<1){
    requestAnimationFrame(go);
   }
+
  }
 
  requestAnimationFrame(go);
+
 }
 
-/* NAVIGATION */
-
-$("playBtn").onclick=()=>{
-
- $("lobbyMsg").textContent="";
-
- show(
-  $("lobby")
- );
-
- fx("click");
-};
-
-$("homeBtn").onclick=()=>{
-
- show(
-  $("dashboard")
- );
-
- counter();
-};
 
 /* =========================
-   FIREBASE ROOMS
+   NAVIGATION
 ========================= */
 
-const blank=()=>({
- 0:"",
- 1:"",
- 2:"",
- 3:"",
- 4:"",
- 5:"",
- 6:"",
- 7:"",
- 8:""
-});
+$("playBtn").onclick=
+ ()=>{
 
-const arr=b=>
- Array.from(
-  {length:9},
-  (_,i)=>b?.[i] || ""
- );
+  $("lobbyMsg").textContent="";
 
-const obj=a=>
- Object.fromEntries(
-  a.map(
-   (v,i)=>[i,v || ""]
-  )
- );
+  show(
+   $("lobby")
+  );
+
+  fx("click");
+
+ };
+
+
+$("homeBtn").onclick=
+ ()=>{
+
+  show(
+   $("dashboard")
+  );
+
+  counter();
+
+ };
+
+
+/* =========================
+   ROOM HELPERS
+========================= */
+
+const blank=
+ ()=>({
+  0:"",
+  1:"",
+  2:"",
+  3:"",
+  4:"",
+  5:"",
+  6:"",
+  7:"",
+  8:""
+ });
+
+
+const arr=
+ b=>
+  Array.from(
+   {length:9},
+   (_,i)=>
+    b?.[i] || ""
+  );
+
+
+const obj=
+ a=>
+  Object.fromEntries(
+   a.map(
+    (v,i)=>[
+     i,
+     v || ""
+    ]
+   )
+  );
+
 
 function makeCode(){
-
- let code="";
 
  const chars=
   "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
- for(let i=0;i<6;i++){
+ let code="";
+
+ for(
+  let i=0;
+  i<6;
+  i++
+ ){
 
   code+=
    chars[
     Math.floor(
-     Math.random()*chars.length
+     Math.random()*
+     chars.length
     )
    ];
+
  }
 
  return code;
+
 }
 
-$("roomInput").oninput=()=>{
 
- $("roomInput").value=
-  $("roomInput")
-   .value
-   .toUpperCase()
-   .replace(
-    /[^A-Z0-9]/g,
-    ""
-   );
-};
+$("roomInput").oninput=
+ ()=>{
 
-/* CREATE ROOM */
-
-$("createBtn").onclick=async()=>{
-
- $("lobbyMsg").textContent=
-  "Creating room...";
-
- $("createBtn").disabled=true;
-
- try{
-
-  let code="";
-  let available=false;
-
-  for(let tries=0;tries<10;tries++){
-
-   code=makeCode();
-
-   const snapshot=
-    await get(
-     ref(
-      db,
-      `rooms/${code}`
-     )
+  $("roomInput").value=
+   $("roomInput")
+    .value
+    .toUpperCase()
+    .replace(
+     /[^A-Z0-9]/g,
+     ""
     );
 
-   if(!snapshot.exists()){
-    available=true;
-    break;
-   }
-  }
+ };
 
-  if(!available){
-   throw new Error(
-    "Could not generate room code."
-   );
-  }
-
-  room=code;
-  symbol="X";
-
-  await set(
-   ref(
-    db,
-    `rooms/${room}`
-   ),
-   {
-
-    playerX:{
-     name:user.name,
-     avatar:user.avatar || "🥷"
-    },
-
-    playerO:null,
-
-    board:blank(),
-
-    turn:"X",
-
-    winner:"",
-
-    winningCells:[],
-
-    status:"waiting",
-
-    rematchRequest:null,
-
-    createdAt:Date.now()
-
-   }
-  );
-
-  $("lobbyMsg").textContent="";
-
-  $("codeDisplay").textContent=
-   room;
-
-  show(
-   $("waiting")
-  );
-
-  listenRoom();
-  listenChat();
-
-  fx("success");
-
- }catch(error){
-
-  console.error(
-   "Create room error:",
-   error
-  );
-
-  room="";
-  symbol="";
-
-  $("lobbyMsg").textContent=
-   "Could not create room. Check your connection.";
-
-  fx("error");
-
- }finally{
-
-  $("createBtn").disabled=false;
- }
-};
 
 /* =========================
-   FIXED JOIN ROOM
+   CREATE ROOM
 ========================= */
 
-$("joinBtn").onclick=async()=>{
-
- const code=
-  $("roomInput")
-   .value
-   .trim()
-   .toUpperCase();
-
- $("lobbyMsg").textContent="";
-
- if(code.length!==6){
+$("createBtn").onclick=
+ async()=>{
 
   $("lobbyMsg").textContent=
-   "Enter a valid room code.";
+   "Creating room...";
 
-  fx("error");
+  $("createBtn").disabled=true;
 
-  return;
- }
+  try{
 
- $("joinBtn").disabled=true;
+   let code="";
+   let available=false;
 
- $("lobbyMsg").textContent=
-  "Finding room...";
+   for(
+    let tries=0;
+    tries<12;
+    tries++
+   ){
 
- try{
+    code=makeCode();
 
-  const roomRef=
-   ref(
-    db,
-    `rooms/${code}`
-   );
+    const check=
+     await get(
+      ref(
+       db,
+       `rooms/${code}`
+      )
+     );
 
-  /*
-   First check gives the player
-   a useful error message.
-  */
+    if(!check.exists()){
 
-  const before=
-   await get(roomRef);
+     available=true;
+     break;
 
-  if(!before.exists()){
+    }
 
-   $("lobbyMsg").textContent=
-    "Room not found.";
+   }
 
-   fx("error");
+   if(!available){
 
-   return;
-  }
+    throw new Error(
+     "Room code error"
+    );
 
-  const data=
-   before.val();
+   }
 
-  if(data.playerO){
+   room=code;
+   symbol="X";
 
-   $("lobbyMsg").textContent=
-    "Room is already full.";
+   await set(
+    ref(
+     db,
+     `rooms/${room}`
+    ),
+    {
 
-   fx("error");
-
-   return;
-  }
-
-  if(data.status!=="waiting"){
-
-   $("lobbyMsg").textContent=
-    "This room is no longer available.";
-
-   fx("error");
-
-   return;
-  }
-
-  /*
-   Transaction prevents two devices
-   taking Player O at the same time.
-  */
-
-  const transaction=
-   await runTransaction(
-    roomRef,
-    current=>{
-
-     if(!current){
-      return;
-     }
-
-     if(
-      current.status!=="waiting" ||
-      current.playerO
-     ){
-      return;
-     }
-
-     current.playerO={
+     playerX:{
       name:user.name,
       avatar:user.avatar || "🥷"
-     };
+     },
 
-     current.status=
-      "playing";
+     board:blank(),
 
-     return current;
+     turn:"X",
+
+     winner:"",
+
+     winningCells:[],
+
+     status:"waiting",
+
+     createdAt:Date.now()
+
     }
    );
 
-  if(!transaction.committed){
+   $("lobbyMsg").textContent="";
 
-   const latest=
-    await get(roomRef);
+   $("codeDisplay").textContent=
+    room;
 
-   if(!latest.exists()){
+   show(
+    $("waiting")
+   );
+
+   listenRoom();
+   listenChat();
+
+   fx("success");
+
+  }catch(error){
+
+   console.error(
+    "Create room:",
+    error
+   );
+
+   room="";
+   symbol="";
+
+   $("lobbyMsg").textContent=
+    "Could not create room. Please try again.";
+
+   fx("error");
+
+  }finally{
+
+   $("createBtn").disabled=false;
+
+  }
+
+ };
+
+
+/* ==========================================
+   FIXED JOIN ROOM
+   Player O is claimed separately.
+========================================== */
+
+$("joinBtn").onclick=
+ async()=>{
+
+  const code=
+   $("roomInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+  $("lobbyMsg").textContent="";
+
+  if(code.length!==6){
+
+   $("lobbyMsg").textContent=
+    "Enter a valid room code.";
+
+   fx("error");
+   return;
+
+  }
+
+  $("joinBtn").disabled=true;
+
+  $("lobbyMsg").textContent=
+   "Joining room...";
+
+  try{
+
+   const mainRoomRef=
+    ref(
+     db,
+     `rooms/${code}`
+    );
+
+   /*
+    Step 1:
+    Confirm that the room exists.
+   */
+
+   const roomSnapshot=
+    await get(mainRoomRef);
+
+   if(!roomSnapshot.exists()){
 
     $("lobbyMsg").textContent=
      "Room not found.";
 
-   }else if(
-    latest.val()?.playerO
+    fx("error");
+    return;
+
+   }
+
+   const roomData=
+    roomSnapshot.val();
+
+   /*
+    Step 2:
+    Room must still be waiting.
+   */
+
+   if(
+    roomData.status!=="waiting"
    ){
+
+    if(roomData.playerO){
+
+     $("lobbyMsg").textContent=
+      "Room is already full.";
+
+    }else{
+
+     $("lobbyMsg").textContent=
+      "This room is no longer available.";
+
+    }
+
+    fx("error");
+    return;
+
+   }
+
+   /*
+    Step 3:
+    Claim ONLY the playerO position.
+
+    This avoids the previous problem where
+    the complete room transaction could fail.
+   */
+
+   const playerORef=
+    ref(
+     db,
+     `rooms/${code}/playerO`
+    );
+
+   const claim=
+    await runTransaction(
+     playerORef,
+     current=>{
+
+      if(current){
+
+       /*
+        Someone already claimed Player O.
+       */
+       return;
+
+      }
+
+      return{
+       name:user.name,
+       avatar:user.avatar || "🥷",
+       joinedAt:Date.now()
+      };
+
+     }
+    );
+
+   if(!claim.committed){
 
     $("lobbyMsg").textContent=
      "Room is already full.";
 
-   }else{
+    fx("error");
+    return;
+
+   }
+
+   /*
+    Step 4:
+    Verify Player O was actually written.
+   */
+
+   const playerCheck=
+    await get(playerORef);
+
+   if(!playerCheck.exists()){
 
     $("lobbyMsg").textContent=
-     "Could not join this room. Please try again.";
+     "Could not join room. Please try again.";
+
+    fx("error");
+    return;
+
    }
+
+   /*
+    Step 5:
+    Change status to playing.
+   */
+
+   await set(
+    ref(
+     db,
+     `rooms/${code}/status`
+    ),
+    "playing"
+   );
+
+   /*
+    Step 6:
+    Confirm room is ready.
+   */
+
+   const finalCheck=
+    await get(mainRoomRef);
+
+   if(!finalCheck.exists()){
+
+    $("lobbyMsg").textContent=
+     "The room was closed.";
+
+    fx("error");
+    return;
+
+   }
+
+   const finalData=
+    finalCheck.val();
+
+   if(
+    !finalData.playerX ||
+    !finalData.playerO
+   ){
+
+    $("lobbyMsg").textContent=
+     "Room setup failed. Please try again.";
+
+    fx("error");
+    return;
+
+   }
+
+   /*
+    Join successful.
+   */
+
+   room=code;
+   symbol="O";
+
+   $("lobbyMsg").textContent="";
+
+   $("gameCode").textContent=
+    room;
+
+   listenRoom();
+   listenChat();
+
+   fx("success");
+
+  }catch(error){
+
+   console.error(
+    "Join room:",
+    error
+   );
+
+   $("lobbyMsg").textContent=
+    "Connection error. Please try again.";
 
    fx("error");
 
-   return;
+  }finally{
+
+   $("joinBtn").disabled=false;
+
   }
 
-  /*
-   IMPORTANT:
-   Set local room only AFTER
-   Firebase confirms the join.
-  */
+ };
 
-  room=code;
-  symbol="O";
 
-  $("lobbyMsg").textContent="";
-
-  listenRoom();
-  listenChat();
-
-  fx("success");
-
- }catch(error){
-
-  console.error(
-   "Join room error:",
-   error
-  );
-
-  $("lobbyMsg").textContent=
-   "Connection error. Please try again.";
-
-  fx("error");
-
- }finally{
-
-  $("joinBtn").disabled=false;
- }
-};
-
-/* WINNER */
+/* =========================
+   WIN CHECK
+========================= */
 
 function winner(board){
 
@@ -1315,9 +2156,13 @@ function winner(board){
   [2,4,6]
  ];
 
- for(const line of wins){
+ for(
+  const line of wins
+ ){
 
-  const [a,b,c]=line;
+  const [
+   a,b,c
+  ]=line;
 
   if(
    board[a] &&
@@ -1329,24 +2174,33 @@ function winner(board){
     winner:board[a],
     cells:line
    };
+
   }
+
  }
 
- if(board.every(Boolean)){
+ if(
+  board.every(Boolean)
+ ){
 
   return{
    winner:"DRAW",
    cells:[]
   };
+
  }
 
  return{
   winner:"",
   cells:[]
  };
+
 }
 
-/* ROOM LISTENER */
+
+/* =========================
+   ROOM LISTENER
+========================= */
 
 function listenRoom(){
 
@@ -1363,11 +2217,9 @@ function listenRoom(){
     db,
     `rooms/${listeningRoom}`
    ),
+
    snapshot=>{
 
-    /*
-     Ignore old listener callbacks.
-    */
     if(
      !room ||
      room!==listeningRoom
@@ -1400,7 +2252,9 @@ function listenRoom(){
      .classList
      .remove("hidden");
 
-    if(data.status==="waiting"){
+    if(
+     data.status==="waiting"
+    ){
 
      $("codeDisplay").textContent=
       room;
@@ -1412,26 +2266,44 @@ function listenRoom(){
      return;
     }
 
-    show(
-     $("game")
-    );
+    if(
+     data.status==="playing" ||
+     data.status==="finished"
+    ){
 
-    renderGame(data);
+     show(
+      $("game")
+     );
 
-    handleRematch(data);
+     renderGame(data);
+     handleRematch(data);
+
+    }
+
    }
+
   );
+
 }
 
-/* GAME RENDER */
+
+/* =========================
+   GAME RENDER
+========================= */
 
 function renderGame(data){
 
  const board=
   arr(data.board);
 
- const wins=
-  data.winningCells || [];
+ const winningCells=
+  Array.isArray(
+   data.winningCells
+  )
+   ? data.winningCells
+   : Object.values(
+      data.winningCells || {}
+     ).map(Number);
 
  $("xName").textContent=
   data.playerX?.name ||
@@ -1478,7 +2350,9 @@ function renderGame(data){
     cell.classList.add("o");
    }
 
-   if(wins.includes(i)){
+   if(
+    winningCells.includes(i)
+   ){
     cell.classList.add("win");
    }
 
@@ -1486,10 +2360,13 @@ function renderGame(data){
     data.status!=="playing" ||
     data.turn!==symbol ||
     Boolean(value);
+
   }
  );
 
- if(data.status==="finished"){
+ if(
+  data.status==="finished"
+ ){
 
   $("turn").textContent=
    "Game Over";
@@ -1498,7 +2375,9 @@ function renderGame(data){
    .classList
    .remove("hidden");
 
-  if(data.winner==="DRAW"){
+  if(
+   data.winner==="DRAW"
+  ){
 
    $("result").textContent=
     "Draw!";
@@ -1514,9 +2393,11 @@ function renderGame(data){
 
    $("result").textContent=
     "Opponent Wins!";
+
   }
 
   return;
+
  }
 
  $("rematchBtn")
@@ -1531,161 +2412,191 @@ function renderGame(data){
   data.turn===symbol
    ? "Your Turn"
    : "Opponent's Turn";
+
 }
 
-/* GAME MOVE */
 
-cells.forEach(cell=>{
+/* =========================
+   GAME MOVE
+========================= */
 
- cell.onclick=async()=>{
+cells.forEach(
+ cell=>{
 
-  if(
-   busy ||
-   !room ||
-   !symbol
-  ){
-   return;
-  }
-
-  busy=true;
-
-  const index=
-   +cell.dataset.i;
-
-  try{
-
-   const currentRoom=
-    room;
-
-   const transaction=
-    await runTransaction(
-     ref(
-      db,
-      `rooms/${currentRoom}`
-     ),
-     data=>{
-
-      if(
-       !data ||
-       data.status!=="playing" ||
-       data.turn!==symbol
-      ){
-       return data;
-      }
-
-      const board=
-       arr(data.board);
-
-      if(board[index]){
-       return data;
-      }
-
-      board[index]=
-       symbol;
-
-      const gameResult=
-       winner(board);
-
-      data.board=
-       obj(board);
-
-      if(gameResult.winner){
-
-       data.winner=
-        gameResult.winner;
-
-       data.winningCells=
-        gameResult.cells;
-
-       data.status=
-        "finished";
-
-       data.rematchRequest=
-        null;
-
-      }else{
-
-       data.turn=
-        symbol==="X"
-         ? "O"
-         : "X";
-      }
-
-      return data;
-     }
-    );
-
-   if(transaction.committed){
-
-    fx("move");
-
-    const data=
-     transaction.snapshot.val();
+  cell.onclick=
+   async()=>{
 
     if(
-     data?.status==="finished" &&
-     data?.winner===symbol
+     busy ||
+     !room ||
+     !symbol
     ){
-     fx("win");
+     return;
     }
-   }
 
-  }catch(error){
+    busy=true;
 
-   console.error(
-    "Move error:",
-    error
-   );
+    const index=
+     +cell.dataset.i;
 
-  }finally{
+    try{
 
-   busy=false;
-  }
- };
-});
+     const currentRoom=
+      room;
 
-/* REMATCH */
+     const move=
+      await runTransaction(
+       ref(
+        db,
+        `rooms/${currentRoom}`
+       ),
 
-$("rematchBtn").onclick=async()=>{
+       data=>{
 
- if(!room)return;
+        if(
+         !data ||
+         data.status!=="playing" ||
+         data.turn!==symbol
+        ){
+         return;
+        }
 
- await runTransaction(
-  ref(
-   db,
-   `rooms/${room}`
-  ),
-  data=>{
+        const board=
+         arr(data.board);
 
-   if(
-    !data ||
-    data.status!=="finished"
-   ){
-    return data;
-   }
+        if(
+         board[index]
+        ){
+         return;
+        }
 
-   if(
-    data.rematchRequest?.status===
-    "pending"
-   ){
-    return data;
-   }
+        board[index]=
+         symbol;
 
-   data.rematchRequest={
-    from:symbol,
-    status:"pending",
-    time:Date.now()
+        const result=
+         winner(board);
+
+        data.board=
+         obj(board);
+
+        if(
+         result.winner
+        ){
+
+         data.winner=
+          result.winner;
+
+         data.winningCells=
+          result.cells;
+
+         data.status=
+          "finished";
+
+         data.rematchRequest=
+          null;
+
+        }else{
+
+         data.turn=
+          symbol==="X"
+           ? "O"
+           : "X";
+
+        }
+
+        return data;
+
+       }
+
+      );
+
+     if(move.committed){
+
+      fx("move");
+
+      const newData=
+       move.snapshot.val();
+
+      if(
+       newData?.status===
+       "finished" &&
+       newData?.winner===
+       symbol
+      ){
+       fx("win");
+      }
+
+     }
+
+    }catch(error){
+
+     console.error(
+      "Move error:",
+      error
+     );
+
+    }finally{
+
+     busy=false;
+
+    }
+
    };
 
-   return data;
-  }
- );
+ }
+);
 
- $("rematchStatus").textContent=
-  "Rematch request sent. Waiting for opponent...";
 
- fx("success");
-};
+/* =========================
+   REMATCH
+========================= */
+
+$("rematchBtn").onclick=
+ async()=>{
+
+  if(!room)return;
+
+  await runTransaction(
+   ref(
+    db,
+    `rooms/${room}`
+   ),
+
+   data=>{
+
+    if(
+     !data ||
+     data.status!=="finished"
+    ){
+     return;
+    }
+
+    if(
+     data.rematchRequest?.status===
+     "pending"
+    ){
+     return data;
+    }
+
+    data.rematchRequest={
+     from:symbol,
+     status:"pending",
+     time:Date.now()
+    };
+
+    return data;
+
+   }
+
+  );
+
+  $("rematchStatus").textContent=
+   "Rematch request sent. Waiting for opponent...";
+
+  fx("success");
+
+ };
+
 
 function handleRematch(data){
 
@@ -1702,9 +2613,13 @@ function handleRematch(data){
    .add("hidden");
 
   return;
+
  }
 
- if(request.from===symbol){
+ if(
+  request.from===
+  symbol
+ ){
 
   $("rematchStatus").textContent=
    "Waiting for opponent to accept...";
@@ -1718,109 +2633,142 @@ function handleRematch(data){
   $("rematchModal")
    .classList
    .remove("hidden");
+
  }
+
 }
 
-$("acceptBtn").onclick=async()=>{
 
- if(!room)return;
+$("acceptBtn").onclick=
+ async()=>{
 
- await runTransaction(
-  ref(
-   db,
-   `rooms/${room}`
-  ),
-  data=>{
+  if(!room)return;
 
-   if(
-    !data ||
-    !data.rematchRequest ||
-    data.rematchRequest.from===symbol
-   ){
-    return data;
-   }
-
-   data.board=blank();
-   data.turn="X";
-   data.winner="";
-   data.winningCells=[];
-   data.status="playing";
-   data.rematchRequest=null;
-
-   return data;
-  }
- );
-
- $("rematchModal")
-  .classList
-  .add("hidden");
-
- fx("success");
-};
-
-$("declineBtn").onclick=async()=>{
-
- if(room){
-
-  await remove(
+  await runTransaction(
    ref(
     db,
     `rooms/${room}`
-   )
+   ),
+
+   data=>{
+
+    if(
+     !data ||
+     !data.rematchRequest ||
+     data.rematchRequest.from===
+     symbol
+    ){
+     return;
+    }
+
+    data.board=blank();
+
+    data.turn="X";
+
+    data.winner="";
+
+    data.winningCells=[];
+
+    data.status=
+     "playing";
+
+    data.rematchRequest=
+     null;
+
+    return data;
+
+   }
+
   );
- }
 
- $("rematchModal")
-  .classList
-  .add("hidden");
-};
+  $("rematchModal")
+   .classList
+   .add("hidden");
 
-/* LEAVE */
+  fx("success");
 
-$("leaveWait").onclick=async()=>{
+ };
 
- const oldRoom=room;
 
- if(
-  oldRoom &&
-  symbol==="X"
- ){
+$("declineBtn").onclick=
+ async()=>{
 
-  await remove(
-   ref(
-    db,
-    `rooms/${oldRoom}`
-   )
+  if(room){
+
+   await remove(
+    ref(
+     db,
+     `rooms/${room}`
+    )
+   );
+
+  }
+
+  $("rematchModal")
+   .classList
+   .add("hidden");
+
+ };
+
+
+/* =========================
+   LEAVE ROOM
+========================= */
+
+$("leaveWait").onclick=
+ async()=>{
+
+  const oldRoom=
+   room;
+
+  if(
+   oldRoom &&
+   symbol==="X"
+  ){
+
+   await remove(
+    ref(
+     db,
+     `rooms/${oldRoom}`
+    )
+   );
+
+  }
+
+  reset();
+
+  show(
+   $("lobby")
   );
- }
 
- reset();
+ };
 
- show(
-  $("lobby")
- );
-};
 
-$("leaveGame").onclick=async()=>{
+$("leaveGame").onclick=
+ async()=>{
 
- const oldRoom=room;
+  const oldRoom=
+   room;
 
- if(oldRoom){
+  if(oldRoom){
 
-  await remove(
-   ref(
-    db,
-    `rooms/${oldRoom}`
-   )
+   await remove(
+    ref(
+     db,
+     `rooms/${oldRoom}`
+    )
+   );
+
+  }
+
+  reset();
+
+  show(
+   $("lobby")
   );
- }
 
- reset();
+ };
 
- show(
-  $("lobby")
- );
-};
 
 function reset(){
 
@@ -1854,36 +2802,46 @@ function reset(){
  closeChat();
 
  badge();
+
 }
 
-/* COPY */
 
-$("copyBtn").onclick=async()=>{
+/* =========================
+   COPY ROOM CODE
+========================= */
 
- try{
+$("copyBtn").onclick=
+ async()=>{
 
-  await navigator.clipboard.writeText(
-   room
-  );
+  try{
 
-  $("copyBtn").textContent=
-   "Copied ✓";
+   await navigator.clipboard.writeText(
+    room
+   );
 
-  setTimeout(
-   ()=>{
-    $("copyBtn").textContent=
-     "Copy Room Code";
-   },
-   1200
-  );
+   $("copyBtn").textContent=
+    "Copied ✓";
 
- }catch(e){
+   setTimeout(
+    ()=>{
 
-  alert(
-   "Room Code: "+room
-  );
- }
-};
+     $("copyBtn").textContent=
+      "Copy Room Code";
+
+    },
+    1200
+   );
+
+  }catch(e){
+
+   alert(
+    "Room Code: "+room
+   );
+
+  }
+
+ };
+
 
 /* =========================
    CHAT
@@ -1906,6 +2864,7 @@ function listenChat(){
     db,
     `rooms/${listeningRoom}/messages`
    ),
+
    snapshot=>{
 
     if(
@@ -1949,58 +2908,79 @@ function listenChat(){
       badge();
 
       fx("message");
+
      }
+
     }
 
     lastCount=
      messages.length;
+
    }
+
   );
+
 }
+
 
 function drawChat(messages){
 
  $("messages").innerHTML="";
 
- messages.forEach(message=>{
+ messages.forEach(
+  message=>{
 
-  const box=
-   document.createElement("div");
+   const box=
+    document.createElement(
+     "div"
+    );
 
-  box.className=
-   "message"+
-   (
-    message.symbol===symbol
-     ? " mine"
-     : ""
+   box.className=
+    "message"+
+    (
+     message.symbol===
+     symbol
+      ? " mine"
+      : ""
+    );
+
+   const name=
+    document.createElement(
+     "div"
+    );
+
+   name.className="mn";
+
+   name.textContent=
+    message.name ||
+    "Player";
+
+   const text=
+    document.createElement(
+     "div"
+    );
+
+   text.className="mt";
+
+   text.textContent=
+    message.text || "";
+
+   box.append(
+    name,
+    text
    );
 
-  const name=
-   document.createElement("div");
+   $("messages")
+    .appendChild(box);
 
-  name.className="mn";
-
-  name.textContent=
-   message.name ||
-   "Player";
-
-  const text=
-   document.createElement("div");
-
-  text.className="mt";
-
-  text.textContent=
-   message.text || "";
-
-  box.append(name,text);
-
-  $("messages")
-   .appendChild(box);
- });
+  }
+ );
 
  $("messages").scrollTop=
   $("messages").scrollHeight;
+
 }
+
 
 function openChat(){
 
@@ -2014,7 +2994,9 @@ function openChat(){
  $("chatPanel")
   .classList
   .remove("hidden");
+
 }
+
 
 function closeChat(){
 
@@ -2023,7 +3005,9 @@ function closeChat(){
  $("chatPanel")
   .classList
   .add("hidden");
+
 }
+
 
 function badge(){
 
@@ -2035,8 +3019,12 @@ function badge(){
   );
 
  $("badge").textContent=
-  unread>9 ? "9+" : unread;
+  unread>9
+   ? "9+"
+   : unread;
+
 }
+
 
 async function sendChat(){
 
@@ -2044,7 +3032,10 @@ async function sendChat(){
   $("chatInput")
    .value
    .trim()
-   .slice(0,150);
+   .slice(
+    0,
+    150
+   );
 
  if(
   !text ||
@@ -2055,21 +3046,36 @@ async function sendChat(){
 
  $("chatInput").value="";
 
- await set(
-  push(
-   ref(
-    db,
-    `rooms/${room}/messages`
-   )
-  ),
-  {
-   name:user.name,
-   symbol,
-   text,
-   time:Date.now()
-  }
- );
+ try{
+
+  await set(
+   push(
+    ref(
+     db,
+     `rooms/${room}/messages`
+    )
+   ),
+
+   {
+    name:user.name,
+    symbol,
+    text,
+    time:Date.now()
+   }
+
+  );
+
+ }catch(error){
+
+  console.error(
+   "Chat error:",
+   error
+  );
+
+ }
+
 }
+
 
 $("chatTop").onclick=
  openChat;
@@ -2083,13 +3089,20 @@ $("closeChat").onclick=
 $("sendBtn").onclick=
  sendChat;
 
+
 $("chatInput").onkeydown=
  event=>{
 
-  if(event.key==="Enter"){
+  if(
+   event.key==="Enter"
+  ){
+
    sendChat();
+
   }
+
  };
+
 
 /* =========================
    THEMES
@@ -2099,124 +3112,186 @@ const themeData={
 
  neon:[
   "Neon Blue",
-  "#050713","#17245c",
-  "#61e8ff","#765cff","#ff6585"
+  "#050713",
+  "#17245c",
+  "#61e8ff",
+  "#765cff",
+  "#ff6585"
  ],
 
  cyber:[
   "Cyber Green",
-  "#03110b","#0a3927",
-  "#38ff8c","#00b967","#ff4e90"
+  "#03110b",
+  "#0a3927",
+  "#38ff8c",
+  "#00b967",
+  "#ff4e90"
  ],
 
  sunset:[
   "Sunset",
-  "#1c0714","#6c213f",
-  "#ff9c59","#ff446c","#ffd166"
+  "#1c0714",
+  "#6c213f",
+  "#ff9c59",
+  "#ff446c",
+  "#ffd166"
  ],
 
  royal:[
   "Royal Purple",
-  "#10071f","#432374",
-  "#b889ff","#754be8","#ff70bd"
+  "#10071f",
+  "#432374",
+  "#b889ff",
+  "#754be8",
+  "#ff70bd"
  ],
 
  fire:[
   "Fire",
-  "#160402","#691d08",
-  "#ff9e00","#ff3d00","#ffe16b"
+  "#160402",
+  "#691d08",
+  "#ff9e00",
+  "#ff3d00",
+  "#ffe16b"
  ],
 
  ocean:[
   "Ocean",
-  "#02101c","#064875",
-  "#34dbff","#0087ff","#3cffc2"
+  "#02101c",
+  "#064875",
+  "#34dbff",
+  "#0087ff",
+  "#3cffc2"
  ],
 
  gold:[
   "Black Gold",
-  "#090909","#30270a",
-  "#ffd84e","#b98b00","#fff1a6"
+  "#090909",
+  "#30270a",
+  "#ffd84e",
+  "#b98b00",
+  "#fff1a6"
  ],
 
  candy:[
   "Candy",
-  "#17091b","#62236c",
-  "#ff72dc","#945cff","#61f3ff"
+  "#17091b",
+  "#62236c",
+  "#ff72dc",
+  "#945cff",
+  "#61f3ff"
  ],
 
  ice:[
   "Ice",
-  "#061118","#255063",
-  "#b5f5ff","#55c2e2","#fff"
+  "#061118",
+  "#255063",
+  "#b5f5ff",
+  "#55c2e2",
+  "#ffffff"
  ],
 
  retro:[
   "Retro",
-  "#170d28","#623878",
-  "#ffea67","#ff6baa","#6effd5"
+  "#170d28",
+  "#623878",
+  "#ffea67",
+  "#ff6baa",
+  "#6effd5"
  ],
 
  matrix:[
   "Matrix",
-  "#000500","#072407",
-  "#00ff41","#0b8f2d","#aaffbe"
+  "#000500",
+  "#072407",
+  "#00ff41",
+  "#0b8f2d",
+  "#aaffbe"
  ],
 
  lava:[
   "Lava",
-  "#160000","#5f0600",
-  "#ff4b19","#ff9500","#ffe260"
+  "#160000",
+  "#5f0600",
+  "#ff4b19",
+  "#ff9500",
+  "#ffe260"
  ],
 
  space:[
   "Deep Space",
-  "#02030d","#17113f",
-  "#7cc8ff","#875cff","#ff65df"
+  "#02030d",
+  "#17113f",
+  "#7cc8ff",
+  "#875cff",
+  "#ff65df"
  ],
 
  mint:[
   "Mint",
-  "#05110f","#164c42",
-  "#67ffd8","#32b89c","#e3fff8"
+  "#05110f",
+  "#164c42",
+  "#67ffd8",
+  "#32b89c",
+  "#e3fff8"
  ],
 
  rose:[
   "Rose",
-  "#19080e","#5d2338",
-  "#ff86aa","#d44978","#ffd0dd"
+  "#19080e",
+  "#5d2338",
+  "#ff86aa",
+  "#d44978",
+  "#ffd0dd"
  ],
 
  electric:[
   "Electric",
-  "#030617","#091d6b",
-  "#00e5ff","#0066ff","#f600ff"
+  "#030617",
+  "#091d6b",
+  "#00e5ff",
+  "#0066ff",
+  "#f600ff"
  ],
 
  forest:[
   "Forest",
-  "#061007","#21482a",
-  "#8eff7a","#3a9b4b","#e1ff6b"
+  "#061007",
+  "#21482a",
+  "#8eff7a",
+  "#3a9b4b",
+  "#e1ff6b"
  ],
 
  peach:[
   "Peach",
-  "#21100c","#71402f",
-  "#ffb183","#ed6d5a","#ffe0a6"
+  "#21100c",
+  "#71402f",
+  "#ffb183",
+  "#ed6d5a",
+  "#ffe0a6"
  ],
 
  violet:[
   "Violet Storm",
-  "#0d0718","#4d2374",
-  "#d98cff","#872dff","#70eaff"
+  "#0d0718",
+  "#4d2374",
+  "#d98cff",
+  "#872dff",
+  "#70eaff"
  ],
 
  mono:[
   "Monochrome",
-  "#090909","#2b2b2b",
-  "#fff","#777","#d0d0d0"
+  "#090909",
+  "#2b2b2b",
+  "#ffffff",
+  "#777777",
+  "#d0d0d0"
  ]
+
 };
+
 
 function drawThemes(){
 
@@ -2256,17 +3331,22 @@ function drawThemes(){
     </div>
    `;
 
-   button.onclick=()=>{
+   button.onclick=
+    ()=>{
 
-    setTheme(key);
-    fx("click");
-   };
+     setTheme(key);
+     fx("click");
+
+    };
 
    $("themes")
     .appendChild(button);
+
   }
  );
+
 }
+
 
 function setTheme(key){
 
@@ -2308,22 +3388,32 @@ function setTheme(key){
  );
 
  document
-  .querySelectorAll(".theme")
-  .forEach(button=>{
+  .querySelectorAll(
+   ".theme"
+  )
+  .forEach(
+   button=>{
 
-   button.classList.toggle(
-    "active",
-    button.dataset.theme===key
-   );
-  });
+    button.classList.toggle(
+     "active",
+     button.dataset.theme===
+     key
+    );
+
+   }
+  );
+
 }
+
 
 function openSettings(){
 
  $("settings")
   .classList
   .add("open");
+
 }
+
 
 $("themeTop").onclick=
  openSettings;
@@ -2331,15 +3421,19 @@ $("themeTop").onclick=
 $("themeBtn").onclick=
  openSettings;
 
-$("closeSettings").onclick=()=>{
 
- $("settings")
-  .classList
-  .remove("open");
-};
+$("closeSettings").onclick=
+ ()=>{
+
+  $("settings")
+   .classList
+   .remove("open");
+
+ };
+
 
 /* =========================
-   START
+   START APP
 ========================= */
 
 drawThemes();
@@ -2353,6 +3447,7 @@ setTheme(
 soundUI();
 musicUI();
 
+
 try{
 
  user=
@@ -2365,7 +3460,9 @@ try{
 }catch(e){
 
  user=null;
+
 }
+
 
 if(user){
 
@@ -2392,7 +3489,9 @@ if(user){
  show(
   $("profile")
  );
+
 }
+
 </script>
 
 </body>
